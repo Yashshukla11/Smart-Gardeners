@@ -25,6 +25,11 @@ def get_pdf_text(pdf_docs):
             text += page.extract_text()
     return text
 
+def read_text_from_file(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        raw_text = file.read()
+    return raw_text
+
 def get_text_chunks(text):
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=10000, chunk_overlap=1000)
@@ -38,11 +43,26 @@ def get_vector_store(chunks):
     vector_store.save_local("faiss_index")
 
 def get_conversational_chain():
+    # prompt_template="""Answer the question as detailed as possible from the provided context. Ensure responses stay within a 50-word limit. If the answer is not in
+    # the provided context, reply with "Sorry but I do not have any information regarding this topic. Kindly get in touch of the team." Do not provide incorrect answers.\n\n
+    # Context:\n {context}?\n
+    # Question: \n{question}\n
+
+    # Answer:"""
+
+    # prompt_template = """
+    # Answer the question as detailed as possible from the provided context, make sure to provide all the details, if the answer is not in
+    # provided context just say, "Sorry but I do not have any information regarding this topic. Kindly get in touch of the team.", don't provide the wrong answer\n\n
+    # Context:\n {context}?\n
+    # Question: \n{question}\n
+
+    # Answer:
+    # """
     prompt_template = """
-    Answer the question as detailed as possible from the provided context, make sure to provide all the details, if the answer is not in
-    provided context just say, "answer is not available in the context", don't provide the wrong answer\n\n
+    You are a chat bot for a company Smart Gardeners, your name is The Gardener. You will be asked questions based on the company and you have to answer them in maximum 50 words from the context provided.\n
+    If answer to the question asked is not found in the context then just say, "Sorry but I do not have any information regarding this topic. Kindly get in touch of the team.", do not provide wrong answers.
     Context:\n {context}?\n
-    Question: \n{question} in story?\n
+    Question: \n{question}\n
 
     Answer:
     """
@@ -55,10 +75,6 @@ def get_conversational_chain():
     chain = load_qa_chain(llm=model, chain_type="stuff", prompt=prompt)
     return chain
 
-def clear_chat_history():
-    st.session_state.messages = [
-        {"role": "assistant", "content": "upload some pdfs and ask me a question"}]
-
 def user_input(user_question):
     embeddings = GoogleGenerativeAIEmbeddings(
         model="models/embedding-001")
@@ -70,10 +86,28 @@ def user_input(user_question):
     # print(response)
     return response
 
-pdf_file_path = "c.pdf"
-raw_text = get_pdf_text([pdf_file_path])
-text_chunks = get_text_chunks(raw_text)
-get_vector_store(text_chunks)
+def improveResponse(answer):
+    model = genai.GenerativeModel('gemini-pro')
+    prompt = f"""Answer: {answer}\n\n
+    Ensure responses stay within a 50-word limit. If the answer is not in
+    the provided context, reply with "Sorry but I do not have any information regarding this topic. Kindly get in touch with the team." Do not provide incorrect answers.\n\n
+
+    Answer:
+    """
+    response = model.generate_content(prompt)
+    print(response.text)
+    return response.text
+
+def trainData():
+    pdf_file_path = "data/sgF.pdf"
+    raw_text = get_pdf_text([pdf_file_path])
+    # raw_text = read_text_from_file("data/sgft.txt")
+    # print(raw_text)
+    text_chunks = get_text_chunks(raw_text)
+    # print(text_chunks)
+    get_vector_store(text_chunks)
+
+# trainData()
 
 app = Flask(__name__)
 CORS(app, origins=os.getenv("ORIGIN"))
@@ -82,7 +116,16 @@ CORS(app, origins=os.getenv("ORIGIN"))
 def ask_question():
     user_question = request.args.get('question', default='', type=str)
     response = user_input(user_question)
+    print("\n\n")
+    print(response)
+    print("\n\n")
+    print(response["output_text"])
     return jsonify({'response': response["output_text"]})
+    # if(len(response["output_text"]) > 100):
+    #     newResponse = improveResponse(response["output_text"])
+    #     return jsonify({'response': newResponse})
+    # else:
+    #     return jsonify({'response': response["output_text"]})
 
 if __name__ == '__main__':
     app.run(debug=True)
