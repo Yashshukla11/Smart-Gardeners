@@ -84,21 +84,23 @@ export const Header = () => {
       </section>
 
       <section className="mt-[-100px] stats_box py-10 grid place-items-center lg:grid-cols-4 grid-cols-2 gap-4 sm:w-9/12 w-11/12 mx-auto -mt-8 px-4">
-        <div className = "anim" style={{ fontFamily: "Montserrat, sans-serif" }}>
-          <h1 className="md:text-[40px] text-[25px] mb-5 font-bold ">30+ Mha</h1>
+        <div className="anim" style={{ fontFamily: "Montserrat, sans-serif" }}>
+          <h1 className="md:text-[40px] text-[25px] mb-5 font-bold ">
+            30+ Mha
+          </h1>
           <p>Land Degraded</p>
         </div>
-        <div className = "anim" style={{ fontFamily: "Montserrat, sans-serif" }}>
+        <div className="anim" style={{ fontFamily: "Montserrat, sans-serif" }}>
           <h1 className="md:text-[40px] text-[25px] mb-5 font-bold ">~22%</h1>
           <p>Forest Cover Left</p>
         </div>
-        <div className = "anim" style={{ fontFamily: "Montserrat, sans-serif" }}>
+        <div className="anim" style={{ fontFamily: "Montserrat, sans-serif" }}>
           <h1 className="md:text-[40px] text-[25px] mb-5 font-bold ">
             1.4 Billion +
           </h1>
           <p>Population</p>
         </div>
-        <div className = "anim" style={{ fontFamily: "Montserrat, sans-serif" }}>
+        <div className="anim" style={{ fontFamily: "Montserrat, sans-serif" }}>
           <h1 className="md:text-[40px] text-[25px] mb-5 font-bold ">3 x</h1>
           <p>
             Rise of Global Warming <b>(Since 1982)</b>
