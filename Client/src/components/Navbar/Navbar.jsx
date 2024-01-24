@@ -32,7 +32,7 @@ export const Navbar = ({
                 </li>
                 <li className="menu__item">
                   <a
-                    href="#"
+                    href="/grow"
                     className={"menu__link " + (whatwegrow ? "active" : "")}
                   >
                     What we grow
