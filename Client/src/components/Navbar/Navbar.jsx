@@ -1,6 +1,12 @@
 import React from "react";
 
-export const Navbar = () => {
+export const Navbar = ({
+  home,
+  whatwegrow,
+  ourproduct,
+  aboutus,
+  contactus,
+}) => {
   return (
     <>
       <div className="container" style={{ marginBottom: "30px" }}>
@@ -17,34 +23,55 @@ export const Navbar = () => {
               <div className="nav-close-icon"></div>
               <ul className="header__menu">
                 <li className="menu__item">
-                  <a href="#" className="menu__link active">
+                  <a
+                    href="/"
+                    className={"menu__link " + (home ? "active" : "")}
+                  >
                     Home
                   </a>
                 </li>
                 <li className="menu__item">
-                  <a href="#" className="menu__link">
-                    Product
+                  <a
+                    href="#"
+                    className={"menu__link " + (whatwegrow ? "active" : "")}
+                  >
+                    What we grow
                   </a>
                 </li>
                 <li className="menu__item">
-                  <a href="#" className="menu__link">
-                    Team
+                  <a
+                    href="#"
+                    className={"menu__link " + (ourproduct ? "active" : "")}
+                  >
+                    Our Product
                   </a>
                 </li>
                 <li className="menu__item">
-                  <a href="#" className="menu__link">
-                    Blog
+                  <a
+                    href="/about"
+                    className={"menu__link " + (aboutus ? "active" : "")}
+                  >
+                    About Us
                   </a>
                 </li>
                 <li className="menu__item">
-                  <a href="#" className="menu__link">
-                    Contact
+                  <a
+                    href="/contact"
+                    className={"menu__link " + (contactus ? "active" : "")}
+                  >
+                    Contact Us
                   </a>
                 </li>
               </ul>
-              <div className="header__signup">
+              <div
+                className="header__signup"
+                style={{ display: "flex", gap: "20px" }}
+              >
                 <a href="#" className="btn btn__signup">
                   <i className="fas fa-user-plus"></i> Sign Up
+                </a>
+                <a href="#" className="btn btn__signup">
+                  <i className="fas fa-user-plus"></i> Sign In
                 </a>
               </div>
             </div>

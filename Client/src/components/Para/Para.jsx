@@ -1,11 +1,16 @@
 import React from "react";
 
-export const Para = ({ heading, text }) => {
+export const Para = ({ heading, text, fontSize }) => {
   return (
     <div className="testimonials__head w-[125rem]">
       <div className="invest__head">
-        <h2 className="invest__title">{heading}</h2>
-        <p className="invest__description">{text}</p>
+        <h2
+          className="invest__title"
+          style={{ fontSize: `${fontSize && fontSize ? fontSize : null}` }}
+        >
+          {heading && heading}
+        </h2>
+        <p className="invest__description">{text && text}</p>
       </div>
     </div>
   );

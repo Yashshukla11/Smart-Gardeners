@@ -5,14 +5,14 @@ import { Header } from "../../components/Header/Header";
 import { TextWithImage } from "../../components/TextWithImage/TextWithImage";
 import { CardSection } from "../../components/CardSection/CardSection";
 import { MiddlePara } from "../../components/MiddlePara/MiddlePara";
-import { Para } from "../../components/Para/Para";
 import { ContainerSteps } from "../../components/ContainerSteps/ContainerSteps";
 import { ContainerWithButton } from "../../components/ContainerWithButton/ContainerWithButton";
+import Chatbot from "../../components/ChatBot/ChatBot";
 
 export const Landing = () => {
   return (
     <>
-      <Navbar />
+      <Navbar home="true" />
       <Header />
       <div className="my-[50px]">
         <TextWithImage text="Welcome to Smart Gardeners" />
@@ -53,6 +53,7 @@ export const Landing = () => {
           text="Embark on a journey with Smart Gardeners and be part of the solution. Together, let's create a world where growing plants is not just a necessity but a celebration of life and nature."
         />
       </div>
+      {/* <Chatbot /> */}
       <Footer />
     </>
   );
