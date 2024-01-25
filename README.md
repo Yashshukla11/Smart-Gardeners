@@ -80,5 +80,5 @@ We welcome contributions from the community. If you'd like to contribute to Smar
 
 ## License
 
+<img src="https://i.postimg.cc/fb9qHHsD/icons8-story-book-66.png" alt="Hydroponics Icon" />
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-(https://i.postimg.cc/fb9qHHsD/icons8-story-book-66.png)
