@@ -18,13 +18,11 @@
 
 Welcome to Smart Gardeners, where we merge technology and nature to revolutionize how we grow plants. Our hydroponics project empowers individuals to cultivate a green oasis, even in the heart of urban landscapes.
 
-## Our Story 
-<img src="https://i.postimg.cc/C1FTHfdz/watering-plants.png" alt="Watering Plants" width="40"/>
+## Our Story <img src="https://i.postimg.cc/C1FTHfdz/watering-plants.png" alt="Watering Plants" width="40"/>
 
 At Smart Gardeners, we embarked on a journey in 2024, fueled by a passion for sustainable agriculture and a commitment to addressing the challenges of modern living. Our goal is to redefine the connection between technology and nature, offering innovative solutions for cultivating green spaces without using soil.
 
-## Challenges Addressed by Smart Gardeners 
-<img src="https://i.postimg.cc/rFS17hJ0/spider-plant.png" alt="Watering Plants" width="40"/>
+## Challenges Addressed by Smart Gardeners <img src="https://i.postimg.cc/rFS17hJ0/spider-plant.png" alt="Watering Plants" width="40"/>
 
 1. **Vanishing Green Spaces: A Call to Sustainable Home Gardening**
    - In the face of diminishing green spaces, Smart Gardeners address the need for sustainable home gardening. Our hydroponic kits enable individuals to cultivate plants in urban environments without relying on traditional soil-based methods.
@@ -33,10 +31,9 @@ At Smart Gardeners, we embarked on a journey in 2024, fueled by a passion for su
    - With the increasing urbanization, available space for traditional gardening is limited. Smart Gardeners tackle this challenge by offering compact hydroponic solutions that can be easily implemented in homes, apartments, or small balconies.
 
 3. **Water-Efficient Agriculture for Growing Food at Home**
-   - As demands for food and sustainability grow, Smart Gardeners promote water-efficient agriculture through hydroponics. Our kits empower individuals to grow their own fresh produce at home, reducing the environmental impact associated with conventional farming practices and also promoting Organic Farming.
+   - As demands for food and sustainability grow, Smart Gardeners promote water-efficient agriculture through hydroponics. Our kits empower individuals to grow their own fresh produce at home, reducing the environmental impact associated with conventional farming practices and it also promotes Organic Farming.
 
-## Why Hydroponics? 
-<img src="https://i.postimg.cc/Z51h0F2S/nature.png" alt="Watering Plants" width="40"/>
+## Why Hydroponics? <img src="https://i.postimg.cc/Z51h0F2S/nature.png" alt="Watering Plants" width="40"/>
 
 1. **Water Efficiency:**
 
@@ -53,8 +50,7 @@ At Smart Gardeners, we embarked on a journey in 2024, fueled by a passion for su
 4. **Nutrient Precision:**
    - Hydroponic systems enable precise control over nutrient levels, ensuring that plants receive the exact nutrients they need for optimal growth. This leads to healthier plants and higher yields.
 
-## What's in the Kit? 
-<img src="https://i.postimg.cc/XYXCn4SP/plant.png" alt="Watering Plants" width="40"/>
+## What's in the Kit? <img src="https://i.postimg.cc/XYXCn4SP/plant.png" alt="Watering Plants" width="40"/>
 
 Our hydroponic gardening kit is carefully curated to provide you with everything you need for a successful and enjoyable gardening experience. The kit includes:
 
@@ -79,13 +75,11 @@ Our hydroponic gardening kit is carefully curated to provide you with everything
 
 With these components, our kit empowers you to embark on a successful hydroponic gardening adventure, whether you're a seasoned gardener or just starting your green journey.
 
-## Getting Started with Your Smart Gardeners 
-<img src="https://i.postimg.cc/L8rB7nYD/worker.png" alt="Watering Plants" width="40"/>
+## Getting Started with Your Smart Gardeners <img src="https://i.postimg.cc/L8rB7nYD/worker.png" alt="Watering Plants" width="40"/>
 
 Upon purchasing our hydroponic kit, you'll receive a unique user ID and password. This login information grants you access to our dedicated web portal, where you can find comprehensive resources to kickstart your hydroponic gardening journey.
 
-### Features of the Web Portal: 
-<img src="https://i.postimg.cc/sxQ5wzjq/growth.png" alt="Watering Plants" width="40"/>
+### Features of the Web Portal: <img src="https://i.postimg.cc/sxQ5wzjq/growth.png" alt="Watering Plants" width="40"/>
 
 1. **Educational Resources:**
 
@@ -104,7 +98,10 @@ Upon purchasing our hydroponic kit, you'll receive a unique user ID and password
 
 ### How to Access the Web Portal:
 
+<!---
 1. Visit [SmartGardenersPortal.com](https://www.smartgardenersportal.com)
+--->
+1. Visit Soon to be hosted...
 2. Log in using your unique user ID and password provided with the hydroponic kit.
 
 We're committed to ensuring your hydroponic gardening experience is enjoyable and successful.
