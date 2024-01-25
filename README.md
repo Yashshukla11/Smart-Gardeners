@@ -1,4 +1,6 @@
-![Company Logo](https://i.postimg.cc/d1rV7FbB/logo.png)
+<div align="center">
+   <img src="https://i.postimg.cc/WzM5NWSf/image.png" />
+</div>
 
 <div align="center">
 
