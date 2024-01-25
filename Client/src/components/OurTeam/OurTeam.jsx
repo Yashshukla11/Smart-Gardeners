@@ -1,7 +1,7 @@
 import React from "react";
 import { TeamCard } from "../TeamCard/TeamCard";
 import { IoIosMail } from "react-icons/io";
-
+ 
 export const OurTeam = () => {
   return (
     <>
@@ -9,11 +9,14 @@ export const OurTeam = () => {
         className="container my-24 mx-auto md:px-6"
         style={{ marginTop: "50px" }}
       >
-        <section className="mb-32 text-center">
-          <h2 className="mb-12 text-3xl font-bold" style={{ fontSize: "30px" }}>
+        <section className="text-center" style={{ marginBottom: "40px" }}>
+          <h2
+            className="mb-12 text-3xl font-bold"
+            style={{ fontSize: "30px", marginBottom: "70px" }}
+          >
             Meet the <u className="text-primary dark:text-primary-400">team</u>
           </h2>
-
+ 
           <div className="flex justify-center gap-[80px] mb-[50px]">
             <TeamCard
               name="Swapnil Singh"

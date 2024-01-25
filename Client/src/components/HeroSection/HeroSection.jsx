@@ -2,7 +2,7 @@ import React from "react";
 
 export const HeroSection = () => {
   return (
-    <section className="hero w-120" style={{ height: "45vh" }}>
+    <section className="hero w-120" style={{ height: "55vh" }}>
       <div className="hero__content">
         <div className="hero__text">
           <h1 className="hero__title">Our Story</h1>
@@ -10,7 +10,7 @@ export const HeroSection = () => {
             At <b>Smart Gardeners</b>, our journey began with a shared passion
             for sustainable agriculture and a commitment to address the
             challenges posed by modern living. We embarked on a mission to
-            redefine how we connect with nature, even in the heart of urban
+            redefine how we connect with nature, evesn in the heart of urban
             landscapes.
           </p>
         </div>

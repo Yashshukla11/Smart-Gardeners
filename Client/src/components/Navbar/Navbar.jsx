@@ -1,5 +1,9 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import { auth } from "../../firebase/auth"; // Make sure to import the signOut function
+import { signOut, onAuthStateChanged } from "firebase/auth";
+ 
+import { useNavigate } from "react-router-dom";
+ 
 export const Navbar = ({
   home,
   whatwegrow,
@@ -7,6 +11,28 @@ export const Navbar = ({
   aboutus,
   contactus,
 }) => {
+  const [user, setUser] = useState();
+ 
+  const navigate = useNavigate();
+ 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user); // Update the user state when the authentication state changes
+    });
+ 
+    return () => unsubscribe(); // Unsubscribe from the auth state change listener when the component unmounts
+  }, []);
+ 
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        setUser(null); // Update the user state when the user logs out
+        navigate("/signin");
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
   return (
     <>
       <div className="container" style={{ marginBottom: "30px" }}>
@@ -65,17 +91,41 @@ export const Navbar = ({
               </ul>
               <div
                 className="header__signup"
-                style={{ display: "flex", gap: "20px" }}
+                style={{ display: "flex", gap: "20px", alignItems: "center" }}
               >
-                <a href="/signup" className="btn btn__signup">
-                  <i className="fas fa-user-plus"></i> Sign Up
-                </a>
-                <a href="/signin" className="btn btn__signup">
-                  <i className="fas fa-user-plus"></i> Sign In
-                </a>
+                {user && user.uid ? (
+                  <>
+                    <h1>Hi, {user?.displayName}</h1>
+                    <img
+                      className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                      src={
+                        user?.photoURL ||
+                        `https://ui-avatars.com/api/?name=${user.displayName}&background=29335C&size=128&color=fff&format=png&length=1`
+                      }
+                      alt="Bordered avatar"
+                      style={{ width: "40px", height: "40px" }}
+                    />
+ 
+                    <div
+                      className="btn btn__signup cursor-pointer"
+                      onClick={handleSignOut}
+                    >
+                      <i className="fas fa-sign-out-alt"></i> Log out
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <a href="/signup" className="btn btn__signup">
+                      <i className="fas fa-user-plus"></i> Sign Up
+                    </a>
+                    <a href="/signin" className="btn btn__signup">
+                      <i className="fas fa-sign-in-alt"></i> Sign In
+                    </a>
+                  </>
+                )}
               </div>
             </div>
-
+ 
             <div className="hamburger-menu-wrap">
               <div className="hamburger-menu">
                 <div className="line"></div>

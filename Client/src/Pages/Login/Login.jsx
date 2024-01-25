@@ -9,8 +9,6 @@ import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 const Login = () => {
   const [error, setError] = useState({});
   const [passwordType, setPasswordType] = useState("password");
-  const [captchaVal, setCaptchaVal] = useState("");
-  const [captchaText, setCaptchaText] = useState("");
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
@@ -41,7 +39,8 @@ const Login = () => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        navigate("/dashboard");
+        console.log(user);
+        navigate("/");
       }
     });
   }, []);
@@ -49,12 +48,6 @@ const Login = () => {
   const handleSignIn = (e) => {
     e.preventDefault();
     let submitable = true;
-    if (captchaVal !== captchaText) {
-      alert("Wrong Captcha");
-      setCaptchaVal("");
-      genrateCaptcha();
-      return;
-    }
 
     Object.values(error).forEach((err) => {
       if (err !== false) {
@@ -65,7 +58,7 @@ const Login = () => {
     if (submitable) {
       signInWithEmailAndPassword(auth, loginInfo.email, loginInfo.password)
         .then(() => {
-          navigate("/dashboard");
+          navigate("/");
         })
         .catch((err) => {
           if (err == "FirebaseError: Firebase: Error (auth/wrong-password).") {
@@ -80,7 +73,7 @@ const Login = () => {
   const SignInGoogle = () => {
     signInWithPopup(auth, googleAuthProvider)
       .then(() => {
-        navigate("/dashboard");
+        navigate("/");
       })
       .catch((err) => alert(err.message));
   };
@@ -290,6 +283,7 @@ const Login = () => {
                   </div>
                 </div>
                 <button
+                  className="hover:bg-[#66bb6a]/90"
                   style={{
                     width: "100%",
                     padding: "16px",
@@ -310,7 +304,7 @@ const Login = () => {
               </form>
               <div
                 style={{ textAlign: "center", marginBottom: "15px" }}
-                className="dont-have-account"
+                className="dont-have-account hover:underline"
               >
                 <Link
                   to="/signup"
@@ -337,6 +331,7 @@ const Login = () => {
                     fontSize: "20px",
                     fontFamily: "Quattrocento Sans, sans-serif",
                   }}
+                  onClick={SignInGoogle}
                 >
                   <svg
                     className="mr-2 -ml-1 w-10 h-10"

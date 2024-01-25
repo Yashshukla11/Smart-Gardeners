@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
-
+ 
 export const ContainerSteps = () => {
   const [activeStep, setActiveStep] = useState(1);
-
-  const works = () => {
+ 
+  useEffect(() => {
     const worksSection = document.querySelector(".works__content");
     const progressbar = worksSection.querySelector(".form_progressbar");
     const progressbarSteps = progressbar.querySelectorAll(".progressbar__step");
     const firstStep = worksSection.querySelector(".first_step");
-
-    progressbar.addEventListener("click", (event) => {
+ 
+    const handleClick = (event) => {
       if (event.target && event.target.nodeName === "LI") {
         const dataStep = Number(event.target.getAttribute("data-step"));
         const newActiveStep = dataStep;
-
+ 
         setActiveStep(newActiveStep);
-
+ 
         for (
           let index = newActiveStep - 1;
           index < progressbarSteps.length;
@@ -29,17 +29,16 @@ export const ContainerSteps = () => {
         event.target.classList.add("active");
         firstStep.style.marginLeft = `-${(newActiveStep - 1) * 100}%`;
       }
-    });
-  };
-
-  useEffect(() => {
-    works();
-    return () => {
-      const worksSection = document.querySelector(".works__content");
-      const progressbar = worksSection.querySelector(".form_progressbar");
-      progressbar.removeEventListener("click", () => {});
     };
-  }, []);
+ 
+    progressbar.addEventListener("click", handleClick);
+ 
+    // Cleanup function
+    return () => {
+      progressbar.removeEventListener("click", handleClick);
+    };
+  }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
+ 
   return (
     <section className="how-is-works w-120">
       <div className="works__content">
@@ -107,3 +106,4 @@ export const ContainerSteps = () => {
     </section>
   );
 };
+ 

@@ -1,6 +1,17 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { auth } from "../../firebase/auth";
+ 
 export const Footer = () => {
+  const [user, setUser] = useState();
+ 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user); // Update the user state when the authentication state changes
+    });
+ 
+    return () => unsubscribe(); // Unsubscribe from the auth state change listener when the component unmounts
+  }, []);
+ 
   return (
     <footer className="footer">
       <div className="footer__body w-105">
@@ -82,9 +93,13 @@ export const Footer = () => {
           <a href="mailto:info@zoufarm.com" className="email">
             info@smartgardeners.com
           </a>
-          <a href="/signin" className="btn btn__signin">
-            <i className="far fa-user"></i> Sign In
-          </a>
+          {user && user ? (
+            <></>
+          ) : (
+            <a href="/signin" className="btn btn__signin">
+              <i className="far fa-user"></i> Sign In
+            </a>
+          )}
         </div>
       </div>
       <div className="footer__bottom">

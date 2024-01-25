@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { FaEnvelope, FaEye, FaEyeSlash, FaKey } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-// import { signUpWithEmailAndPassword } from "./firebaseAuth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"; // Check the correct import
+import { auth } from "../../firebase/auth";
 
 const Signup = () => {
   const [signupInfo, setSignupInfo] = useState({
@@ -16,30 +17,40 @@ const Signup = () => {
     emailError: "",
     password: false,
     passwordError: "",
+    name: false,
+    nameError: "",
   });
 
   const navigate = useNavigate();
 
-  const handleSignUpInfo = (e) => {
-    // Your logic for handling signup info changes
-    console.log("ok");
+  const handleSignupInfo = (e) => {
+    setSignupInfo({
+      ...signupInfo,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
 
     try {
-      // Call the Firebase signup function
-      const user = await signUpWithEmailAndPassword(
+      // Call the Firebase create user function
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
         signupInfo.email,
         signupInfo.password
       );
 
+      // Update the user profile with the name
+      await updateProfile(userCredential.user, {
+        displayName: signupInfo.name,
+      });
+
       // Handle successful signup (optional)
-      console.log("User signed up:", user);
+      console.log("User signed up:", userCredential.user);
 
       // Redirect to another page after successful signup
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       // Handle signup error
       console.error("Error signing up:", error.message);
@@ -53,7 +64,9 @@ const Signup = () => {
   };
 
   const passwordToggle = () => {
-    // Your logic for toggling password visibility
+    setPasswordType((prevType) =>
+      prevType === "password" ? "text" : "password"
+    );
   };
   return (
     <>
@@ -101,7 +114,7 @@ const Signup = () => {
                   fontFamily: "Quattrocento Sans, sans-serif",
                 }}
               >
-                Log in to your account
+                Sign up an account
               </div>
 
               <form
@@ -113,6 +126,67 @@ const Signup = () => {
                 }}
                 onSubmit={handleSignUp}
               >
+                <div style={{ width: "100%", textAlign: "start" }}>
+                  <label
+                    htmlFor="name"
+                    style={{ fontFamily: "Quattrocento Sans, sans-serif" }}
+                  >
+                    Name
+                  </label>
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      textAlign: "start",
+                    }}
+                  >
+                    <input
+                      id="name"
+                      type="text"
+                      name="name"
+                      onChange={handleSignupInfo}
+                      value={signupInfo.name}
+                      placeholder="Name"
+                      required
+                      style={{
+                        width: "400px",
+                        padding: "12px",
+                        margin: "5px 0 10px",
+                        borderRadius: "6px",
+                        fontSize: "16px",
+                        border: "2px solid #d8d8d8",
+                        outline: "none",
+                        boxSizing: "border-box",
+                        paddingLeft: "35px",
+                        borderColor:
+                          error.name && error.nameError ? "red" : "#d8d8d8",
+                      }}
+                    />
+                    <FaEnvelope
+                      style={{
+                        position: "absolute",
+                        top: "20px",
+                        left: "10px",
+                        color: "#66bb6a",
+                        fontSize: "16px",
+                      }}
+                    />
+                  </div>
+
+                  {error.name && error.nameError && (
+                    <p
+                      style={{
+                        color: "red",
+                        textAlign: "center",
+                        fontSize: "12px",
+                        width: "90%",
+                        margin: "auto",
+                      }}
+                    >
+                      {error.nameError}
+                    </p>
+                  )}
+                </div>
                 <div style={{ width: "100%", textAlign: "start" }}>
                   <label
                     htmlFor="email"
@@ -259,6 +333,7 @@ const Signup = () => {
                   </div>
                 </div>
                 <button
+                  className=" hover:bg-[#66bb6a]/90"
                   style={{
                     width: "100%",
                     padding: "16px",
@@ -279,7 +354,7 @@ const Signup = () => {
               </form>
               <div
                 style={{ textAlign: "center", marginBottom: "15px" }}
-                className="dont-have-account"
+                className="dont-have-account hover:underline "
               >
                 <Link
                   to="/signup"
@@ -291,7 +366,7 @@ const Signup = () => {
                   }}
                   className="forgot-password"
                 >
-                  Don't have an account?
+                  Already have an account?
                 </Link>
               </div>
               <div style={{ marginBottom: "20px" }}>Or</div>
