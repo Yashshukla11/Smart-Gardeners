@@ -25,11 +25,9 @@ At Smart Gardeners, we embarked on a journey in 2024, fueled by a passion for su
 ## Challenges Addressed by Smart Gardeners [<img src="https://i.postimg.cc/rFS17hJ0/spider-plant.png" alt="Watering Plants" width="40"/>](https://i.postimg.cc/rFS17hJ0/spider-plant.png)
 
 1. **Vanishing Green Spaces: A Call to Sustainable Home Gardening**
-
    - In the face of diminishing green spaces, Smart Gardeners address the need for sustainable home gardening. Our hydroponic kits enable individuals to cultivate plants in urban environments without relying on traditional soil-based methods.
 
 2. **Urbanization and Space Constraints**
-
    - With the increasing urbanization, available space for traditional gardening is limited. Smart Gardeners tackle this challenge by offering compact hydroponic solutions that can be easily implemented in homes, apartments, or small balconies.
 
 3. **Water-Efficient Agriculture for Growing Food at Home**
