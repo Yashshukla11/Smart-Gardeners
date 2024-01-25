@@ -86,10 +86,10 @@ export const ContactForm = () => {
                         Contact
                       </h3>
                       <p className="text-gray-900">
-                        Mobile: +91 (123) 456-7890
+                        Mobile: +91 9555144734
                       </p>
                       <p className="text-gray-900">
-                        Mail: contact@smartgardeners.com
+                        Mail: swapnilskumars@gmail.com
                       </p>
                     </div>
                   </li>
@@ -133,7 +133,7 @@ export const ContactForm = () => {
                   <input
                     type="hidden"
                     name="access_key"
-                    value="66da367c-5394-497d-8ecc-fb7a7fed6d21"
+                    value="4100b152-6531-416c-876c-6744fcee9c89"
                   />
                   <div className="mb-6">
                     <div className="mx-0 mb-1 sm:mb-4">
