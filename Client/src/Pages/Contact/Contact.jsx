@@ -7,7 +7,7 @@ export const Contact = () => {
   return (
     <>
       <Navbar contactus="true" />
-      <div style={{ marginTop: "150px", marginBottom: "100px" }}>
+      <div style={{ marginTop: "100px", marginBottom: "50px" }}>
         <ContactForm />
       </div>
       <Footer />
