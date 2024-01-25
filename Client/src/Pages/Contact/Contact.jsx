@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { Footer } from "../../components/Footer/Footer";
 import { ContactForm } from "../../components/ContactForm/ContactForm";
+import ChatBot from "../../components/ChatBot/ChatBot";
 
 export const Contact = () => {
   return (
@@ -11,6 +12,7 @@ export const Contact = () => {
         <ContactForm />
       </div>
       <Footer />
+      <ChatBot />
     </>
   );
 };

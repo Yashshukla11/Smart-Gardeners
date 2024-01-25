@@ -82,7 +82,7 @@ export const Footer = () => {
           <a href="mailto:info@zoufarm.com" className="email">
             info@smartgardeners.com
           </a>
-          <a href="#" className="btn btn__signin">
+          <a href="/signin" className="btn btn__signin">
             <i className="far fa-user"></i> Sign In
           </a>
         </div>

@@ -7,13 +7,14 @@ export const ContactForm = () => {
         className="bg-white"
         id="contact"
         style={{
+          backgroundPosition: "center",
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+            "url('https://images.pexels.com/photos/461960/pexels-photo-461960.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
         }}
       >
         <div
-          className="mx-auto max-w-7xl px-4 rounded-2xl py-16 sm:px-6 lg:px-8 lg:py-20"
-          style={{ backgroundColor: "rgba(255, 255, 255, 0.43)" }}
+          className="mx-auto anim max-w-7xl px-4 rounded-2xl py-16 sm:px-6 lg:px-8 lg:py-20"
+          style={{ backgroundColor: "rgba(255, 255, 255, 0.60)" }}
         >
           <div className="mb-4">
             <div className="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">

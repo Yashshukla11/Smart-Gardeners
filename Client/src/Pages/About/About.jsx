@@ -4,6 +4,7 @@ import { Footer } from "../../components/Footer/Footer";
 import { HeroSection } from "../../components/HeroSection/HeroSection";
 import { Para } from "../../components/Para/Para";
 import { OurTeam } from "../../components/OurTeam/OurTeam";
+import ChatBot from "../../components/ChatBot/ChatBot";
 
 export const About = () => {
   return (
@@ -56,6 +57,7 @@ export const About = () => {
       </div>
       <OurTeam />
       <Footer />
+      <ChatBot />
     </>
   );
 };

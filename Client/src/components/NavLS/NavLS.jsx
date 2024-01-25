@@ -9,16 +9,16 @@ export const Navbar = ({
 }) => {
   return (
     <>
-      <div className="container" style={{ marginBottom: "30px" }}>
+      <div className="container">
         <header>
           <nav className="header__nav w-120">
-            <div className="header__logo">
+            {/* <div className="header__logo">
               <img
                 src="https://i.postimg.cc/7PXVht2v/Screenshot-2024-01-22-at-2-43-19-PM-fotor-bg-remover-20240122151630.png"
                 alt="Logo"
                 className="h-[52px] w-auto"
               />
-            </div>
+            </div> */}
             <div className="header__nav__content">
               <div className="nav-close-icon"></div>
               <ul className="header__menu">
