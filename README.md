@@ -79,6 +79,5 @@ To get started with Smart Gardeners, follow these steps:
 We welcome contributions from the community. If you'd like to contribute to Smart Gardeners, please follow our [Contribution Guidelines](#) (Add link to contribution guidelines).
 
 ## License
-
 <img src="https://i.postimg.cc/fb9qHHsD/icons8-story-book-66.png" alt="Hydroponics Icon" />
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
