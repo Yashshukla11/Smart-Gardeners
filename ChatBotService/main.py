@@ -2,7 +2,6 @@ import os
 from PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-import streamlit as st
 import google.generativeai as genai
 from langchain.vectorstores import FAISS
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -99,7 +98,7 @@ def improveResponse(answer):
     return response.text
 
 def trainData():
-    pdf_file_path = "data/sgF.pdf"
+    pdf_file_path = "data/SmartGS.pdf"
     raw_text = get_pdf_text([pdf_file_path])
     # raw_text = read_text_from_file("data/sgft.txt")
     # print(raw_text)
@@ -107,10 +106,10 @@ def trainData():
     # print(text_chunks)
     get_vector_store(text_chunks)
 
-# trainData()
+trainData()
 
 app = Flask(__name__)
-CORS(app, origins=os.getenv("ORIGIN"))
+CORS(app)
 
 @app.route('/ask', methods=['GET'])
 def ask_question():
@@ -128,4 +127,4 @@ def ask_question():
     #     return jsonify({'response': response["output_text"]})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int("3000"), debug=True)
