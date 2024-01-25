@@ -100,7 +100,10 @@ Upon purchasing our hydroponic kit, you'll receive a unique user ID and password
 
 ### How to Access the Web Portal:
 
+<!---
 1. Visit [SmartGardenersPortal.com](https://www.smartgardenersportal.com)
+--->
+1. Visit will be hosted soon...
 2. Log in using your unique user ID and password provided with the hydroponic kit.
 
 We're committed to ensuring your hydroponic gardening experience is enjoyable and successful.
