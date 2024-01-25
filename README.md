@@ -13,6 +13,8 @@
 - [Why Hydroponics?](#why-hydroponics)
 - [What's in the Kit?](#whats-in-the-kit)
 - [Getting Started with Your Smart Gardeners](#getting-started-with-your-smart-gardeners)
+- [How to Access the Web Portal](#how-to-access-the-web-portal)
+
 
 Welcome to Smart Gardeners, where we merge technology and nature to revolutionize how we grow plants. Our hydroponics project empowers individuals to cultivate a green oasis, even in the heart of urban landscapes.
 
