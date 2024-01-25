@@ -1,6 +1,10 @@
 <div align="center">
-   <img src="https://i.postimg.cc/WzM5NWSf/image.png" />
+<picture>
+ <source media="(prefers-color-scheme: dark)" srcset="https://i.postimg.cc/WzM5NWSf/image.png">
+ <img alt="Logo" src="https://i.postimg.cc/D0xKgPb0/68747470733a2f2f692e706f7374696d672e63632f64317256374662422f6c6f676f2e706e67.png">
+</picture>
 </div>
+
 
 <div align="center">
 
