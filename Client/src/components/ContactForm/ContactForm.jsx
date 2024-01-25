@@ -129,7 +129,11 @@ export const ContactForm = () => {
                   Ready to Get Started?
                 </h2>
                 <form action="https://api.web3forms.com/submit" method="POST">
-                <input type="hidden" name="access_key" value="66da367c-5394-497d-8ecc-fb7a7fed6d21"/>
+                  <input
+                    type="hidden"
+                    name="access_key"
+                    value="66da367c-5394-497d-8ecc-fb7a7fed6d21"
+                  />
                   <div className="mb-6">
                     <div className="mx-0 mb-1 sm:mb-4">
                       <div className="mx-0 mb-1 sm:mb-4">
