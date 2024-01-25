@@ -59,7 +59,7 @@ def get_conversational_chain():
     # Answer:
     # """
     prompt_template = """
-    You are a chat bot for a company Smart Gardeners, your name is The Gardener. You will be asked questions based on the company and you have to answer from the context provided and the answer should not exceed the word of slimit 50 words.\n
+    You are a chat bot for a company Smart Gardeners, your name is The Gardener. You will be asked questions based on the company and you have to answer from the context provided and the answer should not exceed the word of slimit 30 words.\n
     If answer to the question asked is not found in the context then just say, "Sorry but I do not have any information regarding this topic. Kindly get in touch of the team.", do not provide wrong answers.
     Context:\n {context}?\n
     Question: \n{question}\n
@@ -107,7 +107,7 @@ def trainData():
     # print(text_chunks)
     get_vector_store(text_chunks)
 
-trainData()
+# trainData()
 
 app = Flask(__name__)
 CORS(app, origins=os.getenv("ORIGIN"))

@@ -1495,6 +1495,95 @@ body[data-aos-easing="ease-in-out-quart"] [data-aos] {
   transform: perspective(2500px) rotateX(0);
 }
 
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Style the form container */
+.container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 400px;
+}
+
+/* Style the form title */
+.form_title {
+  background-color: #3498db;
+  color: #fff;
+  font-size: 1.5em;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style the form icons */
+.form__icons {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.form__icon {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+}
+
+/* Style the form input and button */
+.form__input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form__button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+/* Add some spacing for better readability */
+.form {
+  padding: 20px;
+}
+
+/* Style the form span */
+.form__span {
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #888;
+}
+
+/* Style the form submit link */
+.submit {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.8em;
+  color: #555;
+}
+
+/* Add media query for responsiveness */
+@media (max-width: 600px) {
+  .container {
+    width: 80%;
+  }
+  .form__input {
+    width: 100%;
+  }
+}
+
 * {
   --font-size: 16px;
   --main-color: #000;
@@ -4634,6 +4723,20 @@ a {
   align-items: center;
   animation: fadein 1.2s ease 200ms backwards;
 }
+
+.bg_ {
+  height: 62%;
+  width: 100%;
+  background: linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0.6)),
+    url("https://images.pexels.com/photos/760281/pexels-photo-760281.jpeg?auto=compress&cs=tinysrgb&w=800");
+  background-size: cover;
+  text-align: center;
+  margin-top: 5%;
+  display: "flex";
+  align-items: center;
+  animation: fadein 1.2s ease 200ms backwards;
+}
+
 .bgflowers {
   background: linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0.6)),
     url("https://i.ibb.co/PZJJJLz/pexels-karolina-grabowska-4622892.jpg");

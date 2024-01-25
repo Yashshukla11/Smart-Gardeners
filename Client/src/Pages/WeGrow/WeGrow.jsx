@@ -3,6 +3,7 @@ import { Navbar } from "../../components/Navbar/Navbar";
 import { Footer } from "../../components/Footer/Footer";
 import { useState } from "react";
 import { MiddlePara } from "../../components/MiddlePara/MiddlePara";
+import ChatBot from "../../components/ChatBot/ChatBot";
 
 export const WeGrow = () => {
   const [isHidden, setIsHidden] = useState(false);
@@ -15,7 +16,7 @@ export const WeGrow = () => {
     <>
       <Navbar whatwegrow="true" />
       <div className="vegetablespage" hidden={isHidden}>
-        <div className="bg">
+        <div className="bg_">
           <section
             className="heading"
             style={{
@@ -44,7 +45,7 @@ export const WeGrow = () => {
         </div>
         <div className="crops">
           <div className="cell">
-            <a href="#tomato" class="cell">
+            <a href="#tomato" className="cell">
               <img
                 src="https://www.svgrepo.com/show/120941/tomato.svg"
                 className="vegie"
@@ -53,7 +54,7 @@ export const WeGrow = () => {
             </a>
           </div>
           <div className="cell">
-            <a href="#lettuce" class="cell">
+            <a href="#lettuce" className="cell">
               <img
                 src="https://www.svgrepo.com/show/475202/lettuce.svg"
                 className="vegie"
@@ -62,7 +63,7 @@ export const WeGrow = () => {
             </a>
           </div>
           <div className="cell">
-            <a href="#radish" class="cell">
+            <a href="#radish" className="cell">
               <img
                 src="https://www.svgrepo.com/show/280775/radish.svg"
                 className="vegie"
@@ -71,7 +72,7 @@ export const WeGrow = () => {
             </a>
           </div>
           <div className="cell">
-            <a href="#spinach" class="cell">
+            <a href="#spinach" className="cell">
               <img
                 src="https://www.svgrepo.com/show/312451/leafy-green.svg"
                 className="vegie"
@@ -81,7 +82,7 @@ export const WeGrow = () => {
           </div>
           <div className="cell">
             {" "}
-            <a href="#strawberry" class="cell">
+            <a href="#strawberry" className="cell">
               <img
                 src="https://www.svgrepo.com/show/530214/strawberry.svg"
                 className="vegie"
@@ -372,6 +373,7 @@ export const WeGrow = () => {
         <div style={{ marginBottom: "100px" }}></div>
 
         <Footer />
+        <ChatBot />
       </div>
 
       <div className="flowerspage" hidden={flowers}>
@@ -388,7 +390,7 @@ export const WeGrow = () => {
         </div>
         <div className="crops">
           <div className="cell">
-            <a href="#orchid" class="cell">
+            <a href="#orchid" className="cell">
               <img
                 src="https://www.svgrepo.com/show/36446/orchid.svg"
                 className="vegie"
@@ -397,7 +399,7 @@ export const WeGrow = () => {
             </a>
           </div>
           <div className="cell">
-            <a href="#daisy" class="cell">
+            <a href="#daisy" className="cell">
               <img
                 src="https://www.svgrepo.com/show/9997/daisy.svg"
                 className="vegie"
@@ -406,7 +408,7 @@ export const WeGrow = () => {
             </a>
           </div>
           <div className="cell">
-            <a href="#gerbera" class="cell">
+            <a href="#gerbera" className="cell">
               <img
                 src="https://www.svgrepo.com/show/16728/gerbera.svg"
                 className="vegie"
@@ -415,7 +417,7 @@ export const WeGrow = () => {
             </a>
           </div>
           <div className="cell">
-            <a href="#carnation" class="cell">
+            <a href="#carnation" className="cell">
               <img
                 src="https://www.svgrepo.com/show/131750/carnation.svg"
                 className="vegie"
@@ -425,7 +427,7 @@ export const WeGrow = () => {
           </div>
           <div className="cell">
             {" "}
-            <a href="#rose" class="cell">
+            <a href="#rose" className="cell">
               <img
                 src="https://www.svgrepo.com/show/84393/rose.svg"
                 className="vegie"
@@ -701,6 +703,7 @@ export const WeGrow = () => {
         </div>
         <div style={{ marginBottom: "100px" }}></div>
         <Footer />
+        <ChatBot />
       </div>
     </>
   );

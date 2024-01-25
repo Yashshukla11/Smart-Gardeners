@@ -8,6 +8,7 @@ import { MiddlePara } from "../../components/MiddlePara/MiddlePara";
 import { ContainerSteps } from "../../components/ContainerSteps/ContainerSteps";
 import { ContainerWithButton } from "../../components/ContainerWithButton/ContainerWithButton";
 import Chatbot from "../../components/ChatBot/ChatBot";
+import ChatBot from "../../components/ChatBot/ChatBot";
 
 export const Landing = () => {
   return (
@@ -53,8 +54,8 @@ export const Landing = () => {
           text="Embark on a journey with Smart Gardeners and be part of the solution. Together, let's create a world where growing plants is not just a necessity but a celebration of life and nature."
         />
       </div>
-      {/* <Chatbot /> */}
       <Footer />
+      <ChatBot />
     </>
   );
 };
