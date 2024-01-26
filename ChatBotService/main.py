@@ -131,4 +131,4 @@ def ask_question():
     #     return jsonify({'response': response["output_text"]})
 
 if __name__ == '__main__':
-    app.run(debug=False, port='0.0.0.0')
+    app.run(debug=False, port=5000)

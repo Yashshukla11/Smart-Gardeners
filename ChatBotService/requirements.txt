@@ -10,5 +10,5 @@ python-dotenv
 langchain
 Werkzeug==2.2.2
 gunicorn
-# faiss-gpu
-# wheel
+faiss-gpu
+wheel
