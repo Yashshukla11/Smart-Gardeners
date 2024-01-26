@@ -11,7 +11,9 @@ export const About = () => {
     <>
       <Navbar aboutus="true" />
       <HeroSection />
+        <div style={{ marginTop: "50px" }}>
       <Para heading="What Drives Us" />
+      </div>
       <div style={{ marginLeft: "100px", marginTop: "50px" }}>
         <div>
           <Para
