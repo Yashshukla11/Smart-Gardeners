@@ -35,8 +35,7 @@ export const WeGrow = () => {
                 width: "60vw",
               }}
             >
-              The most common and successfully grown vegetables through
-              hydroponics in India are :
+              Cultivated Harvest: Our Grown Vegetables
             </h1>
             <button className="growbut" onClick={toggleHidden}>
               Flowers
@@ -379,10 +378,7 @@ export const WeGrow = () => {
       <div className="flowerspage" hidden={flowers}>
         <div className="bg bgflowers">
           <section className="heading">
-            <h1 className="k">
-              The most common and successfully grown flowers through hydroponics
-              in India are :
-            </h1>
+            <h1 className="k">Blossoms Cultivated: Our Grown Flowers</h1>
             <button className="growbut butf" onClick={toggleHidden}>
               Vegetables
             </button>
