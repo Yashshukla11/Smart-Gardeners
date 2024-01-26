@@ -6,7 +6,7 @@ export const TextWithImage = ({ text }) => {
       <p
         style={{
           backgroundImage:
-            'url("https://images.pexels.com/photos/2832048/pexels-photo-2832048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")',
+            'url("https://images.pexels.com/photos/134072/pexels-photo-134072.jpeg?auto=compress&cs=tinysrgb&w=1300")',
           backgroundPosition: "50% 50%",
           backgroundRepeat: "no-repeat",
           backgroundClip: "text",

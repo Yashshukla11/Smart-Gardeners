@@ -69,7 +69,7 @@ export const Navbar = ({
                     href="/wegrow"
                     className={"menu__link " + (whatwegrow ? "active" : "")}
                   >
-                    What we grow
+                    Crop Diversity
                   </a>
                 </li>
                 <li className="menu__item">

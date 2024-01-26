@@ -24,6 +24,7 @@ export const Landing = () => {
           text="In today's rapidly advancing world, we find ourselves at the intersection of technological progress and environmental responsibility. As our cities grow skyward, and the demand for sustenance escalates, the delicate balance between urban living and nature preservation becomes more critical than ever."
         />
       </div>
+
       <div className="mt-[150px]">
         <CardSection />
       </div>
@@ -36,6 +37,85 @@ export const Landing = () => {
       <div id="whyhydrophonics" className="mt-[100px]">
         <ContainerSteps />
       </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          margin: "auto",
+          marginTop: "100px",
+        }}
+      >
+        <h1
+          className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-blue-800 to-gray-900 text-[80px] leading-tight anim"
+          style={{
+            fontWeight: "bolder",
+            fontFamily: "Quattrocento Sans, sans-serif",
+          }}
+        >
+          Our Hydroponic Kit
+        </h1>{" "}
+      </div>
+
+      <div
+        className="mt-[80px]"
+        style={{
+          // display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img
+          className=""
+          style={{
+            height: "500px",
+            width: "auto",
+            margin: "auto",
+            marginTop: "70px",
+          }}
+          src="https://i.postimg.cc/0jTFNkRD/Untitled-design-10-removebg-preview.png"
+          alt=""
+        />
+        <div
+          className="testimonials__head w-105"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            marginTop: "50px",
+          }}
+        >
+          <img
+            src="https://i.postimg.cc/TYrz4YWs/quote.png"
+            alt="Quote"
+            className="testimonials__quote"
+          />
+          <h2 className="testimonials__title">
+            Why Choose Smart Gardeners' Hydroponic Kit:
+          </h2>
+
+          <p className="invest__description">
+            <b>Sustainability:</b>Our kits are conceived with environmental
+            stewardship at the forefront, employing eco-friendly materials and
+            championing sustainable gardening practices.
+            <br />
+            <br />
+            <b>Efficiency:</b>
+            Hydroponics empowers you to yield more with less space, water, and
+            resources. It epitomizes the future of efficient and space-conscious
+            gardening.
+            <br />
+            <br />
+            <b>Education:</b> Immerse yourself in the art of hydroponic
+            gardening through our extensive resources. Whether you're a neophyte
+            or an adept gardener, our kit serves as your gateway to a greener
+            and more knowledgeable lifestyle.
+          </p>
+        </div>
+      </div>
+
       <div className="mt-[100px]">
         <MiddlePara
           heading="The Difference"
