@@ -15,7 +15,11 @@ export const WeGrow = () => {
   return (
     <>
       <Navbar whatwegrow="true" />
-      <div className="vegetablespage" hidden={isHidden}>
+      <div
+        className="vegetablespage"
+        style={{ marginTop: "100px", marginBottom: "50px" }}
+        hidden={isHidden}
+      >
         <div className="bg_">
           <section
             className="heading"
