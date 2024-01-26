@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../../firebase/auth"; // Make sure to import the signOut function
 import { signOut, onAuthStateChanged } from "firebase/auth";
- 
+
 import { useNavigate } from "react-router-dom";
- 
+
 export const Navbar = ({
   home,
   whatwegrow,
@@ -12,26 +12,34 @@ export const Navbar = ({
   contactus,
 }) => {
   const [user, setUser] = useState();
- 
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
   const navigate = useNavigate();
- 
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user); // Update the user state when the authentication state changes
     });
- 
+
     return () => unsubscribe(); // Unsubscribe from the auth state change listener when the component unmounts
   }, []);
- 
-  const handleSignOut = () => {
+
+  const confirmLogout = () => {
     signOut(auth)
       .then(() => {
-        setUser(null); // Update the user state when the user logs out
+        setUser(null);
         navigate("/signin");
       })
       .catch((err) => {
         alert(err.message);
+      })
+      .finally(() => {
+        setShowLogoutModal(false);
       });
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutModal(false);
   };
   return (
     <>
@@ -105,10 +113,10 @@ export const Navbar = ({
                       alt="Bordered avatar"
                       style={{ width: "40px", height: "40px" }}
                     />
- 
+
                     <div
                       className="btn btn__signup cursor-pointer"
-                      onClick={handleSignOut}
+                      onClick={() => setShowLogoutModal(true)}
                     >
                       <i className="fas fa-sign-out-alt"></i> Log out
                     </div>
@@ -125,7 +133,7 @@ export const Navbar = ({
                 )}
               </div>
             </div>
- 
+
             <div className="hamburger-menu-wrap">
               <div className="hamburger-menu">
                 <div className="line"></div>
@@ -136,6 +144,54 @@ export const Navbar = ({
           </nav>
         </header>
       </div>
+      {showLogoutModal && (
+        <div
+          className="modal-overlay"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 10,
+          }}
+        >
+          <div
+            className="modal"
+            style={{
+              background: "#fff",
+              padding: "20px",
+              borderRadius: "8px",
+              maxWidth: "400px",
+              textAlign: "center",
+              height: "170px",
+              width: "350px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "30px",
+            }}
+          >
+            <p>Are you sure you want to log out?</p>
+            <div
+              className="modal-buttons"
+              style={{ gap: "20px", display: "flex" }}
+            >
+              <button className="btn btn__yes" onClick={confirmLogout}>
+                Yes
+              </button>
+              <button className="btn btn__no" onClick={cancelLogout}>
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

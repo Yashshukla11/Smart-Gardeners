@@ -103,7 +103,10 @@ export const Footer = () => {
         <div className="footer__contact">
           <h5 className="footer__contact__title">Smart Gardeners</h5>
           <span>Write email to us</span>
-          <a href="mailto:info@zoufarm.com" className="email">
+          <a
+            href="mailto:swapnilskumars@gmail.com"
+            className="email hover:underline"
+          >
             info@smartgardeners.com
           </a>
           {user && user ? (

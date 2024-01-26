@@ -36,6 +36,7 @@ const Login = () => {
   };
 
   const navigate = useNavigate();
+  
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {

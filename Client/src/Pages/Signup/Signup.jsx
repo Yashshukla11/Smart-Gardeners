@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaEnvelope, FaEye, FaEyeSlash, FaKey } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"; // Check the correct import
@@ -23,6 +23,15 @@ const Signup = () => {
   });
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log(user);
+        navigate("/");
+      }
+    });
+  }, []);
 
   const handleSignupInfo = (e) => {
     setSignupInfo({

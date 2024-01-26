@@ -3634,15 +3634,36 @@ header {
   border: 1px solid #000000;
   font-size: 1.6rem;
   color: #000000;
-  /*
-    Button hover effect resource
-    https://codepen.io/alticreation/pen/zBZwOP
-    */
   display: inline-block;
   transition: all 0.3s;
   position: relative;
   overflow: hidden;
   z-index: 1;
+}
+
+.btn__yes {
+  border: 1px solid #000000;
+  font-size: 1.6rem;
+  color: #000000;
+  background-color: #66bb6a;
+  display: inline-block;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: 80px;
+}
+
+.btn__no {
+  border: 1px solid #000000;
+  font-size: 1.6rem;
+  color: #000000;
+  display: inline-block;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: 80px;
 }
 
 .btn__signup:after {
@@ -3759,10 +3780,6 @@ header {
   color: #ffffff;
   font-size: 1.8rem;
   box-shadow: 1px 10px 30px -10px #66bb6a;
-  /*
-    Button hover effect resource
-    https://codepen.io/alticreation/pen/zBZwOP
-    */
   display: inline-block;
   transition: all 0.3s;
   position: relative;
@@ -3982,10 +3999,6 @@ header {
   width: 20rem;
   text-align: center;
   box-shadow: 1px 10px 30px -10px #66bb6a;
-  /*
-    Button hover effect resource
-    https://codepen.io/alticreation/pen/zBZwOP
-    */
   display: inline-block;
   transition: all 0.3s;
   position: relative;
@@ -4299,10 +4312,6 @@ header {
   min-width: 25rem;
   margin-top: 4rem;
   box-shadow: 1px 10px 30px -10px #66bb6a;
-  /*
-    Button hover effect resource
-    https://codepen.io/alticreation/pen/zBZwOP
-    */
   display: inline-block;
   transition: all 0.3s;
   position: relative;
@@ -4413,10 +4422,6 @@ header {
   margin-top: 1.5rem;
   border: 1px solid #ffffff;
   color: #66bb6a;
-  /*
-    Button hover effect resource
-    https://codepen.io/alticreation/pen/zBZwOP
-    */
   display: inline-block;
   transition: all 0.3s;
   position: relative;

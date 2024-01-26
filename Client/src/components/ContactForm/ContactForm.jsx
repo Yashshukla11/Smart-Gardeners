@@ -86,10 +86,22 @@ export const ContactForm = () => {
                         Contact
                       </h3>
                       <p className="text-gray-900">
-                        Mobile: +91 9555144734
+                        Mobile:{" "}
+                        <a
+                          className="hover:underline"
+                          href="tel:+91 9555144734"
+                        >
+                          +91 9555144734
+                        </a>
                       </p>
                       <p className="text-gray-900">
-                        Mail: swapnilskumars@gmail.com
+                        Mail:{" "}
+                        <a
+                          className="hover:underline"
+                          href="mailto:swapnilskumars@gmail.com"
+                        >
+                          swapnilskumars@gmail.com
+                        </a>
                       </p>
                     </div>
                   </li>
