@@ -72,7 +72,8 @@ const Signup = () => {
   return (
     <>
       <Navbar />
-      <main style={{ height: "100vh", display: "flex" }}>
+      <div style={{ marginBottom: "50px" }}></div>
+      <main style={{ height: "90vh", display: "flex" }}>
         <div
           style={{
             fontFamily: "ABeeZee",
