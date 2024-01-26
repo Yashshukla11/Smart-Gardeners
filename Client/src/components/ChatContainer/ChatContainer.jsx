@@ -67,7 +67,7 @@ const ChatContainer = ({ setIsChatOpen }) => {
     try {
       // Send the user's message to the Express server to be processed by the chatbot
       const response = await fetch(
-        `http://127.0.0.1:${EXPRESS_PORT}/ask?question=${userInput}`,
+        `${import.meta.env.VITE_BASE_URL}:${import.meta.env.VITE_PORT}/ask?question=${userInput}`,
         {
           method: "GET",
         }
