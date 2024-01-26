@@ -21,6 +21,7 @@ const ChatBot = () => {
           stroke="white"
           width="24"
           height="24"
+          style={{ width: "30px", height: "auto" }}
         >
           <path
             strokeLinejoin="round"

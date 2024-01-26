@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { auth } from "../../firebase/auth";
- 
+
 export const Footer = () => {
   const [user, setUser] = useState();
- 
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user); // Update the user state when the authentication state changes
     });
- 
+
     return () => unsubscribe(); // Unsubscribe from the auth state change listener when the component unmounts
   }, []);
- 
+
   return (
     <footer className="footer">
       <div className="footer__body w-105">
@@ -21,12 +21,12 @@ export const Footer = () => {
               <h4 className="footer_nav__menu__title">COMPANY</h4>
             </li>
             <li className="footer_nav__item">
-              <a href="#" className="footer_nav__link">
+              <a href="/about" className="footer_nav__link">
                 About Us
               </a>
             </li>
             <li className="footer_nav__item">
-              <a href="#" className="footer_nav__link">
+              <a href="/about#meettheteam" className="footer_nav__link">
                 Team
               </a>
             </li>
@@ -36,7 +36,7 @@ export const Footer = () => {
               </a>
             </li>
             <li className="footer_nav__item">
-              <a href="#" className="footer_nav__link">
+              <a href="contact" className="footer_nav__link">
                 Contact
               </a>
             </li>
@@ -46,12 +46,12 @@ export const Footer = () => {
               <h4 className="footer_nav__menu__title">INVEST</h4>
             </li>
             <li className="footer_nav__item">
-              <a href="#" className="footer_nav__link">
+              <a href="/kit" className="footer_nav__link">
                 Features
               </a>
             </li>
             <li className="footer_nav__item">
-              <a href="#" className="footer_nav__link">
+              <a href="/#whyhydrophonics" className="footer_nav__link">
                 How it works
               </a>
             </li>
@@ -60,28 +60,41 @@ export const Footer = () => {
                 Pricing
               </a>
             </li>
-            <li className="footer_nav__item">
-              <a href="#" className="footer_nav__link">
-                Login
-              </a>
-            </li>
+            {user && user ? (
+              ""
+            ) : (
+              <li className="footer_nav__item">
+                <a href="/signin" className="footer_nav__link">
+                  Login
+                </a>
+              </li>
+            )}
           </ul>
           <ul className="footer_nav__menu">
             <li className="footer_nav__item">
               <h4 className="footer_nav__menu__title">LEGAL</h4>
             </li>
             <li className="footer_nav__item">
-              <a href="#" className="footer_nav__link">
+              <a
+                href="https://github.com/Yashshukla11/Smart-Gardeners?tab=MIT-1-ov-file"
+                className="footer_nav__link"
+              >
                 Privacy
               </a>
             </li>
             <li className="footer_nav__item">
-              <a href="#" className="footer_nav__link">
+              <a
+                href="https://github.com/Yashshukla11/Smart-Gardeners?tab=MIT-1-ov-file"
+                className="footer_nav__link"
+              >
                 Terms
               </a>
             </li>
             <li className="footer_nav__item">
-              <a href="#" className="footer_nav__link">
+              <a
+                href="https://github.com/Yashshukla11/Smart-Gardeners?tab=MIT-1-ov-file"
+                className="footer_nav__link"
+              >
                 Security
               </a>
             </li>

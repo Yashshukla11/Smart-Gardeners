@@ -33,7 +33,7 @@ export const Landing = () => {
           text="Enter hydroponics, a revolutionary way to grow plants without relying on diminishing soil resources. In our pursuit of a healthier lifestyle and a greener planet, hydroponics emerges as an efficient and environmentally friendly approach to agriculture."
         />
       </div>
-      <div className="mt-[100px]">
+      <div id="whyhydrophonics" className="mt-[100px]">
         <ContainerSteps />
       </div>
       <div className="mt-[100px]">

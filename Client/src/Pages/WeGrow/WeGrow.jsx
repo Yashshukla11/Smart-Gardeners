@@ -377,8 +377,26 @@ export const WeGrow = () => {
 
       <div className="flowerspage" hidden={flowers}>
         <div className="bg bgflowers">
-          <section className="heading">
-            <h1 className="k">Blossoms Cultivated: Our Grown Flowers</h1>
+          <section
+            className="heading"
+            style={{
+              height: "600px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <h1
+              className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 text-[50px] leading-tight anim"
+              style={{
+                fontWeight: "bolder",
+                fontFamily: "Quattrocento Sans, sans-serif",
+                margin: "auto",
+                width: "60vw",
+              }}
+            >
+              Blossoms Cultivated: Our Grown Flowers
+            </h1>
             <button className="growbut butf" onClick={toggleHidden}>
               Vegetables
             </button>

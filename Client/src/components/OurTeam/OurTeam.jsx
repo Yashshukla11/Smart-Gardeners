@@ -1,12 +1,13 @@
 import React from "react";
 import { TeamCard } from "../TeamCard/TeamCard";
 import { IoIosMail } from "react-icons/io";
- 
+
 export const OurTeam = () => {
   return (
     <>
       <div
-        className="container my-24 mx-auto md:px-6"
+        id="meettheteam"
+        className="meettheteam container my-24 mx-auto md:px-6"
         style={{ marginTop: "50px" }}
       >
         <section className="text-center" style={{ marginBottom: "40px" }}>
@@ -16,7 +17,7 @@ export const OurTeam = () => {
           >
             Meet the <u className="text-primary dark:text-primary-400">team</u>
           </h2>
- 
+
           <div className="flex justify-center gap-[80px] mb-[50px]">
             <TeamCard
               name="Swapnil Singh"
