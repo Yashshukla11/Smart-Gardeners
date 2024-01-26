@@ -125,7 +125,7 @@ const ChatContainer = ({ setIsChatOpen }) => {
             alt="Logo"
             className="h-[32px] w-auto"
           />
-          Gardner
+          Gardener
         </div>
         <RxCross2
           onClick={() => {
