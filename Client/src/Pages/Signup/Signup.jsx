@@ -3,6 +3,7 @@ import { FaEnvelope, FaEye, FaEyeSlash, FaKey } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"; // Check the correct import
 import { auth } from "../../firebase/auth";
+import { Navbar } from "../../components/NavLS/NavLS";
 
 const Signup = () => {
   const [signupInfo, setSignupInfo] = useState({
@@ -70,6 +71,7 @@ const Signup = () => {
   };
   return (
     <>
+      <Navbar />
       <main style={{ height: "100vh", display: "flex" }}>
         <div
           style={{
@@ -357,7 +359,7 @@ const Signup = () => {
                 className="dont-have-account hover:underline "
               >
                 <Link
-                  to="/signup"
+                  to="/signin"
                   style={{
                     textDecoration: "none",
                     color: "black",
