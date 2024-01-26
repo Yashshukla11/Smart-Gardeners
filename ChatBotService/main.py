@@ -12,9 +12,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 load_dotenv()
-os.getenv("GOOGLE_API_KEY")
-os.getenv("ORIGIN")
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+# os.getenv("GOOGLE_API_KEY")
+# os.getenv("ORIGIN")
+genai.configure(api_key="AIzaSyA_o7upvbUAzbyxatU1PD5chg7arOVHmJQ")
 
 def get_pdf_text(pdf_docs):
     text = ""
@@ -98,7 +98,7 @@ def improveResponse(answer):
     return response.text
 
 def trainData():
-    pdf_file_path = "data/SmartGS.pdf"
+    pdf_file_path = "data/final.pdf"
     raw_text = get_pdf_text([pdf_file_path])
     # raw_text = read_text_from_file("data/sgft.txt")
     # print(raw_text)
@@ -111,13 +111,17 @@ trainData()
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/', methods=['GET'])
+def demo():
+    return "Yo the server is working 🎉!"
+
 @app.route('/ask', methods=['GET'])
 def ask_question():
     user_question = request.args.get('question', default='', type=str)
     response = user_input(user_question)
-    print("\n\n")
-    print(response)
-    print("\n\n")
+    # print("\n\n")
+    # print(response)
+    # print("\n\n")
     print(response["output_text"])
     return jsonify({'response': response["output_text"]})
     # if(len(response["output_text"]) > 100):
@@ -127,4 +131,4 @@ def ask_question():
     #     return jsonify({'response': response["output_text"]})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int("3000"), debug=True)
+    app.run(debug=False, port='0.0.0.0')

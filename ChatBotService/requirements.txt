@@ -8,4 +8,7 @@ python-dotenv==1.0.1
 google-generativeai
 python-dotenv
 langchain
-
+Werkzeug==2.2.2
+gunicorn
+# faiss-gpu
+# wheel
