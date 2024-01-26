@@ -379,7 +379,11 @@ export const WeGrow = () => {
         <ChatBot />
       </div>
 
-      <div className="flowerspage" hidden={flowers}>
+      <div
+        className="flowerspage"
+        style={{ marginTop: "100px", marginBottom: "50px" }}
+        hidden={flowers}
+      >
         <div className="bg bgflowers">
           <section
             className="heading"
