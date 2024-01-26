@@ -14,7 +14,7 @@ from flask_cors import CORS
 load_dotenv()
 # os.getenv("GOOGLE_API_KEY")
 # os.getenv("ORIGIN")
-genai.configure(api_key="AIzaSyA_o7upvbUAzbyxatU1PD5chg7arOVHmJQ")
+# genai.configure(api_key="AIzaSyA_o7upvbUAzbyxatU1PD5chg7arOVHmJQ")
 
 def get_pdf_text(pdf_docs):
     text = ""
@@ -37,7 +37,7 @@ def get_text_chunks(text):
 
 def get_vector_store(chunks):
     embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/embedding-001")
+        model="models/embedding-001", google_api_key="AIzaSyA_o7upvbUAzbyxatU1PD5chg7arOVHmJQ")
     vector_store = FAISS.from_texts(chunks, embedding=embeddings)
     vector_store.save_local("faiss_index")
 
