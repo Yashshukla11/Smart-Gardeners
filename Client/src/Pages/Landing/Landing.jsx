@@ -49,7 +49,7 @@ export const Landing = () => {
         }}
       >
         <h1
-          className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-blue-800 to-gray-900 text-[80px] leading-tight anim"
+          className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-900 text-[80px] leading-tight anim"
           style={{
             fontWeight: "bolder",
             fontFamily: "Quattrocento Sans, sans-serif",
@@ -67,52 +67,73 @@ export const Landing = () => {
           alignItems: "center",
         }}
       >
-        <img
-          className=""
-          style={{
-            height: "500px",
-            width: "auto",
-            margin: "auto",
-            marginTop: "70px",
-          }}
-          src="https://i.postimg.cc/0jTFNkRD/Untitled-design-10-removebg-preview.png"
-          alt=""
-        />
-        <div
-          className="testimonials__head w-105"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            marginTop: "50px",
-          }}
-        >
+        <div>
           <img
-            src="https://i.postimg.cc/TYrz4YWs/quote.png"
-            alt="Quote"
-            className="testimonials__quote"
+            className=""
+            style={{
+              height: "500px",
+              width: "auto",
+              margin: "auto",
+              marginTop: "70px",
+            }}
+            src="https://i.postimg.cc/0jTFNkRD/Untitled-design-10-removebg-preview.png"
+            alt=""
           />
-          <h2 className="testimonials__title">
-            Why Choose Smart Gardeners' Hydroponic Kit:
-          </h2>
+          <div
+            className="testimonials__head w-105"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              marginTop: "50px",
+            }}
+          >
+            <img
+              src="https://i.postimg.cc/TYrz4YWs/quote.png"
+              alt="Quote"
+              className="testimonials__quote"
+            />
+            <h2 className="testimonials__title">
+              What is Smart Gardeners' Hydroponic Kit?
+            </h2>
 
-          <p className="invest__description">
-            <b>Sustainability:</b>Our kits are conceived with environmental
-            stewardship at the forefront, employing eco-friendly materials and
-            championing sustainable gardening practices.
-            <br />
-            <br />
-            <b>Efficiency:</b>
-            Hydroponics empowers you to yield more with less space, water, and
-            resources. It epitomizes the future of efficient and space-conscious
-            gardening.
-            <br />
-            <br />
-            <b>Education:</b> Immerse yourself in the art of hydroponic
-            gardening through our extensive resources. Whether you're a neophyte
-            or an adept gardener, our kit serves as your gateway to a greener
-            and more knowledgeable lifestyle.
-          </p>
+            <p className="invest__description">
+              Smart Gardeners' Hydroponic Kit is your gateway to a harmonious
+              blend of innovation and nature, designed for urban gardening
+              bliss. This all-inclusive kit revolutionizes the traditional
+              gardening experience with its cutting-edge features:
+              <br />
+              <br />
+              <b>Coco Coir:</b> A premium growing medium that optimizes plant
+              growth with exceptional water retention and superior aeration.
+              <br />
+              <br />
+              <b>Mother Cup:</b> A dedicated space for sapling growth, ensuring
+              stable root development and convenient transplantation.
+              <br />
+              <br />
+              <b>Mother Cup Tray:</b> Provides holistic plant support by
+              creating a stable environment for root development and controlled
+              growth conditions.
+              <br />
+              <br />
+              <b>Seed Packs:</b> Embark on a plant odyssey with diverse
+              varieties, witnessing flourishing flora in a meticulously
+              controlled environment.
+              <br />
+              <br />
+              <b>Nutrient Packets:</b> Customized nutrition for success,
+              eliminating guesswork with plant-specific essentials for optimal
+              growth.
+              <br />
+              <br />
+              <b>Why Choose:</b> Embrace sustainability with eco-friendly
+              materials, achieve efficiency for more yield with less space,
+              water, and resources, and immerse yourself in hydroponic education
+              through extensive resources for a greener and more knowledgeable
+              lifestyle.
+            </p>
+          </div>
         </div>
       </div>
 

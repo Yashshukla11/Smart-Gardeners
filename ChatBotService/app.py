@@ -12,9 +12,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 load_dotenv()
-# os.getenv("GOOGLE_API_KEY")
-# os.getenv("ORIGIN")
-# genai.configure(api_key="AIzaSyA_o7upvbUAzbyxatU1PD5chg7arOVHmJQ")
 
 def get_pdf_text(pdf_docs):
     text = ""
