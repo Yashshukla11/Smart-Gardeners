@@ -8,13 +8,14 @@ export const ContactForm = () => {
         id="contact"
         style={{
           backgroundPosition: "center",
-          backgroundImage:
-            "url('https://images.pexels.com/photos/461960/pexels-photo-461960.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+          backgroundImage: `url("https://images.pexels.com/photos/262113/pexels-photo-262113.jpeg?auto=compress&cs=tinysrgb&w=${100}vw")`,
         }}
       >
         <div
           className="mx-auto anim max-w-7xl px-4 rounded-2xl py-16 sm:px-6 lg:px-8 lg:py-20"
-          style={{ backgroundColor: "rgba(255, 255, 255, 0.60)" }}
+          style={{
+            backgroundColor: "rgba(255, 255, 255, 0.60)",
+          }}
         >
           <div className="mb-4">
             <div className="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { FaEnvelope, FaEye, FaEyeSlash, FaKey } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"; // Check the correct import
-import { auth } from "../../firebase/auth";
+import { auth, googleAuthProvider } from "../../firebase/auth";
 import { Navbar } from "../../components/NavLS/NavLS";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 const Signup = () => {
   const [signupInfo, setSignupInfo] = useState({
@@ -21,6 +22,14 @@ const Signup = () => {
     name: false,
     nameError: "",
   });
+
+  const SignInGoogle = () => {
+    signInWithPopup(auth, googleAuthProvider)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => alert(err.message));
+  };
 
   const navigate = useNavigate();
 
@@ -393,6 +402,7 @@ const Signup = () => {
                     fontSize: "20px",
                     fontFamily: "Quattrocento Sans, sans-serif",
                   }}
+                  onClick={SignInGoogle}
                 >
                   <svg
                     className="mr-2 -ml-1 w-10 h-10"
