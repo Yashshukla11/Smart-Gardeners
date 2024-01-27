@@ -334,8 +334,11 @@ const Signup = () => {
                           cursor: "pointer",
                         }}
                       >
-                        <FaEye />
-                        <FaEyeSlash />
+                        {passwordType === "password" ? (
+                          <FaEyeSlash />
+                        ) : (
+                          <FaEye />
+                        )}
                       </div>
                       {error.password && error.passwordError && (
                         <p

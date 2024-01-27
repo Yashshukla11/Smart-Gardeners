@@ -36,7 +36,7 @@ const Login = () => {
   };
 
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -265,8 +265,11 @@ const Login = () => {
                           cursor: "pointer",
                         }}
                       >
-                        <FaEye />
-                        <FaEyeSlash />
+                        {passwordType === "password" ? (
+                          <FaEyeSlash />
+                        ) : (
+                          <FaEye />
+                        )}
                       </div>
                       {error.password && error.passwordError && (
                         <p
