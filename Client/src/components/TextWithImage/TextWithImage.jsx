@@ -2,7 +2,7 @@ import React from "react";
 
 export const TextWithImage = ({ text }) => {
   return (
-    <div className="special__animtext">
+    <div className="">
       <p
         style={{
           backgroundImage:
@@ -17,8 +17,8 @@ export const TextWithImage = ({ text }) => {
           animationIterationCount: "infinite",
           animationTimingFunction: "linear",
           textAlign: "center",
-          fontSize: "150px",
-          fontWeight: "900",
+          // fontSize: "150px",
+          // fontWeight: "900",
         }}
       >
         {text}
