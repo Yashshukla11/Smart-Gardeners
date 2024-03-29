@@ -11,7 +11,7 @@ export const About = () => {
     <>
       <Navbar aboutus="true" />
       <HeroSection />
-      <div className="justify-center">
+      <div className="justify-center  ">
       <div style={{ marginTop: "50px" }} className="justtify-center w-auto">
         <Para heading="What Drives Us" />
 
