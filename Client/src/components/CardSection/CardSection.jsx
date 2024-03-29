@@ -4,7 +4,7 @@ export const CardSection = () => {
   return (
     <div className="opportunities__content w-105">
       <div className="opportunities__head">
-        <h2 className="opportunities__title" style={{ fontSize: "70px" }}>
+        <h2 className="opportunities__title" >
           The Challenge
         </h2>
         <p className="opportunities__description">
