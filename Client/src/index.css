@@ -4480,7 +4480,7 @@ header {
 .footer_img {
   position: absolute;
   bottom: 0;
-  right: -1.5rem;
+  /* right: -1.5rem; */
   max-width: 50rem;
 }
 
