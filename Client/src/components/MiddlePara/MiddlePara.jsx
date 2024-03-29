@@ -3,7 +3,7 @@ import React from "react";
 export const MiddlePara = ({ heading, text }) => {
   return (
     <div
-      className="testimonials__head w-[125rem] flex justify-center text-center"
+      className="testimonials__head  flex justify-center text-center"
       style={{ margin: "auto" }}
     >
       <div className="invest__head text-center">
