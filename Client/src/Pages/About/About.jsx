@@ -11,10 +11,11 @@ export const About = () => {
     <>
       <Navbar aboutus="true" />
       <HeroSection />
-      <div style={{ marginTop: "50px" }}>
+      <div className="justify-center">
+      <div style={{ marginTop: "50px" }} className="justtify-center w-auto">
         <Para heading="What Drives Us" />
-      </div>
-      <div style={{ marginLeft: "100px", marginTop: "50px" }}>
+
+      <div >
         <div>
           <Para
             heading="Passion for Sustainability"
@@ -30,11 +31,11 @@ export const About = () => {
           />
         </div>
       </div>
-
+      </div>
       <div style={{ marginTop: "50px" }}>
         <Para heading="Our Commitment" />
-      </div>
-      <div style={{ marginLeft: "100px", marginTop: "50px" }}>
+     
+      <div >
         <div>
           <Para
             heading="Environmental Stewardship"
@@ -56,6 +57,8 @@ export const About = () => {
             text="Our commitment extends beyond individual customers to a larger community. We strive to build a community of like-minded individuals who share our values and vision. Through shared experiences, knowledge exchange, and support, we aim to foster a community that celebrates sustainable living"
           />
         </div>
+        </div>
+      </div>
       </div>
       <OurTeam />
       <Footer />
