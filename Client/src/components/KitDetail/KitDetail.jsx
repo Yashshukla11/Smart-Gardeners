@@ -19,7 +19,7 @@ export const KitDetail = ({ content, opp, image, heading }) => {
             <img
               src={image}
               className="mainright"
-              style={{ height: "500px", width: "auto" }}
+             
             />
           </div>
         ) : (
@@ -43,7 +43,7 @@ export const KitDetail = ({ content, opp, image, heading }) => {
           <img
             src={image}
             className="mainright"
-            style={{ height: "500px", width: "auto" }}
+           
           />
         ) : (
           ""
