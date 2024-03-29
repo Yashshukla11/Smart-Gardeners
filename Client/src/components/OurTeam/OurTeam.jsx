@@ -18,7 +18,7 @@ export const OurTeam = () => {
             Meet the <u className="text-primary dark:text-primary-400">team</u>
           </h2>
 
-          <div className="flex justify-center gap-[80px] mb-[50px]">
+          <div className="flex justify-center flex-wrap gap-[80px] mb-[50px]">
             <TeamCard
               name="Swapnil Singh"
               position=""
@@ -49,9 +49,7 @@ export const OurTeam = () => {
               linkedin="https://www.linkedin.com/in/varun-marwah/"
               mail="mailto:varunmarwah.2004@gmail.com"
             />
-          </div>
-          <div className="flex justify-center gap-[80px]">
-            <TeamCard
+                  <TeamCard
               name="Mohit Shukla"
               position=""
               image="https://i.postimg.cc/59GnDLB6/Whats-App-Image-2024-01-25-at-6-28-30-PM.jpg"
@@ -72,6 +70,9 @@ export const OurTeam = () => {
               mail="mailto:champvivek05@gmail.com"
             />
           </div>
+          {/* <div className="flex justify-center gap-[80px]">
+      
+          </div> */}
         </section>
       </div>
     </>
