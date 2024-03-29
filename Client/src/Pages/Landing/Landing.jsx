@@ -49,7 +49,7 @@ export const Landing = () => {
         }}
       >
         <h1
-          className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-900 text-[80px] leading-tight anim"
+          className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-900 text-[58px] leading-tight anim"
           style={{
             fontWeight: "bolder",
             fontFamily: "Quattrocento Sans, sans-serif",
