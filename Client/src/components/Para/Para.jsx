@@ -2,7 +2,7 @@ import React from "react";
 
 export const Para = ({ heading, text, fontSize }) => {
   return (
-    <div className="testimonials__head w-[125rem]">
+    <div className="testimonials__head">
       <div className="invest__head">
         <h2
           className="invest__title"
