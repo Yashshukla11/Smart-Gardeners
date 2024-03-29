@@ -38,7 +38,7 @@ export const Header = () => {
             <div>
               <div className="absolute bottom-[45%] sm:left-[6%] left-[5%] flex flex-col items-start flex-wrap gap-4">
                 <h1
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-rose-100 to-teal-100 text-[80px] leading-tight anim"
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-rose-100 to-teal-100 text-[68px] leading-tight anim"
                   style={{
                     fontWeight: "bolder",
                     fontFamily: "Quattrocento Sans, sans-serif",
