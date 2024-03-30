@@ -100,11 +100,11 @@ const Signup = () => {
             margin: "auto",
           }}
         >
-          <div style={{ display: "flex" }}>
-            <div
+         <div className="flex max-md:flex-col-reverse justify-center items-center">
+           <div
               style={{
                 backgroundColor: "#ffffff",
-                width: "50%",
+              
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -143,7 +143,7 @@ const Signup = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
-                  padding: "0 20%",
+                  padding: "20px",
                 }}
                 onSubmit={handleSignUp}
               >
@@ -170,7 +170,7 @@ const Signup = () => {
                       placeholder="Name"
                       required
                       style={{
-                        width: "400px",
+                     
                         padding: "12px",
                         margin: "5px 0 10px",
                         borderRadius: "6px",
@@ -231,7 +231,7 @@ const Signup = () => {
                       placeholder="Email"
                       required
                       style={{
-                        width: "400px",
+                     
                         padding: "12px",
                         margin: "5px 0 10px",
                         borderRadius: "6px",
@@ -299,7 +299,7 @@ const Signup = () => {
                         required
                         placeholder="Password"
                         style={{
-                          width: "400px",
+                       
                           padding: "12px",
                           margin: "5px 0 10px",
                           borderRadius: "6px",
