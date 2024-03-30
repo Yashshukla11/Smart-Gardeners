@@ -13,6 +13,7 @@ export const Navbar = ({
 }) => {
   const [user, setUser] = useState();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   const navigate = useNavigate();
 
@@ -41,11 +42,16 @@ export const Navbar = ({
   const cancelLogout = () => {
     setShowLogoutModal(false);
   };
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
+
   return (
     <>
       <div className="container" style={{ marginBottom: "30px" }}>
         <header>
-          <nav className="header__nav w-120">
+          <nav className="header__nav w-[90vw]">
             <div className="header__logo">
               <img
                 src="https://i.postimg.cc/7PXVht2v/Screenshot-2024-01-22-at-2-43-19-PM-fotor-bg-remover-20240122151630.png"
@@ -53,8 +59,10 @@ export const Navbar = ({
                 className="h-[52px] w-auto"
               />
             </div>
-            <div className="header__nav__content">
-              <div className="nav-close-icon"></div>
+            <div
+              className={`header__nav__content ${showMenu ? "" : "hide_nav"}`}
+            >
+              <div className="nav-close-icon" onClick={toggleMenu}></div>
               <ul className="header__menu">
                 <li className="menu__item">
                   <a
@@ -135,7 +143,7 @@ export const Navbar = ({
             </div>
 
             <div className="hamburger-menu-wrap">
-              <div className="hamburger-menu">
+              <div className="hamburger-menu" onClick={toggleMenu}>
                 <div className="line"></div>
                 <div className="line"></div>
                 <div className="line"></div>

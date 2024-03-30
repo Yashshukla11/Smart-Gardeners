@@ -7,6 +7,50 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Add this CSS to handle menu visibility */
+.show {
+  display: block !important;
+}
+
+.header__nav__content {
+  display: none;
+}
+
+.header__menu {
+  list-style: none;
+  padding: 0;
+}
+
+.header__menu li {
+  margin-bottom: 10px;
+}
+
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  cursor: pointer;
+}
+
+.hamburger-menu .line {
+  width: 24px;
+  height: 2px;
+  background-color: #000;
+}
+
+.hamburger-menu.active .line:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger-menu.active .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.active .line:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
 .chat-container {
   position: fixed;
   bottom: 20px;
@@ -4491,6 +4535,9 @@ header {
   .nav-close-icon {
     display: block;
   }
+  .hide_nav {
+    transform: translateX(40rem);
+  }
   .header__nav__content {
     flex: initial;
     align-items: initial;
@@ -4502,7 +4549,6 @@ header {
     background-color: #66bb6a;
     z-index: 2;
     flex-direction: column;
-    transform: translateX(40rem);
     transition: transform 0.3s ease-in-out;
     grid-gap: 2.5rem;
   }

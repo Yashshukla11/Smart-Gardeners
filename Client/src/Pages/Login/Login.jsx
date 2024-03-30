@@ -96,7 +96,7 @@ const Login = () => {
             <div
               style={{
                 backgroundColor: "#ffffff",
-               
+
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -161,9 +161,7 @@ const Login = () => {
                       value={loginInfo.email}
                       placeholder="Email"
                       required
-                      
                       style={{
-                      
                         padding: "12px",
                         margin: "5px 0 10px",
                         borderRadius: "6px",
@@ -231,7 +229,6 @@ const Login = () => {
                         required
                         placeholder="Password"
                         style={{
-                        
                           padding: "12px",
                           margin: "5px 0 10px",
                           borderRadius: "6px",

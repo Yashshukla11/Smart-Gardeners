@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { Loader } from "../components/Loader/Loader";
 
 export const UserContext = createContext();
 
@@ -22,6 +23,10 @@ export const UserContextProvider = ({ children }) => {
   useEffect(() => {
     getUser();
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
