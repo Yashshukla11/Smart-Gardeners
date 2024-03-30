@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FaEnvelope, FaEye, FaEyeSlash, FaKey } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../../components/NavLS/NavLS";
-import { auth, googleAuthProvider } from "../../firebase/auth";
+// import { signInWithEmailAndPassword, signInWithPopup } from "../../firebase/auth";
 import validate from "../../common/validation";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 const Login = () => {
   const [error, setError] = useState({});
@@ -14,69 +13,69 @@ const Login = () => {
     password: "",
   });
 
-  // Function for handelling inputs
+  // Function for handling inputs
   const handleLoginInfo = (e) => {
     const { name, value } = e.target;
-    setLoginInfo((prev) => {
-      return { ...prev, [name]: value };
-    });
+    setLoginInfo((prev) => ({ ...prev, [name]: value }));
     let errObj = validate[name](value);
     if (name === "password") {
       errObj = validate.loginPassword(value);
     }
-    setError((prev) => {
-      return { ...prev, ...errObj };
-    });
+    setError((prev) => ({ ...prev, ...errObj }));
   };
 
   const passwordToggle = () => {
-    if (passwordType === "password") {
-      setPasswordType("text");
-    } else setPasswordType("password");
+    setPasswordType((prevType) => (prevType === "password" ? "text" : "password"));
   };
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log(user);
-        navigate("/");
-      }
-    });
-  }, []);
-
-  const handleSignIn = (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
-    let submitable = true;
-
-    Object.values(error).forEach((err) => {
-      if (err !== false) {
-        submitable = false;
-        return;
+  
+    try {
+      console.log("Sending sign-in request...");
+  
+      const response = await fetch(`http://localhost:8080/user/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginInfo),
+      });
+  
+      console.log("Received response:", response);
+  
+      const data = await response.json();
+      console.log("Response data:", data);
+  
+      if (response.ok) {
+        console.log("Sign-in successful. Redirecting...");
+        navigate("/");
+      } else {
+        console.log("Sign-in failed. Showing error message.");
+        alert(data.message);
       }
-    });
-    if (submitable) {
-      signInWithEmailAndPassword(auth, loginInfo.email, loginInfo.password)
-        .then(() => {
-          navigate("/");
-        })
-        .catch((err) => {
-          if (err == "FirebaseError: Firebase: Error (auth/wrong-password).") {
-            alert("Incorrect Password!");
-          }
-        });
-    } else {
-      alert("Please fill all Fields with Valid Data.");
+    } catch (error) {
+      console.log("Error signing in:", error);
+      alert("An error occurred while signing in.");
     }
   };
-  // Popup Google signin
-  const SignInGoogle = () => {
-    signInWithPopup(auth, googleAuthProvider)
-      .then(() => {
+  
+
+  const SignInGoogle = async () => {
+    try {
+      const response = await fetch("/api/google-login");
+      const data = await response.json();
+      if (response.ok) {
         navigate("/");
-      })
-      .catch((err) => alert(err.message));
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error signing in with Google:", error);
+      alert("An error occurred while signing in with Google.");
+    }
   };
 
   return (

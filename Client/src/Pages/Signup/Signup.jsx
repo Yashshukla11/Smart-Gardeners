@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { FaEnvelope, FaEye, FaEyeSlash, FaKey } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"; // Check the correct import
 import { auth, googleAuthProvider } from "../../firebase/auth";
 import { Navbar } from "../../components/NavLS/NavLS";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 
 const Signup = () => {
   const [signupInfo, setSignupInfo] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
   });
@@ -19,19 +18,64 @@ const Signup = () => {
     emailError: "",
     password: false,
     passwordError: "",
-    name: false,
-    nameError: "",
+    username: false,
+    usernameError: "",
   });
 
-  const SignInGoogle = () => {
-    signInWithPopup(auth, googleAuthProvider)
-      .then(() => {
-        navigate("/");
-      })
-      .catch((err) => alert(err.message));
+  const navigate = useNavigate();
+
+  const handleSignupInfo = (e) => {
+    setSignupInfo({
+      ...signupInfo,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const navigate = useNavigate();
+  // Inside your Signup component
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`http://localhost:8080/user/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(signupInfo),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to sign up: " + response.statusText);
+      }
+
+      const data = await response.json();
+      console.log("User signed up:", data);
+      navigate("/");
+    } catch (error) {
+      console.error("Error signing up:", error.message);
+      setError({
+        ...error,
+        username: true,
+        usernameError: error.message,
+      });
+    }
+  };
+
+  const passwordToggle = () => {
+    setPasswordType((prevType) =>
+      prevType === "password" ? "text" : "password"
+    );
+  };
+
+  const SignInGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleAuthProvider);
+      navigate("/");
+    } catch (error) {
+      console.error("Error signing in with Google:", error.message);
+      alert(error.message);
+    }
+  };
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -42,51 +86,6 @@ const Signup = () => {
     });
   }, []);
 
-  const handleSignupInfo = (e) => {
-    setSignupInfo({
-      ...signupInfo,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Call the Firebase create user function
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        signupInfo.email,
-        signupInfo.password
-      );
-
-      // Update the user profile with the name
-      await updateProfile(userCredential.user, {
-        displayName: signupInfo.name,
-      });
-
-      // Handle successful signup (optional)
-      console.log("User signed up:", userCredential.user);
-
-      // Redirect to another page after successful signup
-      navigate("/");
-    } catch (error) {
-      // Handle signup error
-      console.error("Error signing up:", error.message);
-      setError({
-        email: true,
-        emailError: error.message,
-        password: true,
-        passwordError: error.message,
-      });
-    }
-  };
-
-  const passwordToggle = () => {
-    setPasswordType((prevType) =>
-      prevType === "password" ? "text" : "password"
-    );
-  };
   return (
     <>
       <Navbar />
@@ -100,11 +99,10 @@ const Signup = () => {
             margin: "auto",
           }}
         >
-         <div className="flex max-md:flex-col-reverse justify-center items-center">
-           <div
+          <div className="flex max-md:flex-col-reverse justify-center items-center">
+            <div
               style={{
                 backgroundColor: "#ffffff",
-              
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -149,10 +147,10 @@ const Signup = () => {
               >
                 <div style={{ width: "100%", textAlign: "start" }}>
                   <label
-                    htmlFor="name"
+                    htmlFor="username"
                     style={{ fontFamily: "Quattrocento Sans, sans-serif" }}
                   >
-                    Name
+                    username
                   </label>
                   <div
                     style={{
@@ -162,15 +160,14 @@ const Signup = () => {
                     }}
                   >
                     <input
-                      id="name"
+                      id="username"
                       type="text"
-                      name="name"
+                      name="username"
                       onChange={handleSignupInfo}
-                      value={signupInfo.name}
-                      placeholder="Name"
+                      value={signupInfo.username}
+                      placeholder="username"
                       required
                       style={{
-                     
                         padding: "12px",
                         margin: "5px 0 10px",
                         borderRadius: "6px",
@@ -180,7 +177,7 @@ const Signup = () => {
                         boxSizing: "border-box",
                         paddingLeft: "35px",
                         borderColor:
-                          error.name && error.nameError ? "red" : "#d8d8d8",
+                          error.username && error.usernameError ? "red" : "#d8d8d8",
                       }}
                     />
                     <FaEnvelope
@@ -194,7 +191,7 @@ const Signup = () => {
                     />
                   </div>
 
-                  {error.name && error.nameError && (
+                  {error.username && error.usernameError && (
                     <p
                       style={{
                         color: "red",
@@ -204,7 +201,7 @@ const Signup = () => {
                         margin: "auto",
                       }}
                     >
-                      {error.nameError}
+                      {error.usernameError}
                     </p>
                   )}
                 </div>
@@ -231,7 +228,6 @@ const Signup = () => {
                       placeholder="Email"
                       required
                       style={{
-                     
                         padding: "12px",
                         margin: "5px 0 10px",
                         borderRadius: "6px",
@@ -299,7 +295,6 @@ const Signup = () => {
                         required
                         placeholder="Password"
                         style={{
-                       
                           padding: "12px",
                           margin: "5px 0 10px",
                           borderRadius: "6px",
