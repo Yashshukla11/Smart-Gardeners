@@ -4,6 +4,18 @@ const wrapAsync = require("../utils/wrapAsync");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+const getAllUsers = async (req, res) => {
+  try {
+    // Fetch all users from the database
+    const users = await User.find();
+    console.log(users);
+    // Send the users as a response
+    res.status(200).json(users);
+  } catch (error) {
+    // If an error occurs, send an error response
+    res.status(500).json({ message: error.message });
+  }
+};
 const checkUsername = wrapAsync(async (req, res) => {
   try {
     let username = req.params.username;
@@ -27,16 +39,21 @@ const checkUsername = wrapAsync(async (req, res) => {
 
 const registerUser = wrapAsync(async (req, res) => {
   try {
+    console.log("Received registration request:", req.body);
+
     let { username, password, email } = req.body;
     let user = await User.findOne({ email });
     if (user) {
+      console.log("User already exists:", user);
       return res.status(200).json({
         message: "user already exists",
       });
     }
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hashSync(password, salt);
     let userPhoto = `https://ui-avatars.com/api/?name=${username}&background=29335C&size=128&color=fff&format=png&length=1`;
+
     const newUser = new User({
       username,
       email,
@@ -45,18 +62,21 @@ const registerUser = wrapAsync(async (req, res) => {
     });
     const registeredUser = await newUser.save();
     const { password: password_, ...info } = registeredUser._doc;
+
+    console.log("User registered successfully:", info);
     res.status(200).json({
       user: info,
       message: "register success",
     });
   } catch (error) {
-    console.log(error);
+    console.error("Error registering user:", error);
     res.status(400).json({
       message: "register failed",
       error: error.message,
     });
   }
 });
+
 
 const loginUser = wrapAsync(async (req, res, next) => {
   try {
@@ -126,4 +146,5 @@ module.exports = {
   loginUser,
   logoutUser,
   getUser,
+  getAllUsers 
 };
