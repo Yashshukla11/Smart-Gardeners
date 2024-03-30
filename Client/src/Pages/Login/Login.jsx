@@ -92,11 +92,11 @@ const Login = () => {
             margin: "auto",
           }}
         >
-          <div style={{ display: "flex" }}>
+          <div className="flex max-md:flex-col-reverse justify-center items-center">
             <div
               style={{
                 backgroundColor: "#ffffff",
-                width: "50%",
+               
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -135,7 +135,7 @@ const Login = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
-                  padding: "0 20%",
+                  padding: "20px",
                 }}
                 onSubmit={handleSignIn}
               >
@@ -161,8 +161,9 @@ const Login = () => {
                       value={loginInfo.email}
                       placeholder="Email"
                       required
+                      
                       style={{
-                        width: "400px",
+                      
                         padding: "12px",
                         margin: "5px 0 10px",
                         borderRadius: "6px",
@@ -230,7 +231,7 @@ const Login = () => {
                         required
                         placeholder="Password"
                         style={{
-                          width: "400px",
+                        
                           padding: "12px",
                           margin: "5px 0 10px",
                           borderRadius: "6px",
