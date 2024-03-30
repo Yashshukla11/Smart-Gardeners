@@ -11,8 +11,8 @@ export const About = () => {
     <>
       <Navbar aboutus="true" />
       <HeroSection />
-      <div className="justify-center  ">
-      <div style={{ marginTop: "50px" }} className="justtify-center w-auto">
+      <div className="  flex  justify-center max-xl:flex-col items-center p-10">
+      <div style={{ marginTop: "50px" }} className=" w-auto">
         <Para heading="What Drives Us" />
 
       <div >
