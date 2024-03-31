@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "thumbnail": "https://i.postimg.cc/cH1fH27x/final-cup.png",
+    "title": "Product 1",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet turpis eget mi efficitur, eu congue lorem scelerisque.",
+    "price": 10.99
+  },
+  {
+    "id": 2,
+    "thumbnail": "https://i.postimg.cc/cH1fH27x/final-cup.png",
+    "title": "Product 2",
+    "description": "Duis ac velit at nisi faucibus fermentum. Curabitur auctor felis a justo vehicula vulputate.",
+    "price": 19.99
+  },
+  {
+    "id": 3,
+    "thumbnail": "https://i.postimg.cc/cH1fH27x/final-cup.png",
+    "title": "Product 3",
+    "description": "Pellentesque tincidunt tellus vel lorem consequat, nec malesuada dui ultricies. Suspendisse potenti.",
+    "price": 14.5
+  },
+  {
+    "id": 4,
+    "thumbnail": "https://i.postimg.cc/cH1fH27x/final-cup.png",
+    "title": "Product 4",
+    "description": "Integer ac nisi quis elit maximus scelerisque eget et neque. Nulla euismod enim eu urna eleifend vehicula.",
+    "price": 29.99
+  },
+  {
+    "id": 5,
+    "thumbnail": "https://i.postimg.cc/cH1fH27x/final-cup.png",
+    "title": "Product 5",
+    "description": "Integer ac nisi quis elit maximus scelerisque eget et neque. Nulla euismod enim eu urna eleifend vehicula.",
+    "price": 29.99
+  },
+  {
+    "id": 6,
+    "thumbnail": "https://i.postimg.cc/cH1fH27x/final-cup.png",
+    "title": "Product 6",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet turpis eget mi efficitur, eu congue lorem scelerisque.",
+    "price": 12.99
+  },
+  {
+    "id": 7,
+    "thumbnail": "https://i.postimg.cc/cH1fH27x/final-cup.png",
+    "title": "Product 7",
+    "description": "Duis ac velit at nisi faucibus fermentum. Curabitur auctor felis a justo vehicula vulputate.",
+    "price": 9.99
+  },
+  {
+    "id": 8,
+    "thumbnail": "https://i.postimg.cc/cH1fH27x/final-cup.png",
+    "title": "Product 8",
+    "description": "Pellentesque tincidunt tellus vel lorem consequat, nec malesuada dui ultricies. Suspendisse potenti.",
+    "price": 17.5
+  },
+  {
+    "id": 9,
+    "thumbnail": "https://i.postimg.cc/cH1fH27x/final-cup.png",
+    "title": "Product 9",
+    "description": "Integer ac nisi quis elit maximus scelerisque eget et neque. Nulla euismod enim eu urna eleifend vehicula.",
+    "price": 24.99
+  },
+  {
+    "id": 10,
+    "thumbnail": "https://i.postimg.cc/cH1fH27x/final-cup.png",
+    "title": "Product 10",
+    "description": "Integer ac nisi quis elit maximus scelerisque eget et neque. Nulla euismod enim eu urna eleifend vehicula.",
+    "price": 19.99
+  }
+]

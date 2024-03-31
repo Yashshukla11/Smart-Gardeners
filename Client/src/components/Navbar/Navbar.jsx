@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { auth } from "../../firebase/auth"; // Make sure to import the signOut function
 import { signOut, onAuthStateChanged } from "firebase/auth";
-
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../../Context/CartContext";
 
 export const Navbar = ({
   home,
@@ -10,10 +10,14 @@ export const Navbar = ({
   ourproduct,
   aboutus,
   contactus,
+  shop,
+  toggle,
+  showModal,
 }) => {
   const [user, setUser] = useState();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const { cartItems } = useContext(CartContext);
 
   const navigate = useNavigate();
 
@@ -90,6 +94,14 @@ export const Navbar = ({
                 </li>
                 <li className="menu__item">
                   <a
+                    href="/shop"
+                    className={"menu__link " + (shop ? "active" : "")}
+                  >
+                    Shop
+                  </a>
+                </li>
+                <li className="menu__item">
+                  <a
                     href="/about"
                     className={"menu__link " + (aboutus ? "active" : "")}
                   >
@@ -104,6 +116,15 @@ export const Navbar = ({
                     Contact Us
                   </a>
                 </li>
+                {shop ? (
+                  <li className="menu__item cart-button" onClick={toggle}>
+                    <a href="/cart">
+                      {!showModal && `Cart (${cartItems.length})`}
+                    </a>
+                  </li>
+                ) : (
+                  ""
+                )}
               </ul>
               <div
                 className="header__signup"

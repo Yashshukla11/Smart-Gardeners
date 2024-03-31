@@ -25,17 +25,19 @@ const Login = () => {
   };
 
   const passwordToggle = () => {
-    setPasswordType((prevType) => (prevType === "password" ? "text" : "password"));
+    setPasswordType((prevType) =>
+      prevType === "password" ? "text" : "password"
+    );
   };
 
   const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-  
+
     try {
       console.log("Sending sign-in request...");
-  
+
       const response = await fetch(`http://localhost:8080/user/login`, {
         method: "POST",
         headers: {
@@ -43,12 +45,12 @@ const Login = () => {
         },
         body: JSON.stringify(loginInfo),
       });
-  
+
       console.log("Received response:", response);
-  
+
       const data = await response.json();
       console.log("Response data:", data);
-  
+
       if (response.ok) {
         console.log("Sign-in successful. Redirecting...");
         navigate("/");
@@ -61,7 +63,6 @@ const Login = () => {
       alert("An error occurred while signing in.");
     }
   };
-  
 
   const SignInGoogle = async () => {
     try {
