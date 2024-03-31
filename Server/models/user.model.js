@@ -25,18 +25,39 @@ const userSchema = new Schema(
     userPhoto: {
       type: String,
     },
-    notes: [
+    productsPurchased: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "Note",
+        product: {
+          type: Schema.Types.ObjectId,
+          ref: "Product",
+        },
+        uniqueId: {
+          type: String,
+          unique: true,
+        },
+        cycleStage: {
+          type: Number,
+          min: 0,
+          max: 5,
+        },
+        purchaseDate: {
+          type: Date,
+          default: Date.now,
+        },
+        plantedDate: {
+          type: Date,
+        },
+        nextExpectedCycleChangeDate: {
+          type: Date,
+        },
       },
     ],
-    likedNotes: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Note",
-      },
-    ],
+    lastTransaction: {
+      // Placeholder for last transaction details
+    },
+    transactions: {
+      // Placeholder for all transactions
+    },
   },
   {
     timestamps: true,
