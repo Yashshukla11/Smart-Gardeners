@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-// import { auth } from "../../firebase/auth"; // Make sure to import the signOut function
-// import { signOut, onAuthStateChanged } from "firebase/auth";
+// import { auth } from "../../firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../Context/CartContext";
+import { UserContext } from "../../Context/UserContext";
 
 export const Navbar = ({
   home,
@@ -14,7 +14,7 @@ export const Navbar = ({
   toggle,
   showModal,
 }) => {
-  const [user, setUser] = useState();
+  const { user, setUser } = useContext(UserContext);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const { cartItems } = useContext(CartContext);

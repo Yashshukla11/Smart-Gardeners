@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { auth } from "../../firebase/auth";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../Context/UserContext";
 
 export const Footer = () => {
-  const [user, setUser] = useState();
+  const { user, setUser } = useContext(UserContext);
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user); // Update the user state when the authentication state changes
-    });
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((user) => {
+  //     setUser(user); // Update the user state when the authentication state changes
+  //   });
 
-    return () => unsubscribe(); // Unsubscribe from the auth state change listener when the component unmounts
-  }, []);
+  //   return () => unsubscribe(); // Unsubscribe from the auth state change listener when the component unmounts
+  // }, []);
 
   return (
     <footer className="footer mt-[90px]">

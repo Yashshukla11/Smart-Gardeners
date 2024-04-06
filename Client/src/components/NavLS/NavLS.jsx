@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/auth"; // Make sure to import the signOut function
+import { UserContext } from "../../Context/UserContext";
 
 export const Navbar = ({
   home,
@@ -9,7 +10,7 @@ export const Navbar = ({
   aboutus,
   contactus,
 }) => {
-  const [user, setUser] = useState();
+  const { user, setUser } = useContext(UserContext);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [isSticky, setSticky] = useState(false);
@@ -32,13 +33,13 @@ export const Navbar = ({
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user); // Update the user state when the authentication state changes
-    });
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((user) => {
+  //     setUser(user); // Update the user state when the authentication state changes
+  //   });
 
-    return () => unsubscribe(); // Unsubscribe from the auth state change listener when the component unmounts
-  }, []);
+  //   return () => unsubscribe(); // Unsubscribe from the auth state change listener when the component unmounts
+  // }, []);
 
   const confirmLogout = () => {
     signOut(auth)
