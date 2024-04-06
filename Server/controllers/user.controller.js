@@ -16,26 +16,6 @@ const getAllUsers = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-const checkUsername = wrapAsync(async (req, res) => {
-  try {
-    let username = req.params.username;
-    let user = await User.findOne({ username });
-    if (user) {
-      return res.status(200).json({
-        message: "username taken",
-      });
-    } else {
-      return res.status(200).json({
-        message: "username available",
-      });
-    }
-  } catch (error) {
-    res.status(500).json({
-      message: "username check failed",
-      error: error.message,
-    });
-  }
-});
 
 const registerUser = wrapAsync(async (req, res) => {
   try {
@@ -76,7 +56,6 @@ const registerUser = wrapAsync(async (req, res) => {
     });
   }
 });
-
 
 const loginUser = wrapAsync(async (req, res, next) => {
   try {
@@ -141,10 +120,9 @@ const getUser = wrapAsync(async (req, res) => {
 });
 
 module.exports = {
-  checkUsername,
   registerUser,
   loginUser,
   logoutUser,
   getUser,
-  getAllUsers 
+  getAllUsers,
 };
