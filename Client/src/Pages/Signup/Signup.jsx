@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth, googleAuthProvider } from "../../firebase/auth";
 import { Navbar } from "../../components/NavLS/NavLS";
 import { signInWithPopup } from "firebase/auth";
+import axios from "axios";
 
 const Signup = () => {
   const [signupInfo, setSignupInfo] = useState({
@@ -36,21 +37,22 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:8080/user/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signupInfo),
-      });
+      console.log(signupInfo);
+      axios
+        .post(`${import.meta.env.VITE_BASE_URL}/user/register`, signupInfo, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res);
+        });
 
-      if (!response.ok) {
-        throw new Error("Failed to sign up: " + response.statusText);
-      }
+      // if (!response.ok) {
+      //   throw new Error("Failed to sign up: " + response.statusText);
+      // }
 
-      const data = await response.json();
-      console.log("User signed up:", data);
-      navigate("/");
+      // const data = await response.json();
+      // console.log("User signed up:", data);
+      // navigate("/");
     } catch (error) {
       console.error("Error signing up:", error.message);
       setError({
@@ -70,21 +72,22 @@ const Signup = () => {
   const SignInGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, googleAuthProvider);
-      navigate("/");
+      console.log(result);
+      // navigate("/");
     } catch (error) {
       console.error("Error signing in with Google:", error.message);
       alert(error.message);
     }
   };
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log(user);
-        navigate("/");
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       console.log(user);
+  //       navigate("/");
+  //     }
+  //   });
+  // }, []);
 
   return (
     <>
@@ -141,11 +144,14 @@ const Signup = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
-                  padding: "20px",
+                  // padding: "20px",
                 }}
                 onSubmit={handleSignUp}
               >
-                <div style={{ width: "100%", textAlign: "start" }}>
+                <div
+                  className="w-[80vw] md:w-[400px]"
+                  style={{ textAlign: "start" }}
+                >
                   <label
                     htmlFor="username"
                     style={{ fontFamily: "Quattrocento Sans, sans-serif" }}
@@ -177,7 +183,9 @@ const Signup = () => {
                         boxSizing: "border-box",
                         paddingLeft: "35px",
                         borderColor:
-                          error.username && error.usernameError ? "red" : "#d8d8d8",
+                          error.username && error.usernameError
+                            ? "red"
+                            : "#d8d8d8",
                       }}
                     />
                     <FaEnvelope
@@ -383,7 +391,7 @@ const Signup = () => {
                     fontSize: "16px",
                     fontFamily: "Quattrocento Sans, sans-serif",
                   }}
-                  className="forgot-password"
+                  className="forgot-password hover:underline"
                 >
                   Already have an account?
                 </Link>
@@ -422,7 +430,10 @@ const Signup = () => {
               </div>
             </div>
             {/* Left side of the login page */}
-            <div style={{ backgroundColor: "#ffffff", width: "50%" }}>
+            <div
+              style={{ backgroundColor: "#ffffff", width: "50%" }}
+              className="hidden md:block"
+            >
               <img
                 className="anim"
                 src="https://i.postimg.cc/fLdzKL5K/55-Flat-City6-removebg-preview.png"

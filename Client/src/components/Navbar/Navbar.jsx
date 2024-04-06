@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { auth } from "../../firebase/auth"; // Make sure to import the signOut function
-import { signOut, onAuthStateChanged } from "firebase/auth";
+// import { auth } from "../../firebase/auth"; // Make sure to import the signOut function
+// import { signOut, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../Context/CartContext";
 
@@ -18,30 +18,47 @@ export const Navbar = ({
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const { cartItems } = useContext(CartContext);
+  const [isSticky, setSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setSticky(true);
+      } else {
+        setSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user); // Update the user state when the authentication state changes
-    });
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((user) => {
+  //     setUser(user); // Update the user state when the authentication state changes
+  //   });
 
-    return () => unsubscribe(); // Unsubscribe from the auth state change listener when the component unmounts
-  }, []);
+  //   return () => unsubscribe(); // Unsubscribe from the auth state change listener when the component unmounts
+  // }, []);
 
-  const confirmLogout = () => {
-    signOut(auth)
-      .then(() => {
-        setUser(null);
-        navigate("/signin");
-      })
-      .catch((err) => {
-        alert(err.message);
-      })
-      .finally(() => {
-        setShowLogoutModal(false);
-      });
-  };
+  // const confirmLogout = () => {
+  //   signOut(auth)
+  //     .then(() => {
+  //       setUser(null);
+  //       navigate("/signin");
+  //     })
+  //     .catch((err) => {
+  //       alert(err.message);
+  //     })
+  //     .finally(() => {
+  //       setShowLogoutModal(false);
+  //     });
+  // };
 
   const cancelLogout = () => {
     setShowLogoutModal(false);
@@ -55,7 +72,11 @@ export const Navbar = ({
     <>
       <div className="container" style={{ marginBottom: "30px" }}>
         <header>
-          <nav className="header__nav w-[90vw]">
+          <nav
+            className={`header__nav w-[100vw] px-[30px] md:px-[100px] bg-white ${
+              isSticky ? "fixed top-0 z-10 shadow-lg" : ""
+            }`}
+          >
             <div className="header__logo">
               <img
                 src="https://i.postimg.cc/7PXVht2v/Screenshot-2024-01-22-at-2-43-19-PM-fotor-bg-remover-20240122151630.png"

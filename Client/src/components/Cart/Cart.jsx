@@ -19,12 +19,12 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart-container">
+    <div className="cart-container flex flex-col md:flex-row justify-center">
       <div className="cart-items-container">
         <h1 className="cart-title">Cart</h1>
         {cartItems.map((item) => (
           <div className="cart-item" key={item.id}>
-            <div className="item-info-container">
+            <div className="item-info-container flex flex-col md:flex-row justify-center">
               <img
                 src={item.thumbnail}
                 alt={item.title}
@@ -33,7 +33,7 @@ const Cart = () => {
               <div className="item-details">
                 <h1 className="item-title">{item.title}</h1>
                 <p className="item-price">${item.price}</p> {/* Added $ */}
-                <div className="quantity-container">
+                <div className="quantity-container mb-5 md:mb-0">
                   <button
                     className="add_remove_text"
                     onClick={() => {
@@ -66,7 +66,7 @@ const Cart = () => {
         </button>
       </div>
 
-      <div className="side_checkout">
+      <div className="side_checkout md:px-[50px]">
         {/* <h1 className="cart-total">Total: ${getCartTotal()}</h1> {/* Added $ */}
         {cartItems.map((item) => (
           <div className="cart-item_right" key={item.id}>
@@ -105,7 +105,7 @@ const Cart = () => {
             </div>
           </div>
         ))}
-        <h1 className="cart-total">Total: ${getCartTotal()}</h1>
+        {/* <h1 className="cart-total">Total: ${getCartTotal()}</h1> */}
         <button
           className="add-to-cart-button_right"
           onClick={() => {

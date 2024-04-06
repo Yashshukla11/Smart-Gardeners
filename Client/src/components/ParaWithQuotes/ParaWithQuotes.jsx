@@ -3,7 +3,7 @@ import React from "react";
 export const ParaWithQuotes = () => {
   return (
     <>
-      <div className="testimonials__head w-105">
+      <div className="testimonials__head w-[90vw] md:w-[60vw] mx-auto">
         <img
           src="https://i.postimg.cc/TYrz4YWs/quote.png"
           alt="Quote"
@@ -32,10 +32,10 @@ export const ParaWithQuotes = () => {
         </p>
       </div>
       <img
-        className="mainright"
+        className="md:w-[500px] w-[90vw] h-auto"
         style={{
-          height: "500px",
-          width: "auto",
+          // height: "500px",
+          // width: "auto",
           margin: "auto",
           marginTop: "70px",
         }}

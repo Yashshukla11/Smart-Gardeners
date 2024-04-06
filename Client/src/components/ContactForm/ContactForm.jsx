@@ -18,13 +18,15 @@ export const ContactForm = () => {
           }}
         >
           <div className="mb-4">
-            <div className="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">
+            <div className="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12 flex flex-xol justify-center">
               <h2 className="font-heading mb-4 font-bold tracking-tight text-black text-3xl sm:text-5xl">
                 Contact
               </h2>
-              <p className="mx-auto mt-4 max-w-3xl text-xl text-gray-60">
-                <span style={{ fontSize: "20px" }}>Smart Gardeners </span> Smart
-                Gardening, Smarter Living
+              <p className="mx-auto mt-4 max-w-3xl text-xl text-gray-60 flex md:flex-row flex-col">
+                <span className="mb-3 md:mb-0" style={{ fontSize: "20px" }}>
+                  Smart Gardeners{" "}
+                </span>{" "}
+                Smart Gardening, Smarter Living
               </p>
             </div>
           </div>

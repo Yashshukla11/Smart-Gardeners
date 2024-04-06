@@ -13,7 +13,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="footer">
+    <footer className="footer mt-[90px]">
       <div className="footer__body w-105">
         <nav className="footer__nav">
           <ul className="footer_nav__menu">

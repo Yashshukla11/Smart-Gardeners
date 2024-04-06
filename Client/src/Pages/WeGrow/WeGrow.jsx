@@ -46,12 +46,12 @@ export const WeGrow = () => {
             </button>
           </section>
         </div>
-        <div className="crops">
+        <div className="crops flex flex-wrap justify-center">
           <div className="cell">
             <a href="#tomato" className="cell">
               <img
                 src="https://www.svgrepo.com/show/120941/tomato.svg"
-                className="vegie"
+                className="vegie flex-auto p-4 m-2 w-[80px]"
               />
               <p className="vegt">Tomato</p>
             </a>
@@ -60,7 +60,7 @@ export const WeGrow = () => {
             <a href="#lettuce" className="cell">
               <img
                 src="https://www.svgrepo.com/show/475202/lettuce.svg"
-                className="vegie"
+                className="vegie flex-auto p-4 m-2 w-[80px]"
               />
               <p className="vegt">Lettuce</p>
             </a>
@@ -69,7 +69,7 @@ export const WeGrow = () => {
             <a href="#radish" className="cell">
               <img
                 src="https://www.svgrepo.com/show/280775/radish.svg"
-                className="vegie"
+                className="vegie flex-auto p-4 m-2 w-[80px]"
               />
               <p className="vegt">Radish</p>
             </a>
@@ -78,7 +78,7 @@ export const WeGrow = () => {
             <a href="#spinach" className="cell">
               <img
                 src="https://www.svgrepo.com/show/312451/leafy-green.svg"
-                className="vegie"
+                className="vegie flex-auto p-4 m-2 w-[80px]"
               />
               <p className="vegt">Spinach</p>
             </a>
@@ -88,19 +88,19 @@ export const WeGrow = () => {
             <a href="#strawberry" className="cell">
               <img
                 src="https://www.svgrepo.com/show/530214/strawberry.svg"
-                className="vegie"
+                className="vegie flex-auto p-4 m-2 w-[80px]"
               />
               <p className="vegt">Strawberry</p>
             </a>
           </div>
         </div>
         <hr className="line" id="tomato" />
+        {/*  */}
 
-        <div style={{ marginTop: "40px" }}></div>
+        <div style={{ marginTop: "70px" }}></div>
         <MiddlePara heading="Tomato" />
-
-        <div className="main">
-          <div className="left">
+        <div className="main flex flex-col md:flex-row">
+          <div className="w-[90vw] md:w-[55%]">
             <p
               className="textmain invest__description"
               style={{ fontFamily: "Quattrocento Sans, sans-serif" }}
@@ -155,21 +155,22 @@ export const WeGrow = () => {
               utilization of energy in growth of fruits and the main stem.
             </p>
           </div>
-          <div className="right">
+          <div className="right mt-10 md:mt-0">
             <img
               src="https://i.ibb.co/jvpxKhf/tomatoesmain.jpg"
-              className="mainright"
+              className="mainright md:w-[50%]"
             />
           </div>
         </div>
         <hr className="line" id="lettuce" />
-        <div style={{ marginTop: "40px" }}></div>
+        {/*  */}
+        <div style={{ marginTop: "70px" }}></div>
         <MiddlePara heading="Lettuce" />
-        <div className="main">
-          <div className="right">
+        <div className="main flex flex-col-reverse md:flex-row">
+          <div className="right mt-10 md:mt-0">
             <img
               src="https://i.ibb.co/rZnQ0FY/lettucemain.jpg"
-              className="mainright"
+              className="mainright md:w-[50%]"
             />
           </div>
           <div className="left">
@@ -222,9 +223,9 @@ export const WeGrow = () => {
           </div>
         </div>
         <hr className="line" id="radish" />
-        <div style={{ marginTop: "40px" }}></div>
+        <div style={{ marginTop: "70px" }}></div>
         <MiddlePara heading="Radish" />
-        <div className="main">
+        <div className="main flex flex-col md:flex-row">
           <div className="left">
             <p
               className="textmain"
@@ -257,21 +258,21 @@ export const WeGrow = () => {
               <br></br>
             </p>
           </div>
-          <div className="right">
+          <div className="right mt-10 md:mt-0">
             <img
               src="https://i.ibb.co/51sTgYX/radishmain.jpg"
-              className="mainright"
+              className="mainright md:w-[50%]"
             />
           </div>
         </div>
         <hr className="line" id="spinach" />
-        <div style={{ marginTop: "40px" }}></div>
+        <div style={{ marginTop: "70px" }}></div>
         <MiddlePara heading="Spinach" />
-        <div className="main">
-          <div className="right">
+        <div className="main flex flex-col-reverse md:flex-row">
+          <div className="right mt-10 md:mt-0">
             <img
               src="https://i.ibb.co/fCDFYsG/spinachmain.jpg"
-              className="mainright"
+              className="mainright md:w-[50%]"
             />
           </div>
           <div className="left">
@@ -316,9 +317,9 @@ export const WeGrow = () => {
           </div>
         </div>
         <hr className="line" id="strawberry" />
-        <div style={{ marginTop: "40px" }}></div>
+        <div style={{ marginTop: "70px" }}></div>
         <MiddlePara heading="Strawberry" />
-        <div className="main">
+        <div className="main flex flex-col md:flex-row">
           <div className="left">
             <p
               className="textmain"
@@ -366,10 +367,10 @@ export const WeGrow = () => {
               <br></br>
             </p>
           </div>
-          <div className="right">
+          <div className="right mt-10 md:mt-0">
             <img
               src="https://i.ibb.co/RYwY6kg/strawberrymain.jpg"
-              className="mainright"
+              className="mainright md:w-[50%]"
             />
           </div>
         </div>
@@ -410,12 +411,12 @@ export const WeGrow = () => {
             </button>
           </section>
         </div>
-        <div className="crops">
+        <div className="crops flex flex-wrap justify-center">
           <div className="cell">
             <a href="#orchid" className="cell">
               <img
                 src="https://www.svgrepo.com/show/36446/orchid.svg"
-                className="vegie"
+                className="vegie flex-auto p-4 m-2 w-[80px]"
               />
               <p className="vegt">Orchid</p>
             </a>
@@ -424,7 +425,7 @@ export const WeGrow = () => {
             <a href="#daisy" className="cell">
               <img
                 src="https://www.svgrepo.com/show/9997/daisy.svg"
-                className="vegie"
+                className="vegie flex-auto p-4 m-2 w-[80px]"
               />
               <p className="vegt">Diasy</p>
             </a>
@@ -433,7 +434,7 @@ export const WeGrow = () => {
             <a href="#gerbera" className="cell">
               <img
                 src="https://www.svgrepo.com/show/16728/gerbera.svg"
-                className="vegie"
+                className="vegie flex-auto p-4 m-2 w-[80px]"
               />
               <p className="vegt">Gerbera</p>
             </a>
@@ -442,7 +443,7 @@ export const WeGrow = () => {
             <a href="#carnation" className="cell">
               <img
                 src="https://www.svgrepo.com/show/131750/carnation.svg"
-                className="vegie"
+                className="vegie flex-auto p-4 m-2 w-[80px]"
               />
               <p className="vegt">Carnation</p>
             </a>
@@ -452,16 +453,16 @@ export const WeGrow = () => {
             <a href="#rose" className="cell">
               <img
                 src="https://www.svgrepo.com/show/84393/rose.svg"
-                className="vegie"
+                className="vegie flex-auto p-4 m-2 w-[80px]"
               />
               <p className="vegt">Rose</p>
             </a>
           </div>
         </div>
         <hr className="line" id="orchid" />
-        <div style={{ marginTop: "40px" }}></div>
+        <div style={{ marginTop: "70px" }}></div>
         <MiddlePara heading="Orchid" />
-        <div className="main">
+        <div className="main flex flex-col md:flex-row">
           <div className="left">
             <p
               className="textmain"
@@ -508,21 +509,21 @@ export const WeGrow = () => {
               <br></br>
             </p>
           </div>
-          <div className="right">
+          <div className="right mt-10 md:mt-0">
             <img
               src="https://images.pexels.com/photos/2750067/pexels-photo-2750067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              className="mainright"
+              className="mainright md:w-[50%]"
             />
           </div>
         </div>
         <hr className="line" id="daisy" />
-        <div style={{ marginTop: "40px" }}></div>
+        <div style={{ marginTop: "70px" }}></div>
         <MiddlePara heading="Daisy" />
-        <div className="main">
-          <div className="right">
+        <div className="main flex flex-col-reverse md:flex-row">
+          <div className="right mt-10 md:mt-0">
             <img
               src="https://images.pexels.com/photos/2694578/pexels-photo-2694578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              className="mainright"
+              className="mainright md:w-[50%]"
             />
           </div>
           <div className="left">
@@ -568,9 +569,9 @@ export const WeGrow = () => {
           </div>
         </div>
         <hr className="line" id="gerbera" />
-        <div style={{ marginTop: "40px" }}></div>
+        <div style={{ marginTop: "70px" }}></div>
         <MiddlePara heading="Gerbera" />
-        <div className="main">
+        <div className="main flex flex-col md:flex-row">
           <div className="left">
             <p
               className="textmain"
@@ -611,21 +612,21 @@ export const WeGrow = () => {
               <br></br>
             </p>
           </div>
-          <div className="right">
+          <div className="right mt-10 md:mt-0">
             <img
               src="https://images.pexels.com/photos/4022207/pexels-photo-4022207.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              className="mainright"
+              className="mainright md:w-[50%]"
             />
           </div>
         </div>
         <hr className="line" id="carnation" />
-        <div style={{ marginTop: "40px" }}></div>
+        <div style={{ marginTop: "70px" }}></div>
         <MiddlePara heading="Carnation" />
-        <div className="main">
-          <div className="right">
+        <div className="main flex flex-col-reverse md:flex-row">
+          <div className="right mt-10 md:mt-0">
             <img
               src="https://images.pexels.com/photos/4622995/pexels-photo-4622995.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              className="mainright"
+              className="mainright md:w-[50%]"
             />
           </div>
           <div className="left">
@@ -673,9 +674,9 @@ export const WeGrow = () => {
           </div>
         </div>
         <hr className="line" id="rose" />
-        <div style={{ marginTop: "40px" }}></div>
+        <div style={{ marginTop: "70px" }}></div>
         <MiddlePara heading="Rose" />
-        <div className="main">
+        <div className="main flex flex-col md:flex-row">
           <div className="left">
             <p
               className="textmain"
@@ -716,10 +717,10 @@ export const WeGrow = () => {
               <br></br>
             </p>
           </div>
-          <div className="right">
+          <div className="right mt-10 md:mt-0">
             <img
               src="https://images.pexels.com/photos/3782745/pexels-photo-3782745.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              className="mainright"
+              className="mainright md:w-[50%]"
             />
           </div>
         </div>

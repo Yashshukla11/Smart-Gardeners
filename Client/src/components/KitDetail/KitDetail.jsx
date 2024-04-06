@@ -13,15 +13,14 @@ export const KitDetail = ({ content, opp, image, heading }) => {
       <div style={{ marginTop: "70px" }}></div>
       <MiddlePara heading={heading} />
 
-      <div className="main" style={{ height: "auto" }}>
+      <div
+        className={`main flex ${
+          opp ? "flex-col-reverse md:flex-row" : "flex-col md:flex-row"
+        }`}
+        style={{ height: "auto" }}
+      >
         {opp ? (
-          <div className="right">
-            <img
-              src={image}
-              className="mainright"
-             
-            />
-          </div>
+          <img src={image} className="mainright w-[90vw] md:w-[30vw]" />
         ) : (
           ""
         )}
@@ -40,11 +39,7 @@ export const KitDetail = ({ content, opp, image, heading }) => {
           </p>
         </div>
         {!opp ? (
-          <img
-            src={image}
-            className="mainright"
-           
-          />
+          <img src={image} className="mainright w-[90vw] md:w-[30vw]" />
         ) : (
           ""
         )}

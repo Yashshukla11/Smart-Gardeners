@@ -4,9 +4,7 @@ export const CardSection = () => {
   return (
     <div className="opportunities__content w-105">
       <div className="opportunities__head">
-        <h2 className="opportunities__title" >
-          The Challenge
-        </h2>
+        <h2 className="opportunities__title">The Challenge</h2>
         <p className="opportunities__description">
           Growing environmental concerns pose a challenge as our soil degrades,
           and forests vanish. Highrises burgeon, intensifying the demand for
@@ -18,7 +16,7 @@ export const CardSection = () => {
           <img
             src="https://i.postimg.cc/j5TCKfmV/forest.png"
             alt="Icon"
-            className="opportunity__icon"
+            className="w-[60px]"
           />
           <h4 className="opportunity__title">
             Vanishing Forest Covers: A Call to Action
@@ -34,7 +32,7 @@ export const CardSection = () => {
           <img
             src="https://i.postimg.cc/FK7wRnt3/cityscape.png"
             alt="Icon"
-            className="opportunity__icon"
+            className="w-[60px]"
           />
           <h4 className="opportunity__title">
             Urbanization and Impractical Gardening
@@ -50,7 +48,7 @@ export const CardSection = () => {
           <img
             src="https://i.postimg.cc/RF0hNmSG/greenhouse.png"
             alt="Icon"
-            className="opportunity__icon"
+            className="w-[60px]"
           />
           <h4 className="opportunity__title">
             Food and Shelter Demands Intensify

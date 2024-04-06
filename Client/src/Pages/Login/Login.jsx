@@ -64,19 +64,13 @@ const Login = () => {
     }
   };
 
-  const SignInGoogle = async () => {
-    try {
-      const response = await fetch("/api/google-login");
-      const data = await response.json();
-      if (response.ok) {
-        navigate("/");
-      } else {
-        alert(data.message);
-      }
-    } catch (error) {
-      console.error("Error signing in with Google:", error);
-      alert("An error occurred while signing in with Google.");
-    }
+  const SignInGoogle = () => {
+    signInWithPopup(auth, googleAuthProvider)
+      .then((res) => {
+        console.log(res);
+        // navigate("/");
+      })
+      .catch((err) => alert(err.message));
   };
 
   return (
@@ -135,11 +129,14 @@ const Login = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
-                  padding: "20px",
+                  // padding: "20px",
                 }}
                 onSubmit={handleSignIn}
               >
-                <div style={{ width: "100%", textAlign: "start" }}>
+                <div
+                  className="w-[80vw] md:w-[400px]"
+                  style={{ textAlign: "start" }}
+                >
                   <label
                     htmlFor="email"
                     style={{ fontFamily: "Quattrocento Sans, sans-serif" }}
@@ -356,7 +353,10 @@ const Login = () => {
               </div>
             </div>
             {/* Left side of the login page */}
-            <div style={{ backgroundColor: "#ffffff", width: "50%" }}>
+            <div
+              style={{ backgroundColor: "#ffffff", width: "50%" }}
+              className="hidden md:block"
+            >
               <img
                 className="anim"
                 src="https://i.postimg.cc/fLdzKL5K/55-Flat-City6-removebg-preview.png"

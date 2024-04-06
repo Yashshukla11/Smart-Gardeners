@@ -5,11 +5,11 @@ export const HeroSection = () => {
     <>
       <section
         className="hero w-120"
-        // style={{
-        //   height: "55vh",
-        // }}
+        style={{
+          height: "55vh",
+        }}
       >
-        <div className="hero__content">
+        <div className="hero__content mx-[30px] md:mx-auto">
           <div className="hero__text">
             <h1 className="hero__title">Our Story</h1>
             <p className="hero__description">
