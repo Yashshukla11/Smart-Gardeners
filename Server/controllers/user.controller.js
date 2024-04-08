@@ -18,101 +18,91 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-// Register a new user
+const createToken = (_id) => {
+  return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "365d" });
+};
+
 const registerUser = wrapAsync(async (req, res) => {
-  try {
-    console.log("Received registration request:", req.body);
-
-    let { username, password, email } = req.body;
-    let user = await User.findOne({ email });
-    if (user) {
-      console.log("User already exists:", user);
-      return res.status(200).json({
-        message: "user already exists",
-      });
-    }
-
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hashSync(password, salt);
-    let userPhoto = `https://ui-avatars.com/api/?name=${username}&background=29335C&size=128&color=fff&format=png&length=1`;
-
-    const newUser = new User({
-      username,
-      email,
-      password: hashedPassword,
-      userPhoto,
-    });
-    const registeredUser = await newUser.save();
-    const { password: password_, ...info } = registeredUser._doc;
-
-    console.log("User registered successfully:", info);
-    res.status(200).json({
-      user: info,
-      message: "register success",
-    });
-  } catch (error) {
-    console.error("Error registering user:", error);
-    res.status(400).json({
-      message: "register failed",
-      error: error.message,
+  // try {
+  const { username, password, email, dob, gender, name } = req.body;
+  console.log({ username, password, email, dob, gender, name });
+  const existingUser = await User.findOne({ email });
+  console.log(existingUser);
+  if (existingUser) {
+    return res.status(400).json({
+      message: "User already exists",
     });
   }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const newUser = new User({
+    email,
+    username,
+    dob,
+    gender,
+    name,
+    password: hashedPassword,
+  });
+
+  const registeredUser = await newUser.save();
+
+  const token = createToken(registeredUser._id);
+
+  res.status(200).json({ user: registeredUser, token });
+  // } catch (error) {
+  //   res.status(400).json({
+  //     message: "Register failed",
+  //     error: error.message,
+  //   });
+  // }
 });
 
-// Login a user
-const loginUser = wrapAsync(async (req, res, next) => {
+const loginUser = wrapAsync(async (req, res) => {
   try {
     const { email, password } = req.body;
+
     const user = await User.findOne({ email });
+
     if (!user) {
-      return res.status(200).json({
-        message: "user not found",
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (passwordMatch) {
+      const token = createToken(user._id);
+
+      res.status(200).json({
+        user,
+        token,
       });
+    } else {
+      res.status(401).json({ message: "Invalid credentials" });
     }
-    const matchPassword = await bcrypt.compareSync(password, user.password);
-    if (!matchPassword) {
-      return res.status(200).json({ message: "Invalid Credentials" });
-    }
-    const token = jwt.sign(
-      {
-        id: user._id,
-        username: user.username,
-        email: user.email,
-        userPhoto: user.userPhoto,
-      },
-      process.env.SECRET,
-      {
-        expiresIn: "14d",
-      }
-    );
-    const { password: UserPassword, ...info } = user._doc;
-    res
-      .cookie("token", token, { sameSite: "None", secure: true })
-      .status(200)
-      .json({ user: info, message: "login success" });
   } catch (error) {
-    res.status(500).json({ message: "login failed", error: error.message });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
 // Logout a user
-const logoutUser = wrapAsync((req, res) => {
-  try {
-    res
-      .clearCookie("token", { sameSite: "None", secure: true })
-      .status(200)
-      .json({ message: "logout success" });
-  } catch (error) {
-    res.status(500).json({
-      message: "logout failed",
-      error: error.message,
-    });
-  }
-});
+// const logoutUser = wrapAsync((req, res) => {
+//   try {
+//     res
+//       .clearCookie("token", { sameSite: "None", secure: true })
+//       .status(200)
+//       .json({ message: "logout success" });
+//   } catch (error) {
+//     res.status(500).json({
+//       message: "logout failed",
+//       error: error.message,
+//     });
+//   }
+// });
 
 // Get a user
 const getUser = wrapAsync(async (req, res) => {
-  const token = req.cookies.token;
+  const { token } = req.body;
   jwt.verify(token, process.env.SECRET, {}, async (err, data) => {
     if (err) {
       return res.status(404).json({
@@ -172,7 +162,7 @@ const scanProduct = async (req, res) => {
 module.exports = {
   registerUser,
   loginUser,
-  logoutUser,
+  // logoutUser,
   getUser,
   getAllUsers,
   scanProduct,
