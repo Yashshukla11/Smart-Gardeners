@@ -1,6 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+// import { auth } from "../../firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebase/auth"; // Make sure to import the signOut function
+import { CartContext } from "../../Context/CartContext";
 import { UserContext } from "../../Context/UserContext";
 
 export const Navbar = ({
@@ -9,10 +10,14 @@ export const Navbar = ({
   ourproduct,
   aboutus,
   contactus,
+  shop,
+  toggle,
+  showModal,
 }) => {
   const { user, setUser } = useContext(UserContext);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const { cartItems } = useContext(CartContext);
   const [isSticky, setSticky] = useState(false);
 
   useEffect(() => {
@@ -41,19 +46,19 @@ export const Navbar = ({
   //   return () => unsubscribe(); // Unsubscribe from the auth state change listener when the component unmounts
   // }, []);
 
-  const confirmLogout = () => {
-    signOut(auth)
-      .then(() => {
-        setUser(null);
-        navigate("/signin");
-      })
-      .catch((err) => {
-        alert(err.message);
-      })
-      .finally(() => {
-        setShowLogoutModal(false);
-      });
-  };
+  // const confirmLogout = () => {
+  //   signOut(auth)
+  //     .then(() => {
+  //       setUser(null);
+  //       navigate("/signin");
+  //     })
+  //     .catch((err) => {
+  //       alert(err.message);
+  //     })
+  //     .finally(() => {
+  //       setShowLogoutModal(false);
+  //     });
+  // };
 
   const cancelLogout = () => {
     setShowLogoutModal(false);
@@ -62,9 +67,10 @@ export const Navbar = ({
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+
   return (
     <>
-      <div className="container">
+      <div className="container" style={{ marginBottom: "30px" }}>
         <header>
           <nav
             className={`header__nav w-[100vw] px-[30px] md:px-[100px] bg-white ${
@@ -79,11 +85,27 @@ export const Navbar = ({
               />
             </div> */}
             <div
-              className={`header__nav__content ${showMenu ? "" : "hide_nav"}`}
+              className={`header__nav__content ${
+                showMenu ? "shadow-2xl md:shadow-none" : "hide_nav"
+              }`}
             >
-              <div className="nav-close-icon" onClick={toggleMenu}></div>
-              <ul className="header__menu">
-                <li className="menu__item">
+              <div className="nav-close-icon" onClick={toggleMenu}>
+                <svg
+                  className="h-[50px] fill-[#66bb6a]"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  id="back-arrow"
+                >
+                  <g data-name="Layer 2">
+                    <path
+                      d="M13.83 19a1 1 0 0 1-.78-.37l-4.83-6a1 1 0 0 1 0-1.27l5-6a1 1 0 0 1 1.54 1.28L10.29 12l4.32 5.36a1 1 0 0 1-.78 1.64z"
+                      data-name="arrow-ios-back"
+                    ></path>
+                  </g>
+                </svg>
+              </div>
+              <ul className="header__menu flex md:opacity-0">
+                <li className="w-auto">
                   <a
                     href="/"
                     className={"menu__link " + (home ? "active" : "")}
@@ -91,15 +113,15 @@ export const Navbar = ({
                     Home
                   </a>
                 </li>
-                <li className="menu__item">
+                <li className="w-auto">
                   <a
                     href="/wegrow"
                     className={"menu__link " + (whatwegrow ? "active" : "")}
                   >
-                    What we grow
+                    Crop Diversity
                   </a>
                 </li>
-                <li className="menu__item">
+                <li className="w-auto">
                   <a
                     href="/kit"
                     className={"menu__link " + (ourproduct ? "active" : "")}
@@ -107,7 +129,15 @@ export const Navbar = ({
                     Our Kit
                   </a>
                 </li>
-                <li className="menu__item">
+                <li className="w-auto">
+                  <a
+                    href="/shop"
+                    className={"menu__link " + (shop ? "active" : "")}
+                  >
+                    Shop
+                  </a>
+                </li>
+                <li className="w-auto">
                   <a
                     href="/about"
                     className={"menu__link " + (aboutus ? "active" : "")}
@@ -115,7 +145,7 @@ export const Navbar = ({
                     About Us
                   </a>
                 </li>
-                <li className="menu__item">
+                <li className="w-auto">
                   <a
                     href="/contact"
                     className={"menu__link " + (contactus ? "active" : "")}
@@ -123,18 +153,16 @@ export const Navbar = ({
                     Contact Us
                   </a>
                 </li>
+                {shop ? (
+                  <li className="w-auto cart-button" onClick={toggle}>
+                    <a href="/cart">
+                      {!showModal && `Cart (${cartItems.length})`}
+                    </a>
+                  </li>
+                ) : (
+                  ""
+                )}
               </ul>
-              {/* <div
-                className="header__signup"
-                style={{ display: "flex", gap: "20px" }}
-              >
-                <a href="/signup" className="btn btn__signup">
-                  <i className="fas fa-user-plus"></i> Sign Up
-                </a>
-                <a href="/signin" className="btn btn__signup">
-                  <i className="fas fa-user-plus"></i> Sign In
-                </a>
-              </div> */}
               <div
                 className="header__signup"
                 style={{ display: "flex", gap: "20px", alignItems: "center" }}
@@ -161,19 +189,14 @@ export const Navbar = ({
                   </>
                 ) : (
                   <>
-                    <a href="/signup" className="btn btn__signup">
-                      <i className="fas fa-user-plus"></i> Sign Up
-                    </a>
-                    <a href="/signin" className="btn btn__signup">
-                      <i className="fas fa-sign-in-alt"></i> Sign In
-                    </a>
+                   <div></div>
                   </>
                 )}
               </div>
             </div>
 
             <div className="hamburger-menu-wrap">
-              <div className="hamburger-menu">
+              <div className="hamburger-menu" onClick={toggleMenu}>
                 <div className="line"></div>
                 <div className="line"></div>
                 <div className="line"></div>
@@ -182,6 +205,54 @@ export const Navbar = ({
           </nav>
         </header>
       </div>
+      {showLogoutModal && (
+        <div
+          className="modal-overlay"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 10,
+          }}
+        >
+          <div
+            className="modal"
+            style={{
+              background: "#fff",
+              padding: "20px",
+              borderRadius: "8px",
+              maxWidth: "400px",
+              textAlign: "center",
+              height: "170px",
+              width: "350px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "30px",
+            }}
+          >
+            <p>Are you sure you want to log out?</p>
+            <div
+              className="modal-buttons"
+              style={{ gap: "20px", display: "flex" }}
+            >
+              <button className="btn btn__yes" onClick={confirmLogout}>
+                Yes
+              </button>
+              <button className="btn btn__no" onClick={cancelLogout}>
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

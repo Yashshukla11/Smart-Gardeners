@@ -85,11 +85,27 @@ export const Navbar = ({
               />
             </div>
             <div
-              className={`header__nav__content ${showMenu ? "" : "hide_nav"}`}
+              className={`header__nav__content ${
+                showMenu ? "shadow-2xl md:shadow-none" : "hide_nav"
+              }`}
             >
-              <div className="nav-close-icon" onClick={toggleMenu}></div>
+              <div className="nav-close-icon" onClick={toggleMenu}>
+                <svg
+                  className="h-[50px] fill-[#66bb6a]"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  id="back-arrow"
+                >
+                  <g data-name="Layer 2">
+                    <path
+                      d="M13.83 19a1 1 0 0 1-.78-.37l-4.83-6a1 1 0 0 1 0-1.27l5-6a1 1 0 0 1 1.54 1.28L10.29 12l4.32 5.36a1 1 0 0 1-.78 1.64z"
+                      data-name="arrow-ios-back"
+                    ></path>
+                  </g>
+                </svg>
+              </div>
               <ul className="header__menu">
-                <li className="menu__item">
+                <li className="w-auto">
                   <a
                     href="/"
                     className={"menu__link " + (home ? "active" : "")}
@@ -97,7 +113,7 @@ export const Navbar = ({
                     Home
                   </a>
                 </li>
-                <li className="menu__item">
+                <li className="w-auto">
                   <a
                     href="/wegrow"
                     className={"menu__link " + (whatwegrow ? "active" : "")}
@@ -105,7 +121,7 @@ export const Navbar = ({
                     Crop Diversity
                   </a>
                 </li>
-                <li className="menu__item">
+                <li className="w-auto">
                   <a
                     href="/kit"
                     className={"menu__link " + (ourproduct ? "active" : "")}
@@ -113,7 +129,7 @@ export const Navbar = ({
                     Our Kit
                   </a>
                 </li>
-                <li className="menu__item">
+                <li className="w-auto">
                   <a
                     href="/shop"
                     className={"menu__link " + (shop ? "active" : "")}
@@ -121,7 +137,7 @@ export const Navbar = ({
                     Shop
                   </a>
                 </li>
-                <li className="menu__item">
+                <li className="w-auto">
                   <a
                     href="/about"
                     className={"menu__link " + (aboutus ? "active" : "")}
@@ -129,7 +145,7 @@ export const Navbar = ({
                     About Us
                   </a>
                 </li>
-                <li className="menu__item">
+                <li className="w-auto">
                   <a
                     href="/contact"
                     className={"menu__link " + (contactus ? "active" : "")}
@@ -138,7 +154,7 @@ export const Navbar = ({
                   </a>
                 </li>
                 {shop ? (
-                  <li className="menu__item cart-button" onClick={toggle}>
+                  <li className="w-auto cart-button" onClick={toggle}>
                     <a href="/cart">
                       {!showModal && `Cart (${cartItems.length})`}
                     </a>

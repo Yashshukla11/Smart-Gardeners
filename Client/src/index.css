@@ -3668,11 +3668,11 @@ header {
   font-weight: bold;
 }
 
-.header__signup {
+/* .header__signup {
   flex: 4;
   display: flex;
   justify-content: flex-end;
-}
+} */
 
 .btn__signup {
   border: 1px solid #000000;
@@ -4529,7 +4529,7 @@ header {
 }
 
 /*End Footer*/
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1080px) {
   /*Header */
   .hamburger-menu-wrap,
   .nav-close-icon {
@@ -4546,7 +4546,7 @@ header {
     right: 0;
     width: 30rem;
     height: 100vh;
-    background-color: #66bb6a;
+    background-color: #fff;
     z-index: 2;
     flex-direction: column;
     transition: transform 0.3s ease-in-out;
@@ -4558,11 +4558,11 @@ header {
     align-items: center;
   }
   .menu__link {
-    color: #ffffff;
+    color: #000;
   }
   .menu__link:hover,
   .menu__link.active {
-    color: #ffffff;
+    color: #000;
   }
   .header__signup {
     flex: initial;

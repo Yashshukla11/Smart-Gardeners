@@ -46,7 +46,7 @@ export const WeGrow = () => {
             </button>
           </section>
         </div>
-        <div className="crops flex flex-wrap justify-center">
+        <div className="crops flex flex-wrap justify-around">
           <div className="cell">
             <a href="#tomato" className="cell">
               <img
@@ -411,7 +411,7 @@ export const WeGrow = () => {
             </button>
           </section>
         </div>
-        <div className="crops flex flex-wrap justify-center">
+        <div className="crops flex flex-wrap justify-around">
           <div className="cell">
             <a href="#orchid" className="cell">
               <img
