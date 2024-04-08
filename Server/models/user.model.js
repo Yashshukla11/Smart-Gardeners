@@ -31,10 +31,6 @@ const userSchema = new Schema(
           type: Schema.Types.ObjectId,
           ref: "Product",
         },
-        uniqueId: {
-          type: String,
-          unique: true,
-        },
         cycleStage: {
           type: Number,
           min: 0,

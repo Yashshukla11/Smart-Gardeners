@@ -15,9 +15,11 @@ app.use(methodOverride("_method"));
 
 // routes import
 const userRoutes = require("./routes/user.routes.js");
+const productRoutes = require("./routes/product.routes.js");
 
 // routes declare
 app.use("/user", userRoutes);
+app.use("/product", productRoutes);
 
 app.get("/", (req, res) => {
   res.send("Yupp The server is runnng 🎉 !");

@@ -4,6 +4,7 @@ const wrapAsync = require("../utils/wrapAsync");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+// Get all users
 const getAllUsers = async (req, res) => {
   try {
     // Fetch all users from the database
@@ -17,6 +18,7 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+// Register a new user
 const registerUser = wrapAsync(async (req, res) => {
   try {
     console.log("Received registration request:", req.body);
@@ -57,6 +59,7 @@ const registerUser = wrapAsync(async (req, res) => {
   }
 });
 
+// Login a user
 const loginUser = wrapAsync(async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -92,6 +95,7 @@ const loginUser = wrapAsync(async (req, res, next) => {
   }
 });
 
+// Logout a user
 const logoutUser = wrapAsync((req, res) => {
   try {
     res
@@ -106,6 +110,7 @@ const logoutUser = wrapAsync((req, res) => {
   }
 });
 
+// Get a user
 const getUser = wrapAsync(async (req, res) => {
   const token = req.cookies.token;
   jwt.verify(token, process.env.SECRET, {}, async (err, data) => {
@@ -119,10 +124,56 @@ const getUser = wrapAsync(async (req, res) => {
   });
 });
 
+const scanProduct = async (req, res) => {
+  try {
+    const { userId, productId } = req.body;
+
+    // Find the user by userId
+    const user = await User.findById(userId).populate("productsPurchased");
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Find the product in the productsPurchased array
+    const productIndex = user.productsPurchased.findIndex(
+      (item) => item._id.toString() === productId
+    );
+
+    // If product is not found, return error
+    if (productIndex === -1) {
+      return res
+        .status(404)
+        .json({ message: "Product not found in user's purchased products" });
+    }
+
+    // Check if plantedDate is present for the product
+    if (!user.productsPurchased[productIndex].plantedDate) {
+      // If plantedDate is not present, set it to the current date
+      user.productsPurchased[productIndex].plantedDate = new Date();
+      // Increase cycle stage by 1
+      user.productsPurchased[productIndex].cycleStage += 1;
+    } else {
+      // If plantedDate is already present, just increase cycle stage by 1
+      user.productsPurchased[productIndex].cycleStage += 1;
+    }
+
+    // Save the updated user object
+    await user.save();
+
+    res.status(200).json({ message: "Scan successful", updatedUser: user });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Failed to scan product", error: error.message });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   logoutUser,
   getUser,
   getAllUsers,
+  scanProduct,
 };

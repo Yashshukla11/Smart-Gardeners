@@ -6,9 +6,17 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// const subCategoryEnum = [
+// "kit", // choco coir, kit, mothercup, mothertray,
+// "flower", // seeds
+// "vegetable", // seeds
+// "fruit", // seeds
+// "kitConsumables", // nutrientpackets
+// ];
+
 const productSchema = new Schema(
   {
-    name: {
+    title: {
       type: String,
       required: true,
       trim: true,
@@ -18,16 +26,15 @@ const productSchema = new Schema(
       required: true,
       min: 0,
     },
+    subCategory: {
+      type: String,
+      required: true,
+    },
     description: {
       type: String,
       required: true,
     },
-    category: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    image: {
+    thumbnail: {
       type: String,
     },
   },
