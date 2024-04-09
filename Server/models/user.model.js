@@ -48,12 +48,12 @@ const userSchema = new Schema(
         },
       },
     ],
-    lastTransaction: {
-      // Placeholder for last transaction details
-    },
-    transactions: {
-      // Placeholder for all transactions
-    },
+    // lastTransaction: {
+    //   // Placeholder for last transaction details
+    // },
+    // transactions: {
+    //   // Placeholder for all transactions
+    // },
   },
   {
     timestamps: true,

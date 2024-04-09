@@ -54,11 +54,7 @@ const Cart = () => {
         {cartItems.map((item) => (
           <div className="cart-item" key={item.id}>
             <div className="item-info-container flex flex-col md:flex-row justify-center">
-              <img
-                src={item.thumbnail}
-                alt={item.title}
-                className="item-image"
-              />
+              <img src={item.image} alt={item.title} className="item-image" />
               <div className="item-details">
                 <h1 className="item-title">{item.title}</h1>
                 <p className="item-price">${item.price}</p> {/* Added $ */}
