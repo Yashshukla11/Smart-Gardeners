@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./Products.css";
 import { CartContext } from "../../Context/CartContext.jsx";
-import productsData from "./Products.json";
+import axios from "axios";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -9,12 +9,24 @@ const Products = () => {
 
   // Set products from JSON data
   useEffect(() => {
-    setProducts(productsData);
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/product`
+        );
+        console.log(response.data);
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   // Function to get quantity of a product in cart
   const getQuantityInCart = (productId) => {
-    const cartItem = cartItems.find((item) => item.id === productId);
+    const cartItem = cartItems.find((item) => item._id === productId);
     return cartItem ? cartItem.quantity : 0;
   };
 
@@ -24,7 +36,7 @@ const Products = () => {
         <h1 className="title">Smart Gardener's Shop</h1>
         <div className="product-grid">
           {products.map((product) => (
-            <div key={product.id} className="product-card">
+            <div key={product._id} className="product-card">
               <img
                 src={product.thumbnail}
                 alt={product.title}
@@ -37,9 +49,9 @@ const Products = () => {
                 </p>
                 <p className="product-price">${product.price}</p>
               </div>
-              <div className="product-actions">
+              <div className="product-actions mt-3">
                 {/* Display quantity and buttons if the product is in cart */}
-                {getQuantityInCart(product.id) > 0 ? (
+                {getQuantityInCart(product._id) > 0 ? (
                   <div className="quantity-container">
                     <button
                       className="add_remove_text"
@@ -50,7 +62,7 @@ const Products = () => {
                       -
                     </button>
                     <span className="quantity">
-                      {getQuantityInCart(product.id)}
+                      {getQuantityInCart(product._id)}
                     </span>
                     <button
                       className="add_remove_text"

@@ -1,13 +1,42 @@
 import { useContext } from "react";
 import "./Cart.css";
 import { CartContext } from "../../Context/CartContext";
+import axios from "axios";
+import { UserContext } from "../../Context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
     useContext(CartContext);
-  console.log(cartItems);
-  const checkOutCart = () => {
-    alert("Thank you for shopping with us!");
+  const { user } = useContext(UserContext);
+
+  const navigate = useNavigate();
+
+  const checkOutCart = async () => {
+    try {
+      const cartItems_ = cartItems.map((product) => ({
+        productId: product._id,
+        quantity: product.quantity,
+      }));
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/product/purchase`,
+        {
+          userId: user._id,
+          cart: cartItems_,
+        }
+      );
+
+      if (response.status === 200) {
+        alert("Thank you for shopping with us!");
+        clearCart();
+        navigate("/shop");
+        na;
+      } else {
+        console.error("Checkout failed:", response.data);
+      }
+    } catch (error) {
+      console.error("Error during checkout:", error);
+    }
   };
 
   if (cartItems.length === 0) {
@@ -105,7 +134,7 @@ const Cart = () => {
             </div>
           </div>
         ))}
-        {/* <h1 className="cart-total">Total: ${getCartTotal()}</h1> */}
+        <h1 className="cart-total">Total: ${getCartTotal()}</h1>
         <button
           className="add-to-cart-button_right"
           onClick={() => {

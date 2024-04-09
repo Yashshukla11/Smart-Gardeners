@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FaEnvelope, FaEye, FaEyeSlash, FaKey } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, googleAuthProvider } from "../../firebase/auth";
 import { Navbar } from "../../components/NavLS/NavLS";
 import { signInWithPopup } from "firebase/auth";
 import axios from "axios";
+import { UserContext } from "../../Context/UserContext";
 
 const Signup = () => {
+  const { user, setUser } = useContext(UserContext);
   const [signupInfo, setSignupInfo] = useState({
     username: "",
     email: "",
@@ -37,22 +39,23 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      console.log(signupInfo);
-      axios
-        .post(`${import.meta.env.VITE_BASE_URL}/user/register`, signupInfo, {
-          withCredentials: true,
-        })
-        .then((res) => {
-          console.log(res);
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/user/register`,
+        signupInfo,
+        { withCredentials: true }
+      );
+
+      if (response.status === 200) {
+        localStorage.setItem("token", response.data.token);
+        setUser(response.data.user);
+        navigate("/");
+      } else {
+        setError({
+          ...error,
+          username: true,
+          usernameError: "Failed to sign up.",
         });
-
-      // if (!response.ok) {
-      //   throw new Error("Failed to sign up: " + response.statusText);
-      // }
-
-      // const data = await response.json();
-      // console.log("User signed up:", data);
-      // navigate("/");
+      }
     } catch (error) {
       console.error("Error signing up:", error.message);
       setError({

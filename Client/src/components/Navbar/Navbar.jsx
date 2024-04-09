@@ -46,19 +46,12 @@ export const Navbar = ({
   //   return () => unsubscribe(); // Unsubscribe from the auth state change listener when the component unmounts
   // }, []);
 
-  // const confirmLogout = () => {
-  //   signOut(auth)
-  //     .then(() => {
-  //       setUser(null);
-  //       navigate("/signin");
-  //     })
-  //     .catch((err) => {
-  //       alert(err.message);
-  //     })
-  //     .finally(() => {
-  //       setShowLogoutModal(false);
-  //     });
-  // };
+  const confirmLogout = () => {
+    localStorage.removeItem("token");
+    setShowLogoutModal(false);
+    setUser(null);
+    navigate("/");
+  };
 
   const cancelLogout = () => {
     setShowLogoutModal(false);
@@ -167,14 +160,14 @@ export const Navbar = ({
                 className="header__signup"
                 style={{ display: "flex", gap: "20px", alignItems: "center" }}
               >
-                {user && user.uid ? (
-                  <>
-                    <h1>Hi, {user?.displayName}</h1>
+                {user && user ? (
+                  <div className="flex md:flex-row flex-col justify-center align-middle items-center gap-5">
+                    <h1>Hi, {user?.username}</h1>
                     <img
                       className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
                       src={
                         user?.photoURL ||
-                        `https://ui-avatars.com/api/?name=${user.displayName}&background=29335C&size=128&color=fff&format=png&length=1`
+                        `https://ui-avatars.com/api/?name=${user.username}&background=29335C&size=128&color=fff&format=png&length=1`
                       }
                       alt="Bordered avatar"
                       style={{ width: "40px", height: "40px" }}
@@ -186,7 +179,7 @@ export const Navbar = ({
                     >
                       <i className="fas fa-sign-out-alt"></i> Log out
                     </div>
-                  </>
+                  </div>
                 ) : (
                   <>
                     <a href="/signup" className="btn btn__signup">

@@ -104,7 +104,7 @@ export const Navbar = ({
                   </g>
                 </svg>
               </div>
-              <ul className="header__menu flex md:opacity-0">
+              <ul className="header__menu flex opacity-100 md:opacity-0">
                 <li className="w-auto">
                   <a
                     href="/"
@@ -189,7 +189,12 @@ export const Navbar = ({
                   </>
                 ) : (
                   <>
-                   <div></div>
+                    <a href="/signup" className="btn btn__signup">
+                      <i className="fas fa-user-plus"></i> Sign Up
+                    </a>
+                    <a href="/signin" className="btn btn__signup">
+                      <i className="fas fa-sign-in-alt"></i> Sign In
+                    </a>
                   </>
                 )}
               </div>

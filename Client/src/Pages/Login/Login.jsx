@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FaEnvelope, FaEye, FaEyeSlash, FaKey } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../../components/NavLS/NavLS";
 // import { signInWithEmailAndPassword, signInWithPopup } from "../../firebase/auth";
 import validate from "../../common/validation";
+import { UserContext } from "../../Context/UserContext";
 
 const Login = () => {
+  const { user, setUser } = useContext(UserContext);
   const [error, setError] = useState({});
   const [passwordType, setPasswordType] = useState("password");
   const [loginInfo, setLoginInfo] = useState({
@@ -36,31 +38,27 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      console.log("Sending sign-in request...");
-
-      const response = await fetch(`http://localhost:8080/user/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginInfo),
-      });
-
-      console.log("Received response:", response);
-
-      const data = await response.json();
-      console.log("Response data:", data);
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/user/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginInfo),
+        }
+      );
 
       if (response.ok) {
-        console.log("Sign-in successful. Redirecting...");
+        const data = await response.json();
+        setUser(data.user);
+        localStorage.setItem("token", data.token);
         navigate("/");
       } else {
-        console.log("Sign-in failed. Showing error message.");
-        alert(data.message);
+        const data = await response.json();
       }
     } catch (error) {
       console.log("Error signing in:", error);
-      alert("An error occurred while signing in.");
     }
   };
 
