@@ -6,12 +6,12 @@ const wrapAsync = require("../utils/wrapAsync");
 // Add a new product to the shop
 const addProduct = async (req, res) => {
   try {
-    const { title, price, description, thumbnail, subCategory } = req.body;
+    const { title, price, description, image, subCategory } = req.body;
     const product = new Product({
       title,
       price,
       description,
-      thumbnail,
+      image,
       subCategory,
     });
     await product.save();
@@ -74,6 +74,7 @@ const getProductById = async (req, res) => {
 
 // Get all products from the shop
 const getAllProducts = async (req, res) => {
+  console.log("getAllProducts");
   try {
     const products = await Product.find();
     res.json(products);
