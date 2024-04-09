@@ -23,39 +23,37 @@ const createToken = (_id) => {
 };
 
 const registerUser = wrapAsync(async (req, res) => {
-  // try {
-  const { username, password, email, dob, gender, name } = req.body;
-  console.log({ username, password, email, dob, gender, name });
-  const existingUser = await User.findOne({ email });
-  console.log(existingUser);
-  if (existingUser) {
-    return res.status(400).json({
-      message: "User already exists",
+  try {
+    const { username, password, email } = req.body;
+    console.log(req.body);
+    const existingUser = await User.findOne({ email });
+    console.log(existingUser);
+    if (existingUser) {
+      return res.status(400).json({
+        message: "User already exists",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new User({
+      email,
+      username,
+      password: hashedPassword,
+    });
+
+    const registeredUser = await newUser.save();
+
+    const token = createToken(registeredUser._id);
+
+    res.status(200).json({ user: registeredUser, token });
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({
+      message: "Register failed",
+      error: error.message,
     });
   }
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  const newUser = new User({
-    email,
-    username,
-    dob,
-    gender,
-    name,
-    password: hashedPassword,
-  });
-
-  const registeredUser = await newUser.save();
-
-  const token = createToken(registeredUser._id);
-
-  res.status(200).json({ user: registeredUser, token });
-  // } catch (error) {
-  //   res.status(400).json({
-  //     message: "Register failed",
-  //     error: error.message,
-  //   });
-  // }
 });
 
 const loginUser = wrapAsync(async (req, res) => {
@@ -102,15 +100,41 @@ const loginUser = wrapAsync(async (req, res) => {
 
 // Get a user
 const getUser = wrapAsync(async (req, res) => {
-  const { token } = req.body;
-  jwt.verify(token, process.env.SECRET, {}, async (err, data) => {
+  // Retrieve the token from the request headers
+  const token =
+    req.headers.authorization && req.headers.authorization.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({
+      message: "Unauthorized",
+    });
+  }
+
+  jwt.verify(token, process.env.SECRET, {}, async (err, decoded) => {
     if (err) {
       return res.status(404).json({
-        message: "get user failed",
+        message: "Failed to verify token",
         error: err.message,
       });
     }
-    res.status(200).json(data);
+
+    try {
+      // Assuming you have a User model with findById method
+      const user = await User.findById(decoded._id).select("-password");
+
+      if (!user) {
+        return res.status(404).json({
+          message: "User not found",
+        });
+      }
+
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(500).json({
+        message: "Internal server error",
+        error: error.message,
+      });
+    }
   });
 });
 
