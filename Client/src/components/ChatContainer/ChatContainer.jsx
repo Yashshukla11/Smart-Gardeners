@@ -79,7 +79,7 @@ const ChatContainer = ({ setIsChatOpen }) => {
 
       const data = await response.json();
       console.log(data);
-      displayChatbotMessage(data["response"].answer);
+      displayChatbotMessage(data.answer);
       setIsChatbotTyping(false); // Set typing indicator to false after receiving the response
     } catch (error) {
       console.error("Error:", error);
