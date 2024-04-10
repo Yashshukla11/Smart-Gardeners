@@ -59,6 +59,7 @@ const registerUser = wrapAsync(async (req, res) => {
 const loginUser = wrapAsync(async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log(email, password);
 
     const user = await User.findOne({ email });
 

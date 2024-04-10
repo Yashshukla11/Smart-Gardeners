@@ -1,12 +1,11 @@
-FROM ubuntu
+FROM python:3.9-slim
 
-RUN apt update
-RUN apt install python3-pip -y
+WORKDIR /app
 
-WORKDIR /ChatBot
-COPY requirements.txt /ChatBot/
-RUN pip install -r requirements.txt
+COPY requirements.txt .
 
-COPY . /ChatBot/
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
+COPY . .
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
