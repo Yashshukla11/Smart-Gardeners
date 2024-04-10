@@ -5,6 +5,7 @@ const {
   getUser,
   getAllUsers,
   scanProduct,
+  getPurchasedProducts,
 } = require("../controllers/user.controller");
 
 const router = Router();
@@ -14,5 +15,6 @@ router.post("/register", registerUser);
 router.get("/get", getUser);
 router.get("/alluser", getAllUsers);
 router.get("/scan", scanProduct);
+router.get("/purchased", getPurchasedProducts);
 
 module.exports = router;

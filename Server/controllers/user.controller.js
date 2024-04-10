@@ -141,48 +141,122 @@ const getUser = wrapAsync(async (req, res) => {
 
 const scanProduct = async (req, res) => {
   try {
-    const { userId, productId } = req.body;
+    // Retrieve the token from the request headers
+    const token =
+      req.headers.authorization && req.headers.authorization.split(" ")[1];
 
-    // Find the user by userId
-    const user = await User.findById(userId).populate("productsPurchased");
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    if (!token) {
+      return res.status(401).json({ message: "Unauthorized" });
     }
 
-    // Find the product in the productsPurchased array
-    const productIndex = user.productsPurchased.findIndex(
-      (item) => item._id.toString() === productId
-    );
+    // Verify the token
+    jwt.verify(token, process.env.SECRET, {}, async (err, decoded) => {
+      if (err) {
+        return res.status(404).json({
+          message: "Failed to verify token",
+          error: err.message,
+        });
+      }
 
-    // If product is not found, return error
-    if (productIndex === -1) {
-      return res
-        .status(404)
-        .json({ message: "Product not found in user's purchased products" });
-    }
+      try {
+        // Extract the userId from the decoded token
+        const userId = decoded._id;
 
-    // Check if plantedDate is present for the product
-    if (!user.productsPurchased[productIndex].plantedDate) {
-      // If plantedDate is not present, set it to the current date
-      user.productsPurchased[productIndex].plantedDate = new Date();
-      // Increase cycle stage by 1
-      user.productsPurchased[productIndex].cycleStage += 1;
-    } else {
-      // If plantedDate is already present, just increase cycle stage by 1
-      user.productsPurchased[productIndex].cycleStage += 1;
-    }
+        const { productId } = req.body;
 
-    // Save the updated user object
-    await user.save();
+        // Find the user by userId
+        const user = await User.findById(userId)
+          .populate("productsPurchased")
+          .populate("productsPurchased.product");
 
-    res.status(200).json({ message: "Scan successful", updatedUser: user });
+        if (!user) {
+          return res.status(404).json({ message: "User not found" });
+        }
+
+        // Find the product in the productsPurchased array
+        const productIndex = user.productsPurchased.findIndex(
+          (item) => item._id.toString() === productId
+        );
+
+        // If product is not found, return error
+        if (productIndex === -1) {
+          return res.status(404).json({
+            message: "Product not found in user's purchased products",
+          });
+        }
+
+        // Check if plantedDate is present for the product
+        if (!user.productsPurchased[productIndex].plantedDate) {
+          // If plantedDate is not present, set it to the current date
+          user.productsPurchased[productIndex].plantedDate = new Date();
+          // Increase cycle stage by 1
+          user.productsPurchased[productIndex].cycleStage += 1;
+        } else {
+          // If plantedDate is already present, just increase cycle stage by 1
+          user.productsPurchased[productIndex].cycleStage += 1;
+        }
+
+        // Save the updated user object
+        await user.save();
+
+        res.status(200).json({ message: "Scan successful", updatedUser: user });
+      } catch (error) {
+        res
+          .status(500)
+          .json({ message: "Failed to scan product", error: error.message });
+      }
+    });
   } catch (error) {
     res
       .status(500)
       .json({ message: "Failed to scan product", error: error.message });
   }
 };
+
+const getPurchasedProducts = wrapAsync(async (req, res) => {
+  // Retrieve the token from the request headers
+  const token =
+    req.headers.authorization && req.headers.authorization.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({
+      message: "Unauthorized",
+    });
+  }
+
+  jwt.verify(token, process.env.SECRET, {}, async (err, decoded) => {
+    if (err) {
+      return res.status(404).json({
+        message: "Failed to verify token",
+        error: err.message,
+      });
+    }
+
+    try {
+      // Assuming you have a User model with findById method
+      const user = await User.findById(decoded._id).populate(
+        "productsPurchased.product"
+      );
+
+      if (!user) {
+        return res.status(404).json({
+          message: "User not found",
+        });
+      }
+
+      // Extract purchased products from the user object
+      const purchasedProducts = user.productsPurchased;
+
+      // Send the purchased products to the user
+      res.status(200).json(purchasedProducts);
+    } catch (error) {
+      res.status(500).json({
+        message: "Internal server error",
+        error: error.message,
+      });
+    }
+  });
+});
 
 module.exports = {
   registerUser,
@@ -191,4 +265,5 @@ module.exports = {
   getUser,
   getAllUsers,
   scanProduct,
+  getPurchasedProducts,
 };
