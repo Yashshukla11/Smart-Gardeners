@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-origins = ["*"]
+origins = ["http://localhost:5173", "https://smart-gardeners.vercel.app"]
 
 app.add_middleware(
     CORSMiddleware,
