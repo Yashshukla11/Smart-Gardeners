@@ -176,7 +176,7 @@ const scanProduct = async (req, res) => {
 
         // Find the product in the productsPurchased array
         const productIndex = user.productsPurchased.findIndex(
-          (item) => item.product._id.toString() === productId
+          (item) => item._id.toString() === productId
         );
         // console.log(productIndex);
         // If product is not found, return error
