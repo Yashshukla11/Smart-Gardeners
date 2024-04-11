@@ -163,6 +163,7 @@ const scanProduct = async (req, res) => {
         const userId = decoded._id;
 
         const { productId } = req.body;
+        // console.log(productId);
 
         // Find the user by userId
         const user = await User.findById(userId)
@@ -175,9 +176,9 @@ const scanProduct = async (req, res) => {
 
         // Find the product in the productsPurchased array
         const productIndex = user.productsPurchased.findIndex(
-          (item) => item._id.toString() === productId
+          (item) => item.product._id.toString() === productId
         );
-
+        // console.log(productIndex);
         // If product is not found, return error
         if (productIndex === -1) {
           return res.status(404).json({
@@ -190,16 +191,17 @@ const scanProduct = async (req, res) => {
           // If plantedDate is not present, set it to the current date
           user.productsPurchased[productIndex].plantedDate = new Date();
           // Increase cycle stage by 1
-          user.productsPurchased[productIndex].cycleStage += 1;
-        } else {
-          // If plantedDate is already present, just increase cycle stage by 1
-          user.productsPurchased[productIndex].cycleStage += 1;
+          // user.productsPurchased[productIndex].cycleStage += 1;
         }
+        // else {
+        // If plantedDate is already present, just increase cycle stage by 1
+        // user.productsPurchased[productIndex].cycleStage += 1;
+        // }
 
         // Save the updated user object
         await user.save();
 
-        res.status(200).json({ message: "Scan successful", updatedUser: user });
+        res.status(200).json(user.productsPurchased[productIndex]);
       } catch (error) {
         res
           .status(500)
