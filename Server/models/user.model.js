@@ -42,6 +42,7 @@ const userSchema = new Schema(
         },
         plantedDate: {
           type: Date,
+          default: null,
         },
         nextExpectedCycleChangeDate: {
           type: Date,

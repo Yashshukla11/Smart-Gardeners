@@ -187,7 +187,7 @@ const scanProduct = async (req, res) => {
         }
 
         // Check if plantedDate is present for the product
-        if (!user.productsPurchased[productIndex].plantedDate) {
+        if (user.productsPurchased[productIndex].plantedDate == null) {
           // If plantedDate is not present, set it to the current date
           user.productsPurchased[productIndex].plantedDate = new Date();
           // Increase cycle stage by 1
