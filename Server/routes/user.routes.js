@@ -14,7 +14,7 @@ router.post("/login", loginUser);
 router.post("/register", registerUser);
 router.get("/get", getUser);
 router.get("/alluser", getAllUsers);
-router.get("/scan", scanProduct);
+router.post("/scan", scanProduct);
 router.get("/purchased", getPurchasedProducts);
 
 module.exports = router;
