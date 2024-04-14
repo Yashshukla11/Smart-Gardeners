@@ -3800,12 +3800,7 @@ header {
   height: 390px;
 }
 
-.hero__content {
-  display: flex;
-}
-
 .hero__text {
-  margin-top: 10rem;
   max-width: 50rem;
 }
 
@@ -4111,10 +4106,6 @@ header {
   line-height: 3rem;
 }
 
-.works__body {
-  margin: 5rem 0 10rem;
-}
-
 .form_progressbar {
   display: flex;
   grid-column-gap: 13rem;
@@ -4170,9 +4161,8 @@ header {
   flex-shrink: 0;
   width: 100%;
   display: flex;
-  grid-gap: 2.5rem;
   transition: 0.5s all linear;
-  padding: 3rem;
+  padding: 5rem;
   position: relative;
   align-items: center;
 }
@@ -4570,10 +4560,6 @@ header {
   }
   /*End Header */
   /*Hero */
-  .hero__content {
-    justify-content: center;
-    text-align: center;
-  }
   .hero__img {
     display: none;
   }

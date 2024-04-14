@@ -17,7 +17,7 @@ export const Landing = () => {
       <div className="my-[50px]">
         <TextWithImage text="Welcome to Smart Gardeners" />
       </div>
-      <div className="mt-[50px] md:mt-[150px] mx-[30px] md:mx-auto">
+      <div className="mt-[50px] md:mt-[150px] md:mx-[30px] md:mx-auto">
         <MiddlePara
           heading="Nurturing Nature in the Modern World"
           text="In today's rapidly advancing world, we find ourselves at the intersection of technological progress and environmental responsibility. As our cities grow skyward, and the demand for sustenance escalates, the delicate balance between urban living and nature preservation becomes more critical than ever."
@@ -27,7 +27,7 @@ export const Landing = () => {
       <div className="mt-[50px] md:mt-[150px] w-[90vw] md:w-[60vw] mx-auto">
         <CardSection />
       </div>
-      <div className="mt-[50px] md:mt-[150px] mx-[30px] md:mx-auto">
+      <div className="mt-[50px] md:mt-[150px] mx-auto">
         <MiddlePara
           heading="The Solution - Hydroponics"
           text="Enter hydroponics, a revolutionary way to grow plants without relying on diminishing soil resources. In our pursuit of a healthier lifestyle and a greener planet, hydroponics emerges as an efficient and environmentally friendly approach to agriculture."

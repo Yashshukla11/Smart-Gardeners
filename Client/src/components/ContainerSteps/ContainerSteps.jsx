@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
- 
+
 export const ContainerSteps = () => {
   const [activeStep, setActiveStep] = useState(1);
- 
+
   useEffect(() => {
     const worksSection = document.querySelector(".works__content");
     const progressbar = worksSection.querySelector(".form_progressbar");
     const progressbarSteps = progressbar.querySelectorAll(".progressbar__step");
     const firstStep = worksSection.querySelector(".first_step");
- 
+
     const handleClick = (event) => {
       if (event.target && event.target.nodeName === "LI") {
         const dataStep = Number(event.target.getAttribute("data-step"));
         const newActiveStep = dataStep;
- 
+
         setActiveStep(newActiveStep);
- 
+
         for (
           let index = newActiveStep - 1;
           index < progressbarSteps.length;
@@ -30,15 +30,15 @@ export const ContainerSteps = () => {
         firstStep.style.marginLeft = `-${(newActiveStep - 1) * 100}%`;
       }
     };
- 
+
     progressbar.addEventListener("click", handleClick);
- 
+
     // Cleanup function
     return () => {
       progressbar.removeEventListener("click", handleClick);
     };
   }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
- 
+
   return (
     <section className="how-is-works w-120">
       <div className="works__content">
@@ -51,7 +51,7 @@ export const ContainerSteps = () => {
             grow plants sustainably.
           </p>
         </div>
-        <div className="works__body">
+        <div className="mt-[50px] mb-[50px]">
           <ul className="form_progressbar">
             <li className="progressbar__step active" data-step="1">
               01
@@ -106,4 +106,3 @@ export const ContainerSteps = () => {
     </section>
   );
 };
- 

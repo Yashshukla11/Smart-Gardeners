@@ -12,7 +12,7 @@ export const Header = () => {
       >
         <div className="sm:w-11/12 mx-auto">
           <div
-            className={`py-8 sm:rounded-3xl relative w-full h-[620px] bg-cover lg:bg-center bg-no-repeat bg-left`}
+            className={`py-8 sm:rounded-3xl relative w-[98vw] mx-auto md:w-full h-[520px] md:h-[620px] bg-cover lg:bg-center bg-no-repeat bg-left`}
           >
             <video
               className="rounded-3xl"
@@ -54,7 +54,7 @@ export const Header = () => {
                 </p>
               </div>
 
-              <div className="absolute bottom-[24%] sm:left-[6%] left-[5%] flex items-center flex-wrap gap-4">
+              <div className="hidden md:flex absolute bottom-[24%] sm:left-[6%] left-[5%] flex items-center flex-wrap gap-4">
                 <a
                   className="sm:text-[20px] bg-button-primary text-[#ffffff] hover:bg-button-primary-hover transition-colors sm:px-10 px-3 py-3 rounded-md capitalize sm:w-auto w-full font-bold"
                   style={{ fontFamily: "Quattrocento Sans, sans-serif" }}
@@ -85,26 +85,38 @@ export const Header = () => {
         </div>
       </section>
 
-      <section className="mt-[-100px] stats_box py-10 grid place-items-center lg:grid-cols-4 grid-cols-2 gap-4 sm:w-9/12 w-11/12 mx-auto -mt-8 px-4">
-        <div className="anim" style={{ fontFamily: "Montserrat, sans-serif" }}>
+      <section className="mt-[-100px] items-center stats_box py-10 grid place-items-center lg:grid-cols-4 grid-cols-2 gap-10 md:gap-4 sm:w-9/12 w-11/12 mx-auto -mt-8 px-4">
+        <div
+          className="anim justify-center flex flex-col align-middle items-center"
+          style={{ fontFamily: "Montserrat, sans-serif" }}
+        >
           <h1 className="md:text-[40px] text-[25px] mb-5 font-bold ">
             30+ Mha
           </h1>
-          <p>Land Degraded</p>
+          <p className="text-center">Land Degraded</p>
         </div>
-        <div className="anim" style={{ fontFamily: "Montserrat, sans-serif" }}>
+        <div
+          className="anim justify-center flex flex-col align-middle items-center"
+          style={{ fontFamily: "Montserrat, sans-serif" }}
+        >
           <h1 className="md:text-[40px] text-[25px] mb-5 font-bold ">~22%</h1>
-          <p>Forest Cover Left</p>
+          <p className="text-center">Forest Cover Left</p>
         </div>
-        <div className="anim" style={{ fontFamily: "Montserrat, sans-serif" }}>
+        <div
+          className="anim justify-center flex flex-col align-middle items-center"
+          style={{ fontFamily: "Montserrat, sans-serif" }}
+        >
           <h1 className="md:text-[40px] text-[25px] mb-5 font-bold ">
-            1.4 Billion +
+            1.4 Billion+
           </h1>
-          <p>Population</p>
+          <p className="text-center">Population</p>
         </div>
-        <div className="anim" style={{ fontFamily: "Montserrat, sans-serif" }}>
+        <div
+          className="anim justify-center flex flex-col align-middle items-center"
+          style={{ fontFamily: "Montserrat, sans-serif" }}
+        >
           <h1 className="md:text-[40px] text-[25px] mb-5 font-bold ">3 x</h1>
-          <p>
+          <p className="text-center">
             Rise of Global Warming <b>(Since 1982)</b>
           </p>
         </div>

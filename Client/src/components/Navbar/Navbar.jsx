@@ -66,16 +66,18 @@ export const Navbar = ({
       <div className="container" style={{ marginBottom: "30px" }}>
         <header>
           <nav
-            className={`header__nav w-[100vw] px-[30px] md:px-[100px] bg-white ${
+            className={`header__nav w-[100vw] items-center align-middle px-[30px] md:px-[100px] bg-white ${
               isSticky ? "fixed top-0 z-10 shadow-lg" : ""
             }`}
           >
             <div className="header__logo">
-              <img
-                src="https://i.postimg.cc/7PXVht2v/Screenshot-2024-01-22-at-2-43-19-PM-fotor-bg-remover-20240122151630.png"
-                alt="Logo"
-                className="h-[52px] w-auto"
-              />
+              <a href="/">
+                <img
+                  src="https://i.postimg.cc/7PXVht2v/Screenshot-2024-01-22-at-2-43-19-PM-fotor-bg-remover-20240122151630.png"
+                  alt="Logo"
+                  className="h-[52px] w-auto"
+                />
+              </a>
             </div>
             <div
               className={`header__nav__content ${
@@ -146,48 +148,86 @@ export const Navbar = ({
                     Contact Us
                   </a>
                 </li>
-                {shop ? (
-                  <li className="w-auto cart-button" onClick={toggle}>
-                    <a href="/cart">
-                      {!showModal && `Cart (${cartItems.length})`}
-                    </a>
-                  </li>
-                ) : (
-                  ""
-                )}
               </ul>
               <div
-                className="header__signup"
+                className="header__signup flex flex-col md:flex-row"
                 style={{ display: "flex", gap: "20px", alignItems: "center" }}
               >
                 {user && user ? (
-                  <div className="flex md:flex-row flex-col justify-center align-middle items-center gap-5">
-                    <h1>Hi, {user?.username}</h1>
-                    <img
-                      className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
-                      src={
-                        user?.photoURL ||
-                        `https://ui-avatars.com/api/?name=${user.username}&background=29335C&size=128&color=fff&format=png&length=1`
-                      }
-                      alt="Bordered avatar"
-                      style={{ width: "40px", height: "40px" }}
-                    />
+                  shop ? (
+                    <li className="w-auto cart-button" onClick={toggle}>
+                      <a href="/cart">
+                        {!showModal && (
+                          <svg
+                            className="w-[30px]"
+                            xmlns="http://www.w3.org/2000/svg"
+                            id="cart"
+                            x="0"
+                            y="0"
+                            version="1.1"
+                            viewBox="0 0 52 52"
+                            xml:space="preserve"
+                          >
+                            <path d="m43.51 32.165 6.44-19.17a1 1 0 0 0-.14-.9.986.986 0 0 0-.81-.41H12.74l-1.29-5.21c-.47-1.66-2-2.82-3.72-2.82H3c-.55 0-1 .44-1 1 0 .55.45 1 1 1h4.73c.83 0 1.57.56 1.78 1.33l7.99 32.18a4.696 4.696 0 0 0-3.32 4.49c0 2.58 2.1 4.69 4.69 4.69 2.58 0 4.68-2.11 4.68-4.69 0-1-.31-1.93-.84-2.69h15.88c-.54.76-.85 1.69-.85 2.69 0 2.58 2.1 4.69 4.68 4.69 2.59 0 4.69-2.11 4.69-4.69 0-2.59-2.1-4.69-4.69-4.69-.04 0-.09 0-.13.01-.02-.01-.04-.01-.06-.01H19.51l-1.52-6.11h24.57c.43 0 .81-.28.95-.69z"></path>
+                          </svg>
+                        )}
+                      </a>
+                    </li>
+                  ) : (
+                    ""(
+                      <div className="flex md:flex-row flex-col justify-center align-middle items-center gap-5">
+                        <h1>Hi, {user?.username}</h1>
+                        <img
+                          className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                          src={
+                            user?.photoURL ||
+                            `https://ui-avatars.com/api/?name=${user.username}&background=29335C&size=128&color=fff&format=png&length=1`
+                          }
+                          alt="Bordered avatar"
+                          style={{ width: "40px", height: "40px" }}
+                        />
 
-                    <div
-                      className="btn btn__signup cursor-pointer"
-                      onClick={() => setShowLogoutModal(true)}
-                    >
-                      <i className="fas fa-sign-out-alt"></i> Log out
-                    </div>
-                  </div>
+                        <div
+                          className="btn btn__signup cursor-pointer"
+                          onClick={() => setShowLogoutModal(true)}
+                        >
+                          <i className="fas fa-sign-out-alt"></i> Log out
+                        </div>
+                      </div>
+                    )
+                  )
                 ) : (
                   <>
-                    <a href="/signup" className="btn btn__signup">
-                      <i className="fas fa-user-plus"></i> Sign Up
-                    </a>
-                    <a href="/signin" className="btn btn__signup">
-                      <i className="fas fa-sign-in-alt"></i> Sign In
-                    </a>
+                    {shop ? (
+                      <li className="w-auto cart-button" onClick={toggle}>
+                        <a href="/cart">
+                          {!showModal && (
+                            <svg
+                              className="w-[30px]"
+                              xmlns="http://www.w3.org/2000/svg"
+                              id="cart"
+                              x="0"
+                              y="0"
+                              version="1.1"
+                              viewBox="0 0 52 52"
+                              xml:space="preserve"
+                            >
+                              <path d="m43.51 32.165 6.44-19.17a1 1 0 0 0-.14-.9.986.986 0 0 0-.81-.41H12.74l-1.29-5.21c-.47-1.66-2-2.82-3.72-2.82H3c-.55 0-1 .44-1 1 0 .55.45 1 1 1h4.73c.83 0 1.57.56 1.78 1.33l7.99 32.18a4.696 4.696 0 0 0-3.32 4.49c0 2.58 2.1 4.69 4.69 4.69 2.58 0 4.68-2.11 4.68-4.69 0-1-.31-1.93-.84-2.69h15.88c-.54.76-.85 1.69-.85 2.69 0 2.58 2.1 4.69 4.68 4.69 2.59 0 4.69-2.11 4.69-4.69 0-2.59-2.1-4.69-4.69-4.69-.04 0-.09 0-.13.01-.02-.01-.04-.01-.06-.01H19.51l-1.52-6.11h24.57c.43 0 .81-.28.95-.69z"></path>
+                            </svg>
+                          )}
+                        </a>
+                      </li>
+                    ) : (
+                      ""
+                    )}
+                    <div className="flex gap-10">
+                      <a href="/signup" className="btn btn__signup">
+                        <i className="fas fa-user-plus"></i> Sign Up
+                      </a>
+                      <a href="/signin" className="btn btn__signup">
+                        <i className="fas fa-sign-in-alt"></i> Sign In
+                      </a>
+                    </div>
                   </>
                 )}
               </div>
