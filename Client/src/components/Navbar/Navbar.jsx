@@ -174,27 +174,25 @@ export const Navbar = ({
                       </a>
                     </li>
                   ) : (
-                    ""(
-                      <div className="flex md:flex-row flex-col justify-center align-middle items-center gap-5">
-                        <h1>Hi, {user?.username}</h1>
-                        <img
-                          className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
-                          src={
-                            user?.photoURL ||
-                            `https://ui-avatars.com/api/?name=${user.username}&background=29335C&size=128&color=fff&format=png&length=1`
-                          }
-                          alt="Bordered avatar"
-                          style={{ width: "40px", height: "40px" }}
-                        />
+                    <div className="flex md:flex-row flex-col justify-center align-middle items-center gap-5">
+                      <h1>Hi, {user?.username}</h1>
+                      <img
+                        className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                        src={
+                          user?.photoURL ||
+                          `https://ui-avatars.com/api/?name=${user.username}&background=29335C&size=128&color=fff&format=png&length=1`
+                        }
+                        alt="Bordered avatar"
+                        style={{ width: "40px", height: "40px" }}
+                      />
 
-                        <div
-                          className="btn btn__signup cursor-pointer"
-                          onClick={() => setShowLogoutModal(true)}
-                        >
-                          <i className="fas fa-sign-out-alt"></i> Log out
-                        </div>
+                      <div
+                        className="btn btn__signup cursor-pointer"
+                        onClick={() => setShowLogoutModal(true)}
+                      >
+                        <i className="fas fa-sign-out-alt"></i> Log out
                       </div>
-                    )
+                    </div>
                   )
                 ) : (
                   <>
