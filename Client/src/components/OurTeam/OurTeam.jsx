@@ -49,7 +49,7 @@ export const OurTeam = () => {
               linkedin="https://www.linkedin.com/in/varun-marwah/"
               mail="mailto:varunmarwah.2004@gmail.com"
             />
-                  <TeamCard
+            <TeamCard
               name="Mohit Shukla"
               position=""
               image="https://i.postimg.cc/59GnDLB6/Whats-App-Image-2024-01-25-at-6-28-30-PM.jpg"
