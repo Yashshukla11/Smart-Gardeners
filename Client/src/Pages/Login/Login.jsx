@@ -2,9 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import { FaEnvelope, FaEye, FaEyeSlash, FaKey } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../../components/NavLS/NavLS";
-// import { signInWithEmailAndPassword, signInWithPopup } from "../../firebase/auth";
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleAuthProvider } from "../../firebase/auth";
 import validate from "../../common/validation";
 import { UserContext } from "../../Context/UserContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { user, setUser } = useContext(UserContext);
@@ -53,22 +55,58 @@ const Login = () => {
         const data = await response.json();
         setUser(data.user);
         localStorage.setItem("token", data.token);
+        toast.success("Welcome back! Login successful 🌱");
         navigate("/");
       } else {
         const data = await response.json();
+        const errorMessage = data.message || "Invalid email or password";
+        toast.error(errorMessage);
       }
     } catch (error) {
       console.log("Error signing in:", error);
+      toast.error("Failed to sign in. Please check your connection and try again.");
     }
   };
 
-  const SignInGoogle = () => {
-    signInWithPopup(auth, googleAuthProvider)
-      .then((res) => {
-        console.log(res);
-        // navigate("/");
-      })
-      .catch((err) => alert(err.message));
+  const SignInGoogle = async () => {
+    try {
+      const res = await signInWithPopup(auth, googleAuthProvider);
+      
+      // Extract user information from Firebase response
+      const { user } = res;
+      const userData = {
+        email: user.email,
+        username: user.displayName || user.email.split('@')[0],
+        firebaseUid: user.uid,
+        photoURL: user.photoURL,
+      };
+
+      // Send to backend for authentication/registration
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/user/google-auth`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data.user);
+        localStorage.setItem("token", data.token);
+        toast.success("Welcome! Signed in with Google successfully 🎉");
+        navigate("/");
+      } else {
+        const errorData = await response.json();
+        toast.error(errorData.message || "Google sign-in failed. Please try again.");
+      }
+    } catch (err) {
+      console.error("Google sign-in error:", err);
+      toast.error("Failed to sign in with Google. Please try again.");
+    }
   };
 
   return (

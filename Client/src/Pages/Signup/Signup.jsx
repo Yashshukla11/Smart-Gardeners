@@ -6,6 +6,7 @@ import { Navbar } from "../../components/NavLS/NavLS";
 import { signInWithPopup } from "firebase/auth";
 import axios from "axios";
 import { UserContext } from "../../Context/UserContext";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const { user, setUser } = useContext(UserContext);
@@ -48,21 +49,19 @@ const Signup = () => {
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
         setUser(response.data.user);
+        toast.success("Account created successfully! Welcome to Smart Gardeners 🌱");
         navigate("/");
-      } else {
-        setError({
-          ...error,
-          username: true,
-          usernameError: "Failed to sign up.",
-        });
       }
     } catch (error) {
-      console.error("Error signing up:", error.message);
-      setError({
-        ...error,
-        username: true,
-        usernameError: error.message,
-      });
+      console.error("Error signing up:", error);
+      
+      // Extract user-friendly error message
+      const errorMessage = error.response?.data?.message || 
+                          error.response?.data?.error || 
+                          error.message || 
+                          "Failed to create account. Please try again.";
+      
+      toast.error(errorMessage);
     }
   };
 
@@ -74,12 +73,42 @@ const Signup = () => {
 
   const SignInGoogle = async () => {
     try {
-      const result = await signInWithPopup(auth, googleAuthProvider);
-      console.log(result);
-      // navigate("/");
+      const res = await signInWithPopup(auth, googleAuthProvider);
+      
+      // Extract user information from Firebase response
+      const { user } = res;
+      const userData = {
+        email: user.email,
+        username: user.displayName || user.email.split('@')[0],
+        firebaseUid: user.uid,
+        photoURL: user.photoURL,
+      };
+
+      // Send to backend for authentication/registration
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/user/google-auth`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data.user);
+        localStorage.setItem("token", data.token);
+        toast.success("Welcome back! Signed in with Google successfully 🎉");
+        navigate("/");
+      } else {
+        const errorData = await response.json();
+        toast.error(errorData.message || "Google sign-in failed. Please try again.");
+      }
     } catch (error) {
-      console.error("Error signing in with Google:", error.message);
-      alert(error.message);
+      console.error("Error signing in with Google:", error);
+      toast.error("Failed to sign in with Google. Please try again.");
     }
   };
 

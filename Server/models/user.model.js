@@ -20,7 +20,15 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: false, // Made optional for Google OAuth users
+    },
+    firebaseUid: {
+      type: String,
+      unique: true,
+      sparse: true, // Allows null values while maintaining uniqueness
+    },
+    photoURL: {
+      type: String,
     },
     userPhoto: {
       type: String,

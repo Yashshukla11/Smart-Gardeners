@@ -260,6 +260,58 @@ const getPurchasedProducts = wrapAsync(async (req, res) => {
   });
 });
 
+const googleAuth = wrapAsync(async (req, res) => {
+  try {
+    const { email, username, firebaseUid, photoURL } = req.body;
+
+    // Check if user exists by firebaseUid or email
+    let user = await User.findOne({
+      $or: [{ firebaseUid }, { email }],
+    });
+
+    if (user) {
+      // User exists, update firebaseUid if not set
+      if (!user.firebaseUid) {
+        user.firebaseUid = firebaseUid;
+        user.photoURL = photoURL;
+        await user.save();
+      }
+    } else {
+      // Create new user for Google sign-in
+      // Generate unique username if conflict exists
+      let uniqueUsername = username.toLowerCase().replace(/\s+/g, '');
+      let usernameExists = await User.findOne({ username: uniqueUsername });
+      
+      if (usernameExists) {
+        // Append timestamp to make it unique
+        uniqueUsername = `${uniqueUsername}${Date.now()}`;
+      }
+
+      user = new User({
+        email,
+        username: uniqueUsername,
+        firebaseUid,
+        photoURL,
+        // No password needed for Google OAuth users
+      });
+      await user.save();
+    }
+
+    const token = createToken(user._id);
+
+    res.status(200).json({
+      user,
+      token,
+    });
+  } catch (error) {
+    console.error("Google auth error:", error);
+    res.status(500).json({
+      message: "Google authentication failed",
+      error: error.message,
+    });
+  }
+});
+
 module.exports = {
   registerUser,
   loginUser,
@@ -268,4 +320,5 @@ module.exports = {
   getAllUsers,
   scanProduct,
   getPurchasedProducts,
+  googleAuth,
 };

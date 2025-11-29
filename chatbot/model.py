@@ -1,11 +1,11 @@
 from langchain_community.document_loaders import TextLoader
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import CharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.document_loaders import TextLoader
 # from langchain_pinecone import PineconeVectorStore
 from langchain_community.vectorstores import Chroma
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
 import google.generativeai as genai
 from langchain.prompts import PromptTemplate
 from langchain.chains.question_answering import load_qa_chain
@@ -14,7 +14,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 # loader = PyPDFLoader("./SmartGardeners.pdf")
 loader = TextLoader("./data.txt")
@@ -22,7 +22,7 @@ documents = loader.load()
 text_splitter = CharacterTextSplitter(chunk_size=6500, chunk_overlap=50)
 docs = text_splitter.split_documents(documents)
 
-embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 # print(embeddings)
 
 # PINECONE_INDEX_NAME = "smart-gardeners"
@@ -59,9 +59,8 @@ def get_conversational_chain():
 
     Answer:
     """
-  model = ChatGoogleGenerativeAI(
-      model="gemini-pro",
-      client=genai,
+  model = ChatGroq(
+      model_name="openai/gpt-oss-120b",
       temperature=0.5,
   )
   

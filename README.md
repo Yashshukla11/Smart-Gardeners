@@ -187,7 +187,7 @@ Our Smart Gardeners platform is built using the following technologies:
 
 ### How to Access the Web Portal:
 
-1. Visit [SmartGardeners](https://smart-gardeners.vercel.app/)
+1. Visit [SmartGardeners](https://smart-gardeners-eight.vercel.app/)
 2. Log in to the web app to purchase and contribute to the mother nature.
 3. Further your mobile app will help and notify you for daily reminders.
 
