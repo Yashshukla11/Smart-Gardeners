@@ -5,7 +5,8 @@ const methodOverride = require("method-override");
 
 const app = express();
 
-app.use(cors({ origin: process.env.ORIGIN, credentials: true }));
+const corsOrigin = process.env.ORIGIN?.replace(/\/$/, '') || 'http://localhost:5173';
+app.use(cors({ origin: corsOrigin, credentials: true }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

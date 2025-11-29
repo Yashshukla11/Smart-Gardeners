@@ -2,9 +2,11 @@ import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getDatabase } from "firebase/database";
+import dotenv from "dotenv";
+dotenv.config();
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBF8V93QY6Z3AARlgJyoq77fJJCbAxJ_S8",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "smart-gardeners.firebaseapp.com",
   projectId: "smart-gardeners",
   storageBucket: "smart-gardeners.appspot.com",

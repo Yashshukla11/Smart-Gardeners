@@ -180,10 +180,15 @@ export const Navbar = ({
                         className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
                         src={
                           user?.photoURL ||
-                          `https://ui-avatars.com/api/?name=${user.username}&background=29335C&size=128&color=fff&format=png&length=1`
+                          user?.userPhoto ||
+                          `https://ui-avatars.com/api/?name=${user?.username}&background=29335C&size=128&color=fff&format=png&length=1`
                         }
-                        alt="Bordered avatar"
+                        alt="Profile avatar"
                         style={{ width: "40px", height: "40px" }}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = `https://ui-avatars.com/api/?name=${user?.username}&background=29335C&size=128&color=fff&format=png&length=1`;
+                        }}
                       />
 
                       <div
