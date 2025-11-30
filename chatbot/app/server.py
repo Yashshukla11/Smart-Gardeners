@@ -14,12 +14,7 @@ from qdrant_client import QdrantClient
 from langchain_qdrant import QdrantVectorStore
 from utils.utils import retrieve
 
-# Load .env file if it exists (for local development)
-# On Vercel, environment variables are set directly, so this is optional
-try:
-    load_dotenv()
-except Exception:
-    pass  # Ignore if .env file doesn't exist (normal on Vercel)
+load_dotenv()
 
 # ------------------------------------------------------
 # Input/Output Schemas
@@ -55,53 +50,34 @@ app = FastAPI(
 # ------------------------------------------------------
 # Load Qdrant connection
 # ------------------------------------------------------
-_vector_store = None
-_llm = None
-
 def get_vector_store():
-    global _vector_store
-    if _vector_store is None:
-        api_key = os.getenv("OPENAI_API_KEY")
-        if not api_key:
-            raise ValueError("OPENAI_API_KEY environment variable is not set")
-        
-        embedding = OpenAIEmbeddings(
-            model="text-embedding-3-small",
-            api_key=api_key,
-        )
+    embedding = OpenAIEmbeddings(
+        model="text-embedding-3-small",
+        api_key=os.getenv("OPENAI_API_KEY"),
+    )
 
-        qdrant_url = os.getenv("QDRANT_URL")
-        qdrant_api_key = os.getenv("QDRANT_API_KEY")
-        qdrant_collection = os.getenv("QDRANT_COLLECTION_NAME")
-        
-        if not qdrant_url or not qdrant_api_key or not qdrant_collection:
-            raise ValueError("QDRANT environment variables (QDRANT_URL, QDRANT_API_KEY, QDRANT_COLLECTION_NAME) are not set")
+    client = QdrantClient(
+        url=os.getenv("QDRANT_URL"),
+        api_key=os.getenv("QDRANT_API_KEY")
+    )
 
-        client = QdrantClient(
-            url=qdrant_url,
-            api_key=qdrant_api_key
-        )
+    return QdrantVectorStore(
+        client=client,
+        collection_name=os.getenv("QDRANT_COLLECTION_NAME"),
+        embedding=embedding
+    )
 
-        _vector_store = QdrantVectorStore(
-            client=client,
-            collection_name=qdrant_collection,
-            embedding=embedding
-        )
-    return _vector_store
 
-def get_llm():
-    global _llm
-    if _llm is None:
-        api_key = os.getenv("OPENAI_API_KEY")
-        if not api_key:
-            raise ValueError("OPENAI_API_KEY environment variable is not set")
-        
-        _llm = ChatOpenAI(
-            model="gpt-4o-mini",
-            api_key=api_key,
-            temperature=0,
-        )
-    return _llm
+vector_store = get_vector_store()
+
+# ------------------------------------------------------
+# LLM
+# ------------------------------------------------------
+llm = ChatOpenAI(
+    model="gpt-4o-mini",
+    api_key=os.getenv("OPENAI_API_KEY"),
+    temperature=0,
+)
 
 # ------------------------------------------------------
 # Prompt Template
@@ -157,8 +133,7 @@ def process_input(input_data) -> Dict[str, Any]:
         question = str(input_data)
         history = []
     
-    # Retrieve context - lazy load vector_store
-    vector_store = get_vector_store()
+    # Retrieve context
     results = retrieve(vector_store, question, k=5)
     context = format_docs(results) if results else ""
     
@@ -181,21 +156,12 @@ def process_input(input_data) -> Dict[str, Any]:
     }
 
 # ------------------------------------------------------
-# Create lazy LLM invocation function
-# ------------------------------------------------------
-def lazy_llm_invoke(messages):
-    """Invoke LLM lazily, initializing it only when needed."""
-    llm = get_llm()
-    return llm.invoke(messages)
-
-# ------------------------------------------------------
 # Create the chain
 # ------------------------------------------------------
-# Use lazy LLM invocation so initialization happens only when chain is invoked
 chain = (
     RunnableLambda(process_input)
     | prompt
-    | RunnableLambda(lazy_llm_invoke)
+    | llm
     | StrOutputParser()
 )
 
