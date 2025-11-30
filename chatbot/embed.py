@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from qdrant_client import QdrantClient
 from langchain_qdrant import QdrantVectorStore
 from langchain_openai import OpenAIEmbeddings
+from qdrant_client.http import models
 
 from utils.utils import load_text_file, split_documents
 
@@ -26,7 +27,7 @@ def get_vector_store(embedding):
         api_key=os.getenv("QDRANT_API_KEY")
     )
 
-    return QdrantVectorStore(
+    return client, QdrantVectorStore(
         client=client,
         collection_name=os.getenv("QDRANT_COLLECTION_NAME"),
         embedding=embedding
@@ -43,9 +44,26 @@ def embed_data():
     print(f"Chunks to embed: {len(split_docs)}")
 
     embedding = get_embeddings()
-    vector_store = get_vector_store(embedding)
+    client, vector_store = get_vector_store(embedding)
 
-    print("Upserting into Qdrant...")
+    # ------------------------------------------------------
+    # Delete all existing points in the collection
+    # ------------------------------------------------------
+    print("Deleting old embeddings from Qdrant...")
+    client.delete(
+        collection_name=os.getenv("QDRANT_COLLECTION_NAME"),
+        points_selector=models.FilterSelector(
+            filter=models.Filter(
+                must=[]
+            )
+        )
+    )
+    print("All existing vectors deleted.")
+
+    # ------------------------------------------------------
+    # Insert new vectors
+    # ------------------------------------------------------
+    print("Upserting new chunks...")
     vector_store.add_documents(split_docs)
 
     print("Embedding completed and stored.")

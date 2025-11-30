@@ -6,9 +6,11 @@ langchain-community==0.4.1
 langchain-openai==1.1.0
 langchain-qdrant==1.1.0
 langchain-text-splitters==1.0.0
+langserve[all]>=0.3.0
 
 openai==2.8.1
 
 qdrant-client==1.16.1
 
 python-dotenv==1.2.1
+langchain-cli
