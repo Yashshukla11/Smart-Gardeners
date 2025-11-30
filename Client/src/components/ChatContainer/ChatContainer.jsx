@@ -65,11 +65,20 @@ const ChatContainer = ({ setIsChatOpen }) => {
     displayTypingIndicator();
 
     try {
+      const history = chatMessages.map((msg) => ({
+        role: msg.type === "user" ? "user" : "assistant",
+        content: msg.message,
+      }));
+
       // Send the user's message to the Express server to be processed by the chatbot
       const response = await fetch(
-        `${import.meta.env.VITE_CHAT_BOT_URL}/ask?question=${userInput}`,
+        `${import.meta.env.VITE_CHAT_BOT_URL}/ask`,
         {
-          method: "GET",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: userInput, history: history }),
         }
       );
 
